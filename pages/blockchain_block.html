@@ -88,7 +88,7 @@
 				updateText('block.timestamp', formatDate(block.timestamp));
 				updateText('block.version', block.major_version + '.' + block.minor_version);
 				updateText('block.difficulty', block.difficulty);
-				updateText('block.orphan', block.orphan_status ? "так" : "ні");
+				updateText('block.orphan', block.orphan_status ? "YES" : "NO");
 				updateText('block.transactions', block.transactions.length);
 				updateText('block.transactionsSize', block.transactionsCumulativeSize);
 				updateText('block.blockSize', block.blockSize);

@@ -391,10 +391,10 @@ $('#goto-height').keyup(function(e){
             '<td class="date-time">' + formatDate(block.timestamp) + ' (<time class="timeago" datetime="'+dateTime+'"></time>)</td>' +
 			'<td>' + block.cumul_size + '</td>' +
 			'<td>' + formatBlockLink(block.hash) + '</td>' +
-            // '<td class="blk-diff">' + block.difficulty + '</td>' + Json does not include diff for each block
+         '<td class="blk-diff">' + block.difficulty + '</td>' + //Json does not include diff for each block
             '<td>' + block.tx_count + '</td>';
 
-		//Difficulties.push(parseInt(block.difficulty));
+		Difficulties.push(parseInt(block.difficulty));
 		Blocks.push(parseInt(block.height));
 		Txses.push(parseInt(block.tx_count));
 		Sizes.push(parseInt(block.cumul_size));
