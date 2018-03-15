@@ -18,4 +18,4 @@ Donate: [TRTL] TRTLv2RCPuD7AaaVpQkRPF59MMLx5WW3qFxwJz4Doy7dHhNA6UuQjEpLL3rpUQS4R
 
 ### Note
 
-Alot of this code is from the great Karbovanets/Karbowanec-Blockchain-Explorer
+A lot of this code is from the great Karbovanets/Karbowanec-Blockchain-Explorer
