@@ -731,8 +731,7 @@ function displayDiffChart() {
 					}*/
 				}
 			  }
-		}; 
-		
+		};
 	diffChart = new Chart(ctx,{
     type: 'line',
     data: chartData,
@@ -763,13 +762,14 @@ function refreshChart() {
 				times.push(time);				
 		}
 		//diffChart.data.labels = labels.reverse();
-		diffChart.data.labels = times.reverse();
-		diffChart.data.datasets[0].data = labels.reverse();
-		diffChart.data.datasets[1].data = diffs.reverse();
-		diffChart.data.datasets[2].data = txsnr.reverse();
-		diffChart.data.datasets[3].data = sizes.reverse();
-		
-		diffChart.update();
+                if (diffChart) {
+			diffChart.data.labels = times.reverse();
+			diffChart.data.datasets[0].data = labels.reverse();
+			diffChart.data.datasets[1].data = diffs.reverse();
+			diffChart.data.datasets[2].data = txsnr.reverse();
+			diffChart.data.datasets[3].data = sizes.reverse();
+			diffChart.update();
+                }
 }	
 
 function loadMoreChart() {
