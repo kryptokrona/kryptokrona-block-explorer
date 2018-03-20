@@ -25,7 +25,13 @@
 	var style_cookie_name = "style";
 	var style_cookie_duration = 365;
 	var style_domain = window.location.hostname;
-	
+
+        $(document).ready(function() {
+            if (donationAddress !== undefined && donationAddress !== "") {
+                $("#donations").show();
+                $("#donationAddress").html(donationAddress);
+            }
+        });
 	$(function(){
 		$('.theme-switch[rel="./css/themes/white/style.css"]').hide();
 		set_style_from_cookie();
@@ -225,7 +231,11 @@
 
     $(function(){
         $.get(api + '/getinfo', function(data){
-            lastStats = JSON.parse(data);
+            try {
+                lastStats = JSON.parse(data);
+            } catch(e) {
+                lastStats = data;
+            }
             routePage(fetchLiveStats);
         });
     });
@@ -476,34 +486,36 @@ $('#txt_search').keyup(function(e){
 
 <footer>
 	<div class="container">
+                <div class="row">
+			<div class="col-lg-12 col-md-4 col-sm-4 text-center" id="donations" style="word-wrap:break-word; display:none;">
+                        Donations welcome:<br/>
+                        <span id="donationAddress"></span><br/><br/>
+			</div>
+                </div>
 		<div class="row">
-			<div class="col-lg-4 col-md-3 col-sm-3">
+			<div class="col-lg-4 col-md-3 col-sm-3 text-center">
 				<p>
 					<small>
 						&copy; 2018 <strong>TRTLD13</strong> 
 					</small>
 				</p>
 			</div>
-			<div class="col-lg-4 col-md-3 col-sm-6">
+			<div class="col-lg-4 col-md-3 col-sm-6 text-center">
 				<p>
 					<small>
 					<!-- This copyright should be left intact -->
 				
-					Powered by <a target="_blank" href="https://github.com/turtlecoin/block-explorer"><i class="fa fa-github"></i> Turtle Blockchain Explorer</a>
-					v. 1.0.0.<br />
-					<span class="text-muted">Code from<strong>Karbowanec Blockchain Explorer</strong><br />
-						
+					Powered by <a target="_blank" href="https://github.com/turtlecoin/block-explorer"><i class="fa fa-github"></i> Turtle Blockchain Explorer</a> v. 1.0.0.<br />
+					<span class="text-muted">Code from <strong>Karbowanec Blockchain Explorer</strong><br />
 					<span class="text-muted">Partially based on <strong>cryptonote-universal-pool</strong><br />
 					open sourced under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GPL</a></span>
 					</small>
 				</p>
 			</div>
-			<div class="col-lg-4 col-md-3 col-sm-3">
-			
-				<ul>
-					<li><a href="http://turtlecoin.lol/">TURTLECOIN.LOL</li>
-				</ul>
-				
+			<div class="col-lg-4 col-md-3 col-sm-3 text-center">
+                                <ul class="list-unstyled">
+				        <li><a href="http://turtlecoin.lol/">TURTLECOIN.LOL</a></li>
+                               </ul>
 			</div>
 		</div>
     </div>
