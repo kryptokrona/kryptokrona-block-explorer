@@ -36,6 +36,7 @@ var renderPoolRow = function(host, name, data, d) {
     var datestring = renderDate(d);
 
     var pools_row = [];
+
     pools_row.push('<tr>');
     pools_row.push('<td id=host-'+name+'><a target=blank href=http://'+host+'>'+name+'</a></td>');
     pools_row.push('<td class="height" id=height-'+name+'>'+data.network.height+'</td>');
@@ -47,6 +48,21 @@ var renderPoolRow = function(host, name, data, d) {
     pools_row.push('</tr>');
 
     return pools_row.join('');
+};
+
+var translateAPI2 = function(data) {
+    return {
+        'network': {
+            'height': '',
+        },
+        'pool': {
+            'hashrate': data.pool_statistics.hashRate,
+            'miners': data.pool_statistics.miners,
+        },
+        'config': {
+            'minPaymentThreshold': ''
+        }
+    };
 };
 
 NETWORK_STAT_MAP.forEach(function(url, host, map) {
@@ -96,7 +112,9 @@ NETWORK_STAT_MAP2.forEach(function(url, host, map) {
     $.getJSON(url + '/pool/stats', function(data, textStatus, jqXHR) {
         var d = new Date(data.pool_statistics.lastBlockFoundTime*1000);
 
-        $('#pools_rows').append(renderPoolRow(host, result, data, d));
+        var tdata = translateAPI2(data);
+
+        $('#pools_rows').append(renderPoolRow(host, poolName, tdata, d));
 
         totalHashrate += parseInt(data.pool_statistics.hashRate);
         totalMiners += parseInt(data.pool_statistics.miners);
@@ -110,12 +128,12 @@ NETWORK_STAT_MAP2.forEach(function(url, host, map) {
         window.colors.push(getRandomColor());
 
         $.getJSON(url + '/network/stats', function(data, textStatus, jqXHR) {
-            updateText('height-'+result, data.height);
+            updateText('height-'+poolName, data.height);
         });
 
         $.getJSON(url + '/config', function(data, textStatus, jqXHR) {
-            updateText('totalFee-'+result, "PPLNS: "+data.pplns_fee+"%,\nPPS: "+data.pps_fee+"%,\nSolo: "+data.solo_fee+"%");
-            updateText('minPayout-'+result, "Wallet: "+getReadableCoins(data.min_wallet_payout,2)+",\nExchange: "+getReadableCoins(data.min_exchange_payout,2));
+            updateText('totalFee-'+poolName, "PPLNS: "+data.pplns_fee+"%,\nPPS: "+data.pps_fee+"%,\nSolo: "+data.solo_fee+"%");
+            updateText('minPayout-'+poolName, "Wallet: "+getReadableCoins(data.min_wallet_payout,2)+",\nExchange: "+getReadableCoins(data.min_exchange_payout,2));
         });
     });
 
