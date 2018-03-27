@@ -8,33 +8,19 @@
 			<div class="row">
 				<div class="col-sm-6 col-md-6">
 					<ul class="nav nav-pills nav-stacked">
-					
-						<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Blockchain height, total amount of blocks starting from zero."><i class="fa fa-bars"></i> Height: <span id="networkHeight"></span></a></li>
-				
-						<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="The number of transactions in the network (excluding coinbase, i.e. reward for mined blocks)."><i class="fa fa fa-exchange"></i> Transactions: <span id="networkTransactions"></span></a></li>
-						
-			
-						
-						<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Current Base Reward (for last mined block)."><i class="fa fa-certificate"></i> Reward: <span id="currentReward"></span></a></li>
-						
-						<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Total Turtle supply in circulation."><i class="fa fa-money"></i> Supply: <span id="totalCoins"></span></a></li>
-						
-						<li><a href="#" data-toggle="tooltip" data-placement="bottom" data-original-title="Percent of already emitted coins related to Initial supply before Tail emission."><i class="fa fa-percent" aria-hidden="true"></i> Emission: <span id="emissionPercent"></span> %</a></li>
-						
+						<li><i class="fa fa-bars"></i> Height: <span id="networkHeight"></span></li>
+						<li><i class="fa fa fa-exchange"></i> Transactions: <span id="networkTransactions"></span></li>
+						<li><i class="fa fa-certificate"></i> Reward: <span id="currentReward"></span></li>
+						<li><i class="fa fa-money"></i> Supply: <span id="totalCoins"></span></li>
+						<li><i class="fa fa-percent" aria-hidden="true"></i> Emission: <span id="emissionPercent"></span> %</li>
 					</ul>
 				</div>
 				<div class="col-sm-6 col-md-6">
 					<ul class="nav nav-pills nav-stacked">
-					
-						<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Difficulty for next block. Ratio at which at the current hashing speed blocks will be mined with 4 minutes interval."><i class="fa fa-unlock-alt"></i> Difficulty: <span id="networkDifficulty"></span></a></li>
-				
-						<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Average difficulty by last 30 blocks."><i class="fa fa-lock"></i> Average Difficulty: <span id="avgDifficulty"></span></a></li>
-					
-					
-						<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Current estimated network hash rate. Calculated by current difficulty."><i class="fa fa-tachometer"></i> Hash Rate: <span id="networkHashrate"></span></a></li>
-						
-						<li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Average estimated network hash rate. Calculated by average difficulty."><i class="fa fa-clock-o"></i> Average Hash Rate: <span id="avgHashrate"></span></a></li>
-
+						<li><i class="fa fa-unlock-alt"></i> Difficulty: <span id="networkDifficulty"></span></li>
+						<li><i class="fa fa-lock"></i> Average Difficulty: <span id="avgDifficulty"></span></li>
+						<li><i class="fa fa-tachometer"></i> Hash Rate: <span id="networkHashrate"></span></li>
+						<li><i class="fa fa-clock-o"></i> Average Hash Rate: <span id="avgHashrate"></span></li>
 						<!-- <li><a href="#" data-toggle="tooltip" data-placement="bottom" data-original-title="Estimated block solve time at estimated network speed and current difficulty."><i class="fa fa-circle-o-notch" aria-hidden="true"></i> Solve time: <span id="blockSolveTime"></span></a></li> -->
 					
 					</ul>
@@ -50,8 +36,7 @@
 		  <div class="panel-heading">
 		  
 			<h3 class="panel-title"><i class="fa fa-area-chart" aria-hidden="true"></i> Charts
-		  
-			<span class="text-default" data-toggle="tooltip" data-placement="right" data-original-title="Difficulty based on last blocks from the list below. Block size, transactions count. Load more blocks to enlarge chart range."><i class="fa fa-question-circle"></i></span>
+                <span class="text-default" data-toggle="tooltip" data-placement="right" data-original-title="Difficulty based on last blocks from the list below. Block size, transactions count. Load more blocks to enlarge chart range."><i class="fa fa-question-circle"></i></span>
 			</h3>
 			
 		  </div>
@@ -122,7 +107,7 @@
 				<th><i class="fa fa-archive"></i> Size</th>
 				<th><i class="fa fa-paw"></i> Block Hash</th>
 				<th><i class="fa fa-unlock-alt"></i> Difficulty</th>
-				<th><i class="fa fa-bars"></i> Transactions</th>
+				<th><i class="fa fa-bars"></i> Txs</th>
 			</tr>
 			</thead>
 			<tbody id="blocks_rows">
