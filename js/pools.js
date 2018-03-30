@@ -12,6 +12,9 @@ var avgDiff = 0;
 
 var poolsRefreshed = 0;
 
+var poolsTable = document.getElementById('network-hash');
+sorttable.makeSortable(poolsTable);
+
 var calculateTotalFee = function(config) {
     let totalFee = config.config.fee;
     for (let property in config.config.donation) {
