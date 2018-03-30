@@ -160,8 +160,13 @@ currentPage = {
 function displayChart() {
     var ctx = document.getElementById('poolsChart');
 
-    var netRate = lastStats.difficulty / blockTargetInterval;
-    var unknownRate = netRate - totalHashrate;
+    // due to network hash being derived via difficulty, and pool rate being
+    // actually gathered, these numbers can be a bit wishy-washy when hashrate
+    // flucuates in the moment. Occasionally pool rates will be greater than
+    // the total hashrate, and the graph doesn't appreciate negative numbers.
+    var poolsRate = poolStats.reduce(function(v, p) { return v + p[1]; }, 0);
+    var networkRate = Math.floor(lastStats.difficulty / blockTargetInterval);
+    var unknownRate = Math.max(0, networkRate - poolsRate);
 
     var sortedPools = poolStats.concat([['Unknown', unknownRate, "#666666"]]).sort(function(poolA, poolB) {
         if (poolA[1] > poolB[1]) {
@@ -243,12 +248,14 @@ setInterval(function(){
             updateText('total_miners', totalMiners);
             updateText('networkHashrate', getReadableHashRateString(lastStats.difficulty / blockTargetInterval) + '/sec');
             updateText('networkDifficulty', getReadableDifficultyString(lastStats.difficulty, 0).toString());
+
+            poolStats.push([poolName, parseInt(data.pool.hashrate), colorHash.hex(poolName)]);
         });
 
         poolsRefreshed++;
 
         if (poolsRefreshed === NETWORK_STAT_MAP.size){
-            setTimeout(function(){ refreshChart(); }, 1000);
+            setTimeout(function(){ displayChart(); }, 1000);
         }
 
     });
@@ -277,6 +284,7 @@ setInterval(function(){
             updateText('totalPoolsHashrate', getReadableHashRateString(totalHashrate) + '/sec');
             updateText('total_miners', totalMiners);
 
+            poolStats.push([poolName, data.pool_statistics.hashRate, colorHash.hex(poolName)]);
         });
         $.getJSON(url + '/network/stats', (data, textStatus, jqXHR) => {
             updateText('height-'+poolName, data.height);
