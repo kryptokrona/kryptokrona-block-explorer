@@ -1,9 +1,9 @@
 window.NETWORK_STAT_MAP = new Map(networkStat[symbol.toLowerCase()]);
 window.NETWORK_STAT_MAP2 = new Map(networkStat2[symbol.toLowerCase()]);
-window.poolNames = [];
-window.poolHashrates = [];
-window.colors = [];
 
+var colorHash = new ColorHash();
+
+var poolStats = [];
 var difficulties = [];
 var totalHashrate = 0;
 var totalMiners = 0;
@@ -89,9 +89,7 @@ NETWORK_STAT_MAP.forEach(function(url, host, map) {
         updateText('totalPoolsHashrate', getReadableHashRateString(totalHashrate) + '/sec');
         updateText('total_miners', totalMiners);
 
-        poolNames.push(poolName);
-        poolHashrates.push(parseInt(data.pool.hashrate));
-        window.colors.push(getRandomColor());
+        poolStats.push([poolName, parseInt(data.pool.hashrate), colorHash.hex(poolName)]);
 
     });
 
@@ -125,10 +123,7 @@ NETWORK_STAT_MAP2.forEach(function(url, host, map) {
         updateText('totalPoolsHashrate', getReadableHashRateString(totalHashrate) + '/sec');
         updateText('total_miners', totalMiners);
 
-        poolNames.push(poolName);
-        poolHashrates.push(parseInt(data.pool_statistics.hashRate));
-
-        window.colors.push(getRandomColor());
+        poolStats.push([poolName, data.pool_statistics.hashRate, colorHash.hex(poolName)]);
 
         $.getJSON(url + '/network/stats', function(data, textStatus, jqXHR) {
             updateText('height-'+poolName, data.height);
@@ -165,11 +160,29 @@ currentPage = {
 function displayChart() {
     var ctx = document.getElementById('poolsChart');
 
+    // due to network hash being derived via difficulty, and pool rate being
+    // actually gathered, these numbers can be a bit wishy-washy when hashrate
+    // flucuates in the moment. Occasionally pool rates will be greater than
+    // the total hashrate, and the graph doesn't appreciate negative numbers.
+    var poolsRate = poolStats.reduce(function(v, p) { return v + p[1]; }, 0);
+    var networkRate = Math.floor(lastStats.difficulty / blockTargetInterval);
+    var unknownRate = Math.max(0, networkRate - poolsRate);
+
+    var sortedPools = poolStats.concat([['Unknown', unknownRate, "#666666"]]).sort(function(poolA, poolB) {
+        if (poolA[1] > poolB[1]) {
+            return -1;
+        } else if (poolA[1] < poolB[1]) {
+            return 1;
+        }
+
+        return 0;
+    });
+
     var chartData = {
-        labels: poolNames,
+        labels: sortedPools.map(function(p) { return p[0]; }) ,
         datasets: [{
-            data: poolHashrates,
-            backgroundColor: colors,
+            data: sortedPools.map(function(p) { return p[1]; }),
+            backgroundColor: sortedPools.map(function(p) { return p[2]; }),
             borderWidth: 1,
             segmentShowStroke: false
         }]
@@ -202,12 +215,11 @@ function displayChart() {
 
 setInterval(function(){
 
-    var totalHashrate = 0;
-    var poolsRefreshed = 0;
+    totalHashrate = 0;
+    poolsRefreshed = 0;
 
     totalMiners = 0;
-    poolNames = [];
-    poolHashrates = [];
+    poolStats = [];
 
     NETWORK_STAT_MAP.forEach(function(url, host, map) {
 
@@ -236,12 +248,14 @@ setInterval(function(){
             updateText('total_miners', totalMiners);
             updateText('networkHashrate', getReadableHashRateString(lastStats.difficulty / blockTargetInterval) + '/sec');
             updateText('networkDifficulty', getReadableDifficultyString(lastStats.difficulty, 0).toString());
+
+            poolStats.push([poolName, parseInt(data.pool.hashrate), colorHash.hex(poolName)]);
         });
 
         poolsRefreshed++;
 
         if (poolsRefreshed === NETWORK_STAT_MAP.size){
-            setTimeout(function(){ refreshChart(); }, 1000);
+            setTimeout(function(){ displayChart(); }, 1000);
         }
 
     });
@@ -270,6 +284,7 @@ setInterval(function(){
             updateText('totalPoolsHashrate', getReadableHashRateString(totalHashrate) + '/sec');
             updateText('total_miners', totalMiners);
 
+            poolStats.push([poolName, data.pool_statistics.hashRate, colorHash.hex(poolName)]);
         });
         $.getJSON(url + '/network/stats', (data, textStatus, jqXHR) => {
             updateText('height-'+poolName, data.height);
@@ -297,15 +312,6 @@ function refreshChart() {
     poolsChart.update();
 }
 
-
-function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
 
 $(function() {
     $('[data-toggle="tooltip"]').tooltip();
