@@ -167,6 +167,8 @@ ColorHash.prototype.hex = function(str) {
     return RGB2HEX(rgb);
 };
 
+ColorHash.BKDRHash = BKDRHash;
+
 module.exports = ColorHash;
 
 },{"./bkdr-hash":1}]},{},[2])(2)
