@@ -84,22 +84,22 @@
 	
 	function renderBlock(block){
 				updateText('block.hash', block.hash);
-				updateText('block.height', block.height);
+				updateText('block.height', localizeNumber(block.height));
 				updateText('block.timestamp', formatDate(block.timestamp));
 				updateText('block.version', block.major_version + '.' + block.minor_version);
-				updateText('block.difficulty', block.difficulty);
+				updateText('block.difficulty', localizeNumber(block.difficulty));
 				updateText('block.orphan', block.orphan_status ? "YES" : "NO");
 				updateText('block.transactions', block.transactions.length);
-				updateText('block.transactionsSize', block.transactionsCumulativeSize);
-				updateText('block.blockSize', block.blockSize);
-				updateText('block.currentTxsMedian', block.sizeMedian);
-				updateText('block.effectiveTxsMedian', block.effectiveSizeMedian);
+				updateText('block.transactionsSize', localizeNumber(block.transactionsCumulativeSize));
+				updateText('block.blockSize', localizeNumber(block.blockSize));
+				updateText('block.currentTxsMedian', localizeNumber(block.sizeMedian));
+				updateText('block.effectiveTxsMedian', localizeNumber(block.effectiveSizeMedian));
 				updateText('block.rewardPenalty', block.penalty*100 + "%");
 				updateText('block.baseReward', getReadableCoins(block.baseReward));
 				updateText('block.transactionsFee', getReadableCoins(block.totalFeeAmount));
 				updateText('block.reward', getReadableCoins(block.reward));
 				updateText('block.totalCoins', getReadableCoins(block.alreadyGeneratedCoins));
-				updateText('block.totalTransactions', block.alreadyGeneratedTransactions);
+				updateText('block.totalTransactions', localizeNumber(block.alreadyGeneratedTransactions));
 				renderTransactions(block.transactions);
 			
 				makePrevBlockLink(block.prev_hash);
@@ -135,7 +135,7 @@
         return '<td>' + formatPaymentLink(transaction.hash) + '</td>' +
                '<td>' + getReadableCoins(transaction.fee, 4, true) + '</td>' +
                '<td>' + getReadableCoins(transaction.amount_out, 4, true) + '</td>' +
-               '<td>' + transaction.size + '</td>';
+               '<td>' + localizeNumber(transaction.size) + '</td>';
     }
 
     function getTransactionRowElement(transaction, jsonString){
