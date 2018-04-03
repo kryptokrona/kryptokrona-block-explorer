@@ -1,7 +1,14 @@
 window.NETWORK_STAT_MAP = new Map(networkStat[symbol.toLowerCase()]);
 window.NETWORK_STAT_MAP2 = new Map(networkStat2[symbol.toLowerCase()]);
 
-var colorHash = new ColorHash();
+var customHash = function(str) {
+    // custom hash function makes the potential color space tighter for the
+    // hasher, generating more distinct colors. Since so many pools have close
+    // names, their hashes were generating similar colors
+    return ColorHash.BKDRHash(str) / 13;
+};
+
+var colorHash = new ColorHash({hash: customHash, lightness: [0.55, 0.66, 0.77] });
 
 var poolStats = [];
 var difficulties = [];
@@ -165,7 +172,7 @@ function displayChart() {
     });
 
     var chartData = {
-        labels: sortedPools.map(function(p) { return p[0]; }) ,
+        labels: sortedPools.map(function(p) { return p[0]; }),
         datasets: [{
             data: sortedPools.map(function(p) { return p[1]; }),
             backgroundColor: sortedPools.map(function(p) { return p[2]; }),
@@ -176,7 +183,21 @@ function displayChart() {
     var options = {
         title: {
             display: true,
-            text: 'Known pools hash rate'
+            text: 'Network Hashrate Visualization',
+            fontSize: 18,
+            fontColor: '#2ecc71'
+        },
+        legend: {
+            position: 'bottom',
+            labels: {
+                fontColor: '#c8c8c8'
+            },
+        },
+        layout: {
+            padding: {
+                left: 0,
+                right: 0
+            },
         },
         tooltips: {
             enabled: true,
@@ -185,7 +206,7 @@ function displayChart() {
                 title: function (tooltipItem, data) { return data.labels[tooltipItem[0].index]; },
                 label: function (tooltipItem, data) {
                     var amount = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                    var total = eval(data.datasets[tooltipItem.datasetIndex].data.join("+"));
+                    var total = eval(data.datasets[tooltipItem.datasetIndex].data.join('+'));
                     return amount + ' / ' + total + ' H/s  (' + parseFloat(amount * 100 / total).toFixed(2) + '%)';
                 }
             }
@@ -193,7 +214,7 @@ function displayChart() {
     };
 
     window.poolsChart = new Chart(ctx,{
-        type: 'pie',
+        type: 'doughnut',
         data: chartData,
         options: options
     });
