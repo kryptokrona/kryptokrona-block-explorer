@@ -43,7 +43,7 @@ var renderPoolRow = function(host, name, data, d) {
     pools_row.push('<tr>');
     pools_row.push('<td id=host-'+name+'><a target=blank href=http://'+host+'>'+name+'</a></td>');
     pools_row.push('<td class="height" id=height-'+name+'>'+data.network.height+'</td>');
-    pools_row.push('<td id=hashrate-'+name+'>'+data.pool.hashrate+'&nbsp;H/s</td>');
+    pools_row.push('<td id=hashrate-'+name+'>'+data.pool.hashrate+' H/s</td>');
     pools_row.push('<td id=miners-'+name+'>'+data.pool.miners+'</td>');
     pools_row.push('<td id=totalFee-'+name+'>'+calculateTotalFee(data)+'%</td>');
     pools_row.push('<td id=minPayout-'+name+'>'+getReadableCoins(data.config.minPaymentThreshold,2)+'</td>');
@@ -142,20 +142,6 @@ NETWORK_STAT_MAP2.forEach(function(url, host, map) {
     }
 });
 
-currentPage = {
-    destroy: function(){},
-    init: function(){
-        getBlocks();
-        renderLastBlock();
-    },
-    update: function(){
-        updateText('networkHashrate', getReadableHashRateString(lastStats.difficulty / blockTargetInterval) + '/sec');
-        updateText('networkDifficulty', getReadableDifficultyString(lastStats.difficulty, 0).toString());
-        getBlocks();
-        renderLastBlock();
-    }
-};
-
 
 function displayChart() {
     var ctx = document.getElementById('poolsChart');
@@ -240,7 +226,7 @@ setInterval(function(){
             totalMiners += parseInt(data.pool.miners);
 
             updateText('height-'+poolName, data.network.height);
-            updateText('hashrate-'+poolName, data.pool.hashrate+'&nbsp;H/s');
+            updateText('hashrate-'+poolName, data.pool.hashrate+' H/s');
             updateText('miners-'+poolName, data.pool.miners);
             updateText('lastFound-'+poolName, datestring);
             updateText('ago-'+poolName, agostring);
@@ -275,7 +261,7 @@ setInterval(function(){
             var datestring = renderDate(d);
             var agostring = $.timeago(d);
 
-            updateText('hashrate-'+poolName, data.pool_statistics.hashRate+'&nbsp;H/s');
+            updateText('hashrate-'+poolName, data.pool_statistics.hashRate+' H/s');
             updateText('miners-'+poolName, data.pool_statistics.miners);
             // updateText('totalFee'+poolName, calculateTotalFee(data)+'%');
 
@@ -298,24 +284,6 @@ setInterval(function(){
     });
 
 }, 240000);
-
-
-function refreshChart() {
-    var pool_rows = $('#pools_rows').children();
-    for (var i = 0; i < pool_rows.length; i++) {
-        var row = $(pool_rows[i]);
-        var label = row.find('td:first').text();
-        var hashrate = 	row.find('td:nth-child(3)').text();
-        poolsChart.data.labels[i] = label;
-        poolsChart.data.datasets[0].data[i] = parseInt(hashrate);
-    }
-    poolsChart.update();
-}
-
-
-$(function() {
-    $('[data-toggle="tooltip"]').tooltip();
-});
 
 
 var xhrGetBlocks;
@@ -431,5 +399,19 @@ function calcEstimateProfit(){
     catch(e){ }
     updateText('calcHashAmount', '');
 }
+
+currentPage = {
+    destroy: function(){},
+    init: function(){
+        getBlocks();
+        renderLastBlock();
+    },
+    update: function(){
+        updateText('networkHashrate', getReadableHashRateString(lastStats.difficulty / blockTargetInterval) + '/sec');
+        updateText('networkDifficulty', getReadableDifficultyString(lastStats.difficulty, 0).toString());
+        getBlocks();
+        renderLastBlock();
+    }
+};
 
 
