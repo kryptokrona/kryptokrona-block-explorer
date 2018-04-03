@@ -108,7 +108,7 @@
                 updateText('transaction.hash', details.hash);
                 if (block.hash){
 					$('#confirmations').show();
-					updateText('transaction.confirmations', lastStats.height - block.height);
+					updateText('transaction.confirmations', localizeNumber(lastStats.height - block.height));
 					updateText('transaction.timestamp', formatDate(block.timestamp));
 					$(".transaction-timeago").timeago('update', new Date(block.timestamp * 1000).toISOString());
 				}
@@ -121,7 +121,7 @@
 				updateText('transaction.paymentIdDecifer', hex2a(details.paymentId));
                 if (!details.paymentId)
                     $('#div_transaction_paymentId').hide();
-                updateText('transaction.size', details.size);
+                updateText('transaction.size', localizeNumber(details.size));
 
 				if (!block.hash){
 					$('#tx_block').hide();
@@ -129,7 +129,7 @@
 				}
 				
                 updateTextLinkable('block.hash', formatBlockLink(block.hash));
-                updateText('block.height', block.height);
+                updateText('block.height', localizeNumber(block.height));
                 updateText('block.timestamp', formatDate(block.timestamp));
 				
                 renderInputs(inputs);

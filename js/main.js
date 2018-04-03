@@ -6,6 +6,16 @@ var style_cookie_name = "style";
 var style_cookie_duration = 365;
 var style_domain = window.location.hostname;
 
+
+var renderDate = function(d) {
+    return ('0' + d.getDate()).slice(-2) + '-' +
+        ('0' + (d.getMonth() + 1)).slice(-2) + '-' +
+        d.getFullYear() + ' ' +
+        ('0' + d.getHours()).slice(-2) + ':' +
+        ('0' + d.getMinutes()).slice(-2);
+};
+
+
 $(document).ready(function() {
     if (donationAddress !== undefined && donationAddress !== "") {
         $("#donations").show();
@@ -99,7 +109,11 @@ function updateTextLinkable(elementId, text){
 
 var currentPage;
 var lastStats;
+var numberFormatter = new Intl.NumberFormat('en-US'); // US formatting, force commas.
 
+function localizeNumber(number) {
+    return numberFormatter.format(number);
+}
 
 function getReadableHashRateString(hashrate){
     var i = 0;
@@ -108,7 +122,7 @@ function getReadableHashRateString(hashrate){
         hashrate = hashrate / 1000;
         i++;
     }
-    return hashrate.toFixed(2) + byteUnits[i];
+    return localizeNumber(hashrate.toFixed(2)) + byteUnits[i];
 }
 
 function getReadableDifficultyString(difficulty, precision){
@@ -119,7 +133,7 @@ function getReadableDifficultyString(difficulty, precision){
     if (units[number] === undefined || units[number] === null) {
         return 0
     }
-    return (difficulty / Math.pow(1000, Math.floor(number))).toFixed(precision) + ' ' +  units[number];
+    return localizeNumber((difficulty / Math.pow(1000, Math.floor(number))).toFixed(precision)) + ' ' +  units[number];
 }
 
 function formatBlockLink(hash){
@@ -128,12 +142,12 @@ function formatBlockLink(hash){
 
 function getReadableCoins(coins, digits, withoutSymbol){
     var amount = (parseInt(coins || 0) / coinUnits).toFixed(digits || coinUnits.toString().length - 1);
-    return amount + (withoutSymbol ? '' : (' ' + symbol));
+    return localizeNumber(amount) + (withoutSymbol ? '' : (' ' + symbol));
 }
 
 function formatDate(time){
     if (!time) return '';
-    return new Date(parseInt(time) * 1000).toLocaleString();
+    return renderDate(new Date(parseInt(time) * 1000));
 }
 
 function formatPaymentLink(hash){

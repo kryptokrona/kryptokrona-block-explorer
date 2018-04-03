@@ -103,11 +103,11 @@
 			<thead>
 			<tr>
 				<th><i class="fa fa-bars"></i> Height</th>
-				<th><i class="fa fa-clock-o"></i> Date &amp; time</th>
 				<th><i class="fa fa-archive"></i> Size</th>
 				<th><i class="fa fa-paw"></i> Block Hash</th>
 				<th><i class="fa fa-unlock-alt"></i> Difficulty</th>
 				<th><i class="fa fa-bars"></i> Txs</th>
+				<th><i class="fa fa-clock-o"></i> Date &amp; time</th>
 			</tr>
 			</thead>
 			<tbody id="blocks_rows">
@@ -149,8 +149,8 @@ currentPage = {
         },
         update: function(){
 			renderLastBlock();
-            updateText('networkHeight', lastStats.height.toString());
-            updateText('networkTransactions', lastStats.tx_count.toString());
+            updateText('networkHeight', localizeNumber(lastStats.height.toString()));
+            updateText('networkTransactions', localizeNumber(lastStats.tx_count.toString()));
             updateText('networkHashrate', getReadableHashRateString(lastStats.difficulty / blockTargetInterval));
             updateText('networkDifficulty', getReadableDifficultyString(lastStats.difficulty, 0).toString());
 			$("time.timeago").timeago();
@@ -372,12 +372,12 @@ $('#goto-height').keyup(function(e){
 		var dateTime = new Date(block.timestamp * 1000).toISOString();
 		row.setAttribute('data-dt', dateTime);
         var columns =
-            '<td>' + block.height + '</td>' +
-            '<td class="date-time">' + formatDate(block.timestamp) + ' (<time class="timeago" datetime="'+dateTime+'"></time>)</td>' +
-			'<td>' + block.cumul_size + '</td>' +
+            '<td>' + localizeNumber(block.height) + '</td>' +
+			'<td>' + localizeNumber(block.cumul_size) + '</td>' +
 			'<td>' + formatBlockLink(block.hash) + '</td>' +
-            '<td class="blk-diff">' + block.difficulty + '</td>' + 
-            '<td>' + block.tx_count + '</td>';
+            '<td class="blk-diff">' + localizeNumber(block.difficulty) + '</td>' + 
+            '<td>' + localizeNumber(block.tx_count) + '</td>' +
+            '<td class="date-time">' + formatDate(block.timestamp) + ' (<time class="timeago" datetime="'+dateTime+'"></time>)</td>';
 
 		Difficulties.push(parseInt(block.difficulty));
 		Blocks.push(parseInt(block.height));
@@ -486,7 +486,7 @@ var xhrGetPool = $.ajax({
 								/*'<td>' + formatDate(timestamp) + ' (<span class="mtx-ago"></span>)' + '</td>' +*/
 								'<td>' + getReadableCoins(amount, 4, true) + '</td>' +
 								'<td>' + getReadableCoins(fee, 4, true) + '</td>' +
-								'<td>' + size + '</td>' +
+								'<td>' + localizeNumber(size) + '</td>' +
 								'<td>' + formatPaymentLink(hash) + '</td>';
 						row.innerHTML = columns;
 						$(txsRows).append(row);
