@@ -12,6 +12,7 @@ var colorHash = new ColorHash({hash: customHash, lightness: [0.55, 0.66, 0.77] }
 
 var poolStats = [];
 var difficulties = [];
+var poolsChart = null;
 var totalHashrate = 0;
 var totalMiners = 0;
 var lastReward = 0;
@@ -172,44 +173,50 @@ function displayChart() {
             segmentShowStroke: false
         }]
     };
-    var options = {
-        title: {
-            display: true,
-            text: 'Network Hashrate Visualization',
-            fontSize: 18,
-            fontColor: '#2ecc71'
-        },
-        legend: {
-            position: 'bottom',
-            labels: {
-                fontColor: '#c8c8c8'
+
+    if (poolsChart === null) {
+        var options = {
+            title: {
+                display: true,
+                text: 'Network Hashrate Visualization',
+                fontSize: 18,
+                fontColor: '#2ecc71'
             },
-        },
-        layout: {
-            padding: {
-                left: 0,
-                right: 0
+            legend: {
+                position: 'bottom',
+                labels: {
+                    fontColor: '#c8c8c8'
+                },
             },
-        },
-        tooltips: {
-            enabled: true,
-            mode: 'single',
-            callbacks: {
-                title: function (tooltipItem, data) { return data.labels[tooltipItem[0].index]; },
-                label: function (tooltipItem, data) {
-                    var amount = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                    var total = eval(data.datasets[tooltipItem.datasetIndex].data.join('+'));
-                    return localizeNumber(amount) + ' / ' + localizeNumber(total) + ' H/s  (' + parseFloat(amount * 100 / total).toFixed(2) + '%)';
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0
+                },
+            },
+            tooltips: {
+                enabled: true,
+                mode: 'single',
+                callbacks: {
+                    title: function (tooltipItem, data) { return data.labels[tooltipItem[0].index]; },
+                    label: function (tooltipItem, data) {
+                        var amount = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                        var total = eval(data.datasets[tooltipItem.datasetIndex].data.join('+'));
+                        return localizeNumber(amount) + ' / ' + localizeNumber(total) + ' H/s  (' + parseFloat(amount * 100 / total).toFixed(2) + '%)';
+                    }
                 }
             }
-        }
-    };
+        };
 
-    window.poolsChart = new Chart(ctx,{
-        type: 'doughnut',
-        data: chartData,
-        options: options
-    });
+        poolsChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: chartData,
+            options: options
+        });
+    } else {
+        poolsChart.data = chartData;
+        poolsChart.update();
+    }
 }
 
 setInterval(function(){
@@ -296,7 +303,7 @@ setInterval(function(){
         }
     });
 
-}, 240000);
+}, 120000);
 
 
 var xhrGetBlocks;
