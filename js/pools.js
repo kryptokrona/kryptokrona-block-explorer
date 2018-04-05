@@ -68,84 +68,7 @@ var translateAPI2 = function(data) {
     };
 };
 
-NETWORK_STAT_MAP.forEach(function(url, host, map) {
-    $.getJSON(url + '/stats', function(data, textStatus, jqXHR) {
-
-        var d = new Date(parseInt(data.pool.lastBlockFound));
-        var index = host.indexOf('/');
-        var poolName;
-
-        if (index < 0) {
-            poolName = host;
-        } else {
-            poolName = host.substr(0, index);
-        }
-
-        $('#pools_rows').append(renderPoolRow(host, poolName, data, d));
-
-        totalHashrate += parseInt(data.pool.hashrate);
-        totalMiners += parseInt(data.pool.miners);
-
-        updateText('totalPoolsHashrate', getReadableHashRateString(totalHashrate) + '/sec');
-        updateText('total_miners', localizeNumber(totalMiners));
-
-        poolStats.push([poolName, parseInt(data.pool.hashrate), colorHash.hex(poolName)]);
-
-    })
-    .always(function() {
-        poolsRefreshed++;
-
-        if (poolsRefreshed === NETWORK_STAT_MAP.size){
-            setTimeout(function(){ displayChart(); }, 1000);
-        }
-    });
-});
-
-NETWORK_STAT_MAP2.forEach(function(url, host, map) {
-    var index = host.indexOf("/");
-    var poolName;
-
-    if (index < 0) {
-        poolName = host;
-    } else {
-        poolName = host.substr(0, index);
-    }
-
-    $.getJSON(url + '/pool/stats', function(data, textStatus, jqXHR) {
-        var d = new Date(data.pool_statistics.lastBlockFoundTime*1000);
-
-        var tdata = translateAPI2(data);
-
-        $('#pools_rows').append(renderPoolRow(host, poolName, tdata, d));
-
-        totalHashrate += parseInt(data.pool_statistics.hashRate);
-        totalMiners += parseInt(data.pool_statistics.miners);
-
-        updateText('totalPoolsHashrate', getReadableHashRateString(totalHashrate) + '/sec');
-        updateText('total_miners', localizeNumber(totalMiners));
-
-        poolStats.push([poolName, data.pool_statistics.hashRate, colorHash.hex(poolName)]);
-
-        $.getJSON(url + '/network/stats', function(data, textStatus, jqXHR) {
-            updateText('height-'+poolName, localizeNumber(data.height));
-        });
-
-        $.getJSON(url + '/config', function(data, textStatus, jqXHR) {
-            updateText('totalFee-'+poolName, "PPLNS: "+data.pplns_fee+"%,\nPPS: "+data.pps_fee+"%,\nSolo: "+data.solo_fee+"%");
-            updateText('minPayout-'+poolName, "Wallet: "+getReadableCoins(data.min_wallet_payout,2)+",\nExchange: "+getReadableCoins(data.min_exchange_payout,2));
-        });
-    })
-    .always(function() {
-        poolsRefreshed++;
-
-        if (poolsRefreshed === NETWORK_STAT_MAP2.size){
-            setTimeout(function(){ displayChart(); }, 1000);
-        }
-    });
-});
-
-
-function displayChart() {
+var displayChart = function displayChart() {
     var ctx = document.getElementById('poolsChart');
 
     // due to network hash being derived via difficulty, and pool rate being
@@ -178,6 +101,9 @@ function displayChart() {
 
     if (poolsChart === null) {
         var options = {
+            animation: {
+                duration: 0
+            },
             title: {
                 display: true,
                 text: 'Network Hashrate Visualization',
@@ -217,15 +143,83 @@ function displayChart() {
         });
     } else {
         poolsChart.data = chartData;
-        poolsChart.update();
+        poolsChart.update({duration: 0});
     }
 }
+
+var lazyRefreshChart = _.debounce(displayChart, 50);
+
+
+NETWORK_STAT_MAP.forEach(function(url, host, map) {
+    $.getJSON(url + '/stats', function(data, textStatus, jqXHR) {
+
+        var d = new Date(parseInt(data.pool.lastBlockFound));
+        var index = host.indexOf('/');
+        var poolName;
+
+        if (index < 0) {
+            poolName = host;
+        } else {
+            poolName = host.substr(0, index);
+        }
+
+        $('#pools_rows').append(renderPoolRow(host, poolName, data, d));
+
+        totalHashrate += parseInt(data.pool.hashrate);
+        totalMiners += parseInt(data.pool.miners);
+
+        updateText('totalPoolsHashrate', getReadableHashRateString(totalHashrate) + '/sec');
+        updateText('total_miners', localizeNumber(totalMiners));
+
+        poolStats.push([poolName, parseInt(data.pool.hashrate), colorHash.hex(poolName)]);
+
+    }).always(function() {
+        lazyRefreshChart();
+    });
+});
+
+NETWORK_STAT_MAP2.forEach(function(url, host, map) {
+    var index = host.indexOf("/");
+    var poolName;
+
+    if (index < 0) {
+        poolName = host;
+    } else {
+        poolName = host.substr(0, index);
+    }
+
+    $.getJSON(url + '/pool/stats', function(data, textStatus, jqXHR) {
+        var d = new Date(data.pool_statistics.lastBlockFoundTime*1000);
+
+        var tdata = translateAPI2(data);
+
+        $('#pools_rows').append(renderPoolRow(host, poolName, tdata, d));
+
+        totalHashrate += parseInt(data.pool_statistics.hashRate);
+        totalMiners += parseInt(data.pool_statistics.miners);
+
+        updateText('totalPoolsHashrate', getReadableHashRateString(totalHashrate) + '/sec');
+        updateText('total_miners', localizeNumber(totalMiners));
+
+        poolStats.push([poolName, data.pool_statistics.hashRate, colorHash.hex(poolName)]);
+
+        $.getJSON(url + '/network/stats', function(data, textStatus, jqXHR) {
+            updateText('height-'+poolName, localizeNumber(data.height));
+        });
+
+        $.getJSON(url + '/config', function(data, textStatus, jqXHR) {
+            updateText('totalFee-'+poolName, "PPLNS: "+data.pplns_fee+"%,\nPPS: "+data.pps_fee+"%,\nSolo: "+data.solo_fee+"%");
+            updateText('minPayout-'+poolName, "Wallet: "+getReadableCoins(data.min_wallet_payout,2)+",\nExchange: "+getReadableCoins(data.min_exchange_payout,2));
+        });
+    }).always(function() {
+        lazyRefreshChart();
+    });
+});
+
 
 setInterval(function(){
 
     totalHashrate = 0;
-    poolsRefreshed = 0;
-
     totalMiners = 0;
     poolStats = [];
 
@@ -258,13 +252,8 @@ setInterval(function(){
             updateText('networkDifficulty', getReadableDifficultyString(lastStats.difficulty, 0).toString());
 
             poolStats.push([poolName, parseInt(data.pool.hashrate), colorHash.hex(poolName)]);
-        })
-        .always(function() {
-            poolsRefreshed++;
-
-            if (poolsRefreshed === NETWORK_STAT_MAP.size){
-                setTimeout(function(){ displayChart(); }, 1000);
-            }
+        }).always(function() {
+            lazyRefreshChart();
         });
     });
 
@@ -293,17 +282,13 @@ setInterval(function(){
             updateText('total_miners', localizeNumber(totalMiners));
 
             poolStats.push([poolName, data.pool_statistics.hashRate, colorHash.hex(poolName)]);
+        }).always(function() { 
+            lazyRefreshChart();
         });
+
         $.getJSON(url + '/network/stats', (data, textStatus, jqXHR) => {
             updateText('height-'+poolName, localizeNumber(data.height));
         });
-    })
-    .always(function() {
-        poolsRefreshed++;
-
-        if (poolsRefreshed === NETWORK_STAT_MAP2.size){
-            setTimeout(function(){ displayChart(); }, 1000);
-        }
     });
 
 }, 120000);
@@ -344,7 +329,6 @@ function renderBlocks(blocksResults){
         var block = blocksResults[i];
         difficulties.push(parseInt(block.difficulty));
     }
-
 }
 
 function calcAvgHashRate(){
@@ -436,5 +420,3 @@ currentPage = {
         renderLastBlock();
     }
 };
-
-
