@@ -91,13 +91,14 @@ NETWORK_STAT_MAP.forEach(function(url, host, map) {
 
         poolStats.push([poolName, parseInt(data.pool.hashrate), colorHash.hex(poolName)]);
 
+    })
+    .always(function() {
+        poolsRefreshed++;
+
+        if (poolsRefreshed === NETWORK_STAT_MAP.size){
+            setTimeout(function(){ displayChart(); }, 1000);
+        }
     });
-
-    poolsRefreshed++;
-
-    if (poolsRefreshed === NETWORK_STAT_MAP.size){
-        setTimeout(function(){ displayChart(); }, 1000);
-    }
 });
 
 NETWORK_STAT_MAP2.forEach(function(url, host, map) {
@@ -133,13 +134,14 @@ NETWORK_STAT_MAP2.forEach(function(url, host, map) {
             updateText('totalFee-'+poolName, "PPLNS: "+data.pplns_fee+"%,\nPPS: "+data.pps_fee+"%,\nSolo: "+data.solo_fee+"%");
             updateText('minPayout-'+poolName, "Wallet: "+getReadableCoins(data.min_wallet_payout,2)+",\nExchange: "+getReadableCoins(data.min_exchange_payout,2));
         });
+    })
+    .always(function() {
+        poolsRefreshed++;
+
+        if (poolsRefreshed === NETWORK_STAT_MAP2.size){
+            setTimeout(function(){ displayChart(); }, 1000);
+        }
     });
-
-    poolsRefreshed++;
-
-    if (poolsRefreshed === NETWORK_STAT_MAP2.size){
-        setTimeout(function(){ displayChart(); }, 1000);
-    }
 });
 
 
@@ -256,14 +258,14 @@ setInterval(function(){
             updateText('networkDifficulty', getReadableDifficultyString(lastStats.difficulty, 0).toString());
 
             poolStats.push([poolName, parseInt(data.pool.hashrate), colorHash.hex(poolName)]);
+        })
+        .always(function() {
+            poolsRefreshed++;
+
+            if (poolsRefreshed === NETWORK_STAT_MAP.size){
+                setTimeout(function(){ displayChart(); }, 1000);
+            }
         });
-
-        poolsRefreshed++;
-
-        if (poolsRefreshed === NETWORK_STAT_MAP.size){
-            setTimeout(function(){ displayChart(); }, 1000);
-        }
-
     });
 
     NETWORK_STAT_MAP2.forEach(function(url, host, map) {
@@ -295,7 +297,8 @@ setInterval(function(){
         $.getJSON(url + '/network/stats', (data, textStatus, jqXHR) => {
             updateText('height-'+poolName, localizeNumber(data.height));
         });
-
+    })
+    .always(function() {
         poolsRefreshed++;
 
         if (poolsRefreshed === NETWORK_STAT_MAP2.size){
