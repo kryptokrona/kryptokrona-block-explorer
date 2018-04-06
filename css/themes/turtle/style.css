@@ -134,7 +134,6 @@ thead {
 
 #pools_rows > tr > td {
     vertical-align: middle;
-    font-family: 'Inconsolata', monospace;
     text-align: center;
     white-space: pre-line;
 }
@@ -147,4 +146,11 @@ thead {
 #pools_header > tr > th:last-child,
 #pools_rows > tr > td:last-child {
     text-align: left;
+}
+
+#block-range-wrapper {
+    font-size: 12px;
+    line-height: 20px;
+    color: #404040;
+    float: right;
 }
