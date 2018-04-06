@@ -23,54 +23,6 @@ $(document).ready(function() {
     }
 });
 
-$(function(){
-    $('.theme-switch[rel="./css/themes/white/style.css"]').hide();
-    set_style_from_cookie();
-    
-    $('.theme-switch').click(function() {
-        swapStyleSheet($(this).attr('rel'));
-        $('.theme-switch').show();
-        $(this).hide();
-        return false;
-    });
-    
-    function swapStyleSheet(sheet){
-        $('#theme_link').attr('href',sheet);
-        $('.theme-switch').show();
-        $('.theme-switch[rel="'+sheet+'"]').hide();
-        set_cookie(style_cookie_name, sheet, style_cookie_duration, style_domain);
-    }
-
-    function set_style_from_cookie(){
-        var style = get_cookie(style_cookie_name);
-        if (style.length){
-            swapStyleSheet(style);
-        }
-    }
-    function set_cookie (cookie_name, cookie_value, lifespan_in_days, valid_domain){
-        var domain_string = valid_domain ?
-                            ("; domain=" + valid_domain) : '';
-            document.cookie = cookie_name +
-                            "=" + encodeURIComponent(cookie_value) +
-                            "; max-age=" + 60 * 60 *
-                            24 * lifespan_in_days +
-                            "; path=/" + domain_string;
-    }
-    function get_cookie (cookie_name){
-        var cookie_string = document.cookie;
-        if (cookie_string.length != 0){
-            var cookie_value = cookie_string.match(
-                            '(^|;)[\s]*' +
-                            cookie_name +
-                            '=([^;]*)' );
-            if(cookie_value != null && cookie_value.length>0) {
-                return decodeURIComponent (cookie_value[2]);
-            }
-        }
-        return '';
-    }
-});
-
 function getTransactionUrl(id) {
     return transactionExplorer.replace('{symbol}', symbol.toLowerCase()).replace('{id}', id);
 }
