@@ -12,7 +12,6 @@ var networkStat = {
 	["us.turtlepool.space", "http://us.turtlepool.space:8117"],
 	["hk.turtlepool.space", "http://hk.turtlepool.space:8117"],
 	["turtlecoinpool.ddns.net", "http://turtlecoinpool.ddns.net:8127"],
-	["slowandsteady.fun", "http://slowandsteady.fun:8119"],
 	["trtl.mine2gether.com", "https://trtl.mine2gether.com/api"],
 	["auspool.turtleco.in", "https://auspool.turtleco.in/api"],
 	["trtl.radicaldelta.org", "http://trtl.radicaldelta.org:8117"],
