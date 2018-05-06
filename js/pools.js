@@ -30,7 +30,7 @@ var calculateTotalFee = function(config) {
             totalFee += config.config.donation[property];
         }
     }
-    return totalFee;
+    return Math.round(totalFee*1000)/1000;
 };
 
 var renderPoolRow = function(host, name, data, d) {
