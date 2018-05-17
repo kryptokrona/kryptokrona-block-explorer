@@ -13,7 +13,7 @@ var networkStat = {
 	["hk.turtlepool.space", "http://hk.turtlepool.space:8117"],
 	["turtlecoinpool.ddns.net", "http://turtlecoinpool.ddns.net:8127"],
 	["trtl.mine2gether.com", "https://trtl.mine2gether.com/api"],
-	["auspool.turtleco.in", "https://auspool.turtleco.in/api"],
+	["trtl.heigh-ho.funkypenguin.co.nz", "https://api.trtl.heigh-ho.funkypenguin.co.nz"],
 	["trtl.radicaldelta.org", "http://trtl.radicaldelta.org:8117"],
 	["turtle.atpool.party", "http://turtle-eu.atpool.party:8117"],
 	["ny.minetrtl.us", "http://ny.minetrtl.us:8117"],
