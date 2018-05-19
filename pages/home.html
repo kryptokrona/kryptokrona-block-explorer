@@ -705,10 +705,10 @@
             txsnr = [];
         for (var i = 0; i < brows.length; i++) {
             var row = $(brows[i]);
-            var label = parseInt(row.find('td:blk-height').text());
-            var diff = parseInt(row.find('td.blk-diff').text());
-            var txses = parseInt(row.find('td:blk-tx').text());
-            var size = parseInt(row.find('td:blk-size').text());
+            var label = parseInt(row.find('td:first').text().replace(/,/g,""));
+            var diff = parseInt(row.find('td.blk-diff').text().replace(/,/g,""));
+            var txses = parseInt(row.find('td:nth-child(5)').text().replace(/,/g,""));
+            var size = parseInt(row.find('td:nth-child(2)').text().replace(/,/g,""));
             var time = row.attr('data-dt');
 
             labels.push(label);
