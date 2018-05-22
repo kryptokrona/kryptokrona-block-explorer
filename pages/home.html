@@ -44,7 +44,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-exchange fa-fw" aria-hidden="true"></i> Transaction pool 
+        <h3 class="panel-title"><i class="fa fa-exchange fa-fw" aria-hidden="true"></i> Transaction pool
             <span id="mempool_count" class="badge"></span>
             <span class="text-default" data-toggle="tooltip" data-placement="right" data-original-title="Recent transactions waiting to be included into a block. Once it happens a transaction gets into the blockchain and becomes confirmed."><i class="fa fa-question-circle"></i></span>
         </h3>
@@ -71,7 +71,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            <i class="fa fa-chain fa-fw" aria-hidden="true"></i> Recent blocks 
+            <i class="fa fa-chain fa-fw" aria-hidden="true"></i> Recent blocks
             <span id="block-range-wrapper" style="float:right">Viewing Range: <span id="block-range">______ - ______</span></span>
         </h3>
     </div>
@@ -352,11 +352,11 @@
         var dateTime = new Date(block.timestamp * 1000).toISOString();
         row.setAttribute('data-dt', dateTime);
         var columns =
-            '<td>' + localizeNumber(block.height) + '</td>' +
-            '<td>' + localizeNumber(block.cumul_size) + '</td>' +
-            '<td>' + formatBlockLink(block.hash) + '</td>' +
-            '<td class="blk-diff">' + localizeNumber(block.difficulty) + '</td>' + 
-            '<td>' + localizeNumber(block.tx_count) + '</td>' +
+            '<td class="blk-height">' + localizeNumber(block.height) + '</td>' +
+            '<td class="blk-size">' + localizeNumber(block.cumul_size) + '</td>' +
+            '<td class="blk-hash">' + formatBlockLink(block.hash) + '</td>' +
+            '<td class="blk-diff">' + localizeNumber(block.difficulty) + '</td>' +
+            '<td class="blk-tx">' + localizeNumber(block.tx_count) + '</td>' +
             '<td class="date-time">' + formatDate(block.timestamp) + ' (<time class="timeago" datetime="'+dateTime+'"></time>)</td>';
 
         Difficulties.push(parseInt(block.difficulty));
@@ -405,7 +405,7 @@
 
     function renderBlocksPageRange(blocks) {
         var rendered = [
-            localizeNumber(blocks[0].height), 
+            localizeNumber(blocks[0].height),
             localizeNumber(blocks[blocks.length - 1].height)].join(' - ')
         updateText('block-range', rendered);
     }
@@ -662,17 +662,17 @@
                         return time + '';
                     },
                     /*
-                    label: function(tooltipItem, data) { 
+                    label: function(tooltipItem, data) {
                         var diff        = data.datasets[0].data[tooltipItem.index];
                         var txcount = data.datasets[1].data[tooltipItem.index];
                         var size        = data.datasets[2].data[tooltipItem.index];
-                        
+
                         var diff_swatch_color = data.datasets[0].borderColor;
-                        
+
                         console.log(diff_swatch_color);
-                        
+
                         var diff_swatch = '<span style="color="'+ diff_swatch_color +'">&bullet;</span>';
-                        
+
                         var multistringText = [];
 
                         var str1 = diff_swatch + 'Складність: ' + diff + '';
@@ -705,10 +705,10 @@
             txsnr = [];
         for (var i = 0; i < brows.length; i++) {
             var row = $(brows[i]);
-            var label = parseInt(row.find('td:first').text());
-            var diff = parseInt(row.find('td.blk-diff').text());
-            var txses = parseInt(row.find('td:nth-child(5)').text());
-            var size = parseInt(row.find('td:nth-child(3)').text());
+            var label = parseInt(row.find('td:first').text().replace(/,/g,""));
+            var diff = parseInt(row.find('td.blk-diff').text().replace(/,/g,""));
+            var txses = parseInt(row.find('td:nth-child(5)').text().replace(/,/g,""));
+            var size = parseInt(row.find('td:nth-child(2)').text().replace(/,/g,""));
             var time = row.attr('data-dt');
 
             labels.push(label);
