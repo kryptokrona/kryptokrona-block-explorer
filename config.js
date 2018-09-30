@@ -17,7 +17,8 @@ var networkStat = {
 	["trtl.radicaldelta.org", "http://trtl.radicaldelta.org:8117"],
 	["turtle.atpool.party", "http://turtle-eu.atpool.party:8117"],
 	["ny.minetrtl.us", "http://ny.minetrtl.us:8117"],
-	["xk.is", "https://xk.is/api"]
+	["xk.is", "https://xk.is/api"],
+	["trtl.hackerknowledge.de", "https://pool.trtl.hackerknowledge.de:8119"]
  ]
 };
 
