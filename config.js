@@ -4,6 +4,8 @@ var blockTargetInterval = 30;
 var coinUnits = 100;
 var symbol = 'trtl';
 var refreshDelay = 30000;
+var totalSupply =  100000000000000;
+
 // pools stats by MainCoins
 var networkStat = {
  "trtl": [
