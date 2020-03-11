@@ -116,6 +116,10 @@ table td {
     padding-bottom: 9.5px;
 }
 
+.navbar-brand {
+    padding: 0;
+}
+
 .nav-pills > li {
     padding: 10px 10px;
 }
