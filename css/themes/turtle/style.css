@@ -2,7 +2,7 @@
 
 a {
     color: #90f2ff8c;
-    font-weight: 100;
+    
 }
 
 .explorer-search {
@@ -33,9 +33,9 @@ body {
 }
 
 #nav-brand, img {
-    padding: 0.5em;
-    padding-right: 2em;
-    padding-left: 2em;
+    padding: 1.2rem;
+    padding-right: 4rem;
+    padding-left: 4rem;
 }
 
 
@@ -130,6 +130,7 @@ table td {
 .navbar .theme-switch {
     background: transparent;
     border: none;
+    color: #90f2ff8c;
     line-height: 21px;
     padding-top: 9.5px;
     padding-bottom: 9.5px;
@@ -159,9 +160,7 @@ tr {
     border: none;
 }
 
-tr:hover {
-    background-color: white;
-}
+
 
 
 #network-hash > thead > tr > th {

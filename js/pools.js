@@ -5,10 +5,10 @@ var customHash = function(str) {
     // custom hash function makes the potential color space tighter for the
     // hasher, generating more distinct colors. Since so many pools have close
     // names, their hashes were generating similar colors
-    return ColorHash.BKDRHash(str) / 13;
+    return ColorHash.BKDRHash(str) / 44;
 };
 
-var colorHash = new ColorHash({hash: customHash, lightness: [0.0, 0.66, 0.77] });
+var colorHash = new ColorHash({hash: customHash, lightness: [0.3, 0.30, 0.39] });
 
 var poolStats = [];
 var difficulties = [];
@@ -79,7 +79,7 @@ var displayChart = function displayChart() {
     var networkRate = Math.floor(lastStats.difficulty / blockTargetInterval);
     var unknownRate = Math.max(0, networkRate - poolsRate);
 
-    var sortedPools = poolStats.concat([['Unknown', unknownRate, "#00749c"]]).sort(function(poolA, poolB) {
+    var sortedPools = poolStats.concat([['Unknown', unknownRate, "rgb(1, 33, 55)"]]).sort(function(poolA, poolB) {
         if (poolA[1] > poolB[1]) {
             return -1;
         } else if (poolA[1] < poolB[1]) {
@@ -94,6 +94,7 @@ var displayChart = function displayChart() {
         datasets: [{
             data: sortedPools.map(function(p) { return p[1]; }),
             backgroundColor: sortedPools.map(function(p) { return p[2]; }),
+            borderColor: '#90f2ff8c',
             borderWidth: 1,
             segmentShowStroke: false
         }]
@@ -113,7 +114,7 @@ var displayChart = function displayChart() {
             legend: {
                 position: 'bottom',
                 labels: {
-                    fontColor: '#c8c8c8'
+                    fontColor: '#90f2ff8c'
                 },
             },
             layout: {
