@@ -76,6 +76,12 @@ body {
     
 }
 
+#footer-brand {
+    display: flex;
+    justify-content: center;
+}
+
+
 #stats_updated {
     opacity: 0;
     height: 40px;
