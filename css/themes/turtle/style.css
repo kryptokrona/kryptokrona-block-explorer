@@ -2,7 +2,6 @@
 
 a {
     color: #90f2ff8c;
-    
 }
 
 .explorer-search {
@@ -38,7 +37,6 @@ body {
     padding-left: 4rem;
 }
 
-
 #loading {
     font-size: 2em;
 }
@@ -46,7 +44,6 @@ body {
 #wrapperTxn {
     background: white;
 }
-
 
 .stats {
     margin-bottom: 10px;
@@ -64,23 +61,12 @@ body {
 }
 
 .stats > div {
-    
     font-size: 0.85em;
 }
 
 .stats > div > .fa {
     width: 25px;
 }
-
-.stats > div > span:first-of-type {
-    
-}
-
-#footer-brand {
-    display: flex;
-    justify-content: center;
-}
-
 
 #stats_updated {
     opacity: 0;
