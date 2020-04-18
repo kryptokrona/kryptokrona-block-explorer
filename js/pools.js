@@ -79,7 +79,7 @@ var displayChart = function displayChart() {
     var networkRate = Math.floor(lastStats.difficulty / blockTargetInterval);
     var unknownRate = Math.max(0, networkRate - poolsRate);
 
-    var sortedPools = poolStats.concat([['Unknown', unknownRate, "rgb(1, 33, 55)"]]).sort(function(poolA, poolB) {
+    var sortedPools = poolStats.concat([['solo mining', unknownRate, "rgb(1, 33, 55)"]]).sort(function(poolA, poolB) {
         if (poolA[1] > poolB[1]) {
             return -1;
         } else if (poolA[1] < poolB[1]) {
