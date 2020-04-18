@@ -8,7 +8,7 @@ var customHash = function(str) {
     return ColorHash.BKDRHash(str) / 13;
 };
 
-var colorHash = new ColorHash({hash: customHash, lightness: [0.55, 0.66, 0.77] });
+var colorHash = new ColorHash({hash: customHash, lightness: [0.0, 0.66, 0.77] });
 
 var poolStats = [];
 var difficulties = [];
