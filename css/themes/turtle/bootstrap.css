@@ -12,7 +12,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -134,7 +134,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace, monospace;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1em;
 }
 
@@ -1406,7 +1406,7 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #90f2ff8c;
@@ -1520,7 +1520,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   line-height: 1.1;
   color: #90f2ff8c;
@@ -1936,7 +1936,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: 'Montserrat', sans-serif;
 }
 
 code {
@@ -3308,7 +3308,7 @@ output {
 
 .form-control {
   display: block;
-  width: 100%;
+  width: 60%;
   height: 38px;
   padding: 8px 12px;
   font-size: 14px;
@@ -6772,7 +6772,7 @@ button.list-group-item-danger.active:focus {
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
-  
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   color: #90f2ff8c;
 }
@@ -7383,7 +7383,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -7517,7 +7517,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -7814,7 +7814,7 @@ button.close {
   width: 20px;
   height: 20px;
   line-height: 1;
-  font-family: serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .carousel-control .icon-prev:before {
