@@ -13,3 +13,10 @@ var networkStat = {
 	["pool2.kryptokrona.se", "http://pool2.kryptokrona.se:8117"]
  ]
 };
+
+
+var networkStat2 = {
+	"xkr": [
+
+	]
+   };
