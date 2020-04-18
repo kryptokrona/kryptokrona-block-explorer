@@ -59,12 +59,12 @@ body {
 }
 
 .stats > h3 > i {
-    font-size: 0.8em;
+    font-size: 1em;
     width: 21px;
 }
 
 .stats > div {
-    padding: 5px 0;
+    
     font-size: 0.85em;
 }
 
@@ -73,7 +73,7 @@ body {
 }
 
 .stats > div > span:first-of-type {
-    font-weight: bold;
+    
 }
 
 #stats_updated {
@@ -159,9 +159,6 @@ tr {
     background-color: rgb(1, 33, 55);
     border: none;
 }
-
-
-
 
 #network-hash > thead > tr > th {
     cursor: pointer;
