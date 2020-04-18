@@ -8,13 +8,13 @@ var refreshDelay = 30000;
 
 // pools stats by MainCoins
 var networkStat = {
- "kkr": [
-	["kryptokrona.se", "http://pool.kryptokrona.se:8117"]
+ "xkr": [
+	["pool.kryptokrona.se", "http://pool.kryptokrona.se:8117"]
  ]
 };
 
 var networkStat2 = {
-    "trtl": [
-	[""]
- ]
-};
+	"xkr": [
+	   ["pool2.kryptokrona.se", "http://pool2.kryptokrona.se:8117"]
+	]
+   };

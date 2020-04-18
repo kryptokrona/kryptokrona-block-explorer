@@ -83,7 +83,7 @@ h1 {
 }
 
 mark {
-  background: #05afe733
+  background: #05afe733;
   color: #000;
 }
 
@@ -1409,7 +1409,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #c8c8c8;
+  color: #90f2ff8c;
   background-color: #212121;
 }
 
@@ -1464,7 +1464,6 @@ img {
   padding: 4px;
   line-height: 1.42857143;
   background-color: #404040;
-  1px solid #0c0d0e;
   border-radius: 2px;
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -1481,7 +1480,6 @@ img {
 hr {
   margin-top: 20px;
   margin-bottom: 20px;
-  0;
   border-top: 1px solid #404040;
 }
 
@@ -1525,7 +1523,7 @@ h6,
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
-  color: inherit;
+  color: #90f2ff8c;
 }
 
 h1 small,
@@ -1554,7 +1552,7 @@ h6 .small,
 .h6 .small {
   font-weight: normal;
   line-height: 1;
-  color: #7a8288;
+  color: #90f2ff8c;
 }
 
 h1,
@@ -4785,10 +4783,23 @@ tbody.collapse.in {
   border-collapse: separate;
 }
 
+.input-wrapper {
+  padding: 2rem;
+  background: rgb(1, 33, 55);
+  border-radius: 10px;
+}
+
 .input-group[class*="col-"] {
   float: none;
-  padding-left: 0;
+  padding-left: 2.5rem;
   padding-right: 0;
+}
+
+.row{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  float: none;
 }
 
 .input-group .form-control {
@@ -6762,7 +6773,7 @@ button.list-group-item-danger.active:focus {
   margin-bottom: 0;
   
   font-size: 16px;
-  color: inherit;
+  color: #90f2ff8c;
 }
 
 .panel-title>a,

@@ -1,20 +1,24 @@
-<div class="wrapperTxn">
 
-<h2><i class="fa fa-exchange fa-fw" aria-hidden="true"></i>Check Transactions</h2>
 
+
+<div class="input-wrapper">
+    
 <div class="input-group col-md-6">
+    <h2><i class="fa fa-exchange fa-fw" aria-hidden="true"></i>Check Transactions</h2>
+    <br>
     <div class="row">
         <label for="transaction_hash">Transaction Hash</label>
         <input class="form-control" placeholder="64 char transaction id" id="transaction_hash">
     </div>
 
     <div class="row">
-        <label for="private_key">Private Key     
-    	    <span>
-		<div class="radio-inline"><label><input type="radio" name="keyType" value="txn" checked>TXN Key</label></div>
-		<div class="radio-inline"><label><input type="radio" name="keyType" value="view">View Key</label></div>
-	    </span>
-	</label>
+        <label for="private_key">Private Key
+            <span>
+                <div class="radio-inline"><label><input type="radio" name="keyType" value="txn" checked>TXN Key</label>
+                </div>
+                <div class="radio-inline"><label><input type="radio" name="keyType" value="view">View Key</label></div>
+            </span>
+        </label>
         <input class="form-control" placeholder="64 char private view or txn key" id="private_key">
 
 
@@ -25,36 +29,44 @@
         <input class="form-control" placeholder="99 char public KKR address" id="public_address">
 
     </div>
-
     <div class="row">
         <button class="btn btn-default" type="button" id="check_transaction">
-            <span class="fa fa-search">Check Transaction</span>
+            <span class="fa fa-search"></span>
         </button>
     </div>
+    <h3 class="outputs">Owned Outputs for <a href="" id="txn_link">?</a></h3>
+<br>
 </div>
 
-<h3 class="outputs">Owned Outputs for <a href="" id="txn_link">?</a></h3>
+
+</div>
+
+
 <div class="table-responsive">
+    
     <table class="table table-hover">
+        
         <thead>
-        <tr>
-            <th><i class="fa fa-money"></i> Amount</th>
-            <th><i class="fa fa-key"></i> Key</th>
-        </tr>
+            
+            <tr>
+                
+                <th><i class="fa fa-money"></i> Amount</th>
+                <th><i class="fa fa-key"></i> Key</th>
+            </tr>
         </thead>
         <tbody id="outputs_rows">
         </tbody>
     </table>
 </div>
-</div>
+
 
 
 <script src="js/crypto_utils.js" type="text/javascript"></script>
 <script src="js/check_txn.js" type="text/javascript"></script>
 <script>
     currentPage = {
-        destroy: function(){},
-        init: function(){},
-        update: function(){}
+        destroy: function () {},
+        init: function () {},
+        update: function () {}
     };
 </script>

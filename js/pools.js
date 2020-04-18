@@ -79,7 +79,7 @@ var displayChart = function displayChart() {
     var networkRate = Math.floor(lastStats.difficulty / blockTargetInterval);
     var unknownRate = Math.max(0, networkRate - poolsRate);
 
-    var sortedPools = poolStats.concat([['Unknown', unknownRate, "#666666"]]).sort(function(poolA, poolB) {
+    var sortedPools = poolStats.concat([['Unknown', unknownRate, "#00749c"]]).sort(function(poolA, poolB) {
         if (poolA[1] > poolB[1]) {
             return -1;
         } else if (poolA[1] < poolB[1]) {
@@ -108,7 +108,7 @@ var displayChart = function displayChart() {
                 display: true,
                 text: 'Network Hashrate Visualization',
                 fontSize: 18,
-                fontColor: '#2ecc71'
+                fontColor: '#90f2ff8c'
             },
             legend: {
                 position: 'bottom',

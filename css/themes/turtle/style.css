@@ -1,7 +1,7 @@
 @import url("bootstrap.css");
 
 a {
-    color: rgba(255, 255, 255, 0.816);
+    color: #90f2ff8c;
     font-weight: 100;
 }
 
@@ -19,7 +19,7 @@ a {
     height: 1em;
     display: inline-block;
     vertical-align: middle;
-    color: white;
+    color: #90f2ff8c;
     border-radius: 50%;
     text-align: center;
     margin-top: -4px;
@@ -80,7 +80,7 @@ body {
     opacity: 0;
     height: 40px;
     line-height: 40px;
-    color: #e8e8e8;
+    color: #90f2ff8c;
     font-size: 0.9em;
     position: absolute;
     right: 10px;
@@ -96,6 +96,8 @@ footer {
 
 table td {
     font-family: "Lucida Console", Monaco, monospace;
+    padding: 1rem;
+
 }
 
 .scrollup {
@@ -122,7 +124,7 @@ table td {
 
 .form-control {
     background-color: rgb(1, 38, 63);
-    color: #fff;
+    color: #90f2ff8c;
 }
 
 .navbar .theme-switch {
@@ -142,11 +144,12 @@ table td {
 }
 
 table {
-    color: white;
+    color: #90f2ff8c;
     font-size: 12px;
 }
 
 thead {
+    border-radius: 10px;
     border: none;
     background-color: rgb(0, 12, 46);
 }
@@ -184,6 +187,6 @@ tr:hover {
 #block-range-wrapper {
     font-size: 12px;
     line-height: 20px;
-    color: #ffffff;
+    color: #90f2ff8c;
     float: right;
 }
