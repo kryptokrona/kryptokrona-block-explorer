@@ -10,7 +10,8 @@ var refreshDelay = 30000;
 var networkStat = {
  "xkr": [
 	["pool.kryptokrona.se", "http://pool.kryptokrona.se:8117"],
-	["pool2.kryptokrona.se", "http://pool2.kryptokrona.se:8117"]
+	["pool2.kryptokrona.se", "http://pool2.kryptokrona.se:8117"],
+	["pool3.kryptokrona.se", "http://pool3.kryptokrona.se:8117"]
  ]
 };
 
