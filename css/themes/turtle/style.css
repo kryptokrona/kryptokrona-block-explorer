@@ -18,6 +18,13 @@ a {
     padding-bottom: 1rem;
 }
 
+.row {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 0rem;
+    float: none;
+}
+
 #coinIcon {
     text-transform: capitalize;
     width: 1em;
