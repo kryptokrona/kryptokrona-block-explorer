@@ -106,9 +106,10 @@ var displayChart = function displayChart() {
                 duration: 0
             },
             title: {
-                display: true,
+                display: false,
                 text: 'Network Hashrate Visualization',
-                fontSize: 18,
+                fontSize: 16,
+                fontWeight: 100,
                 fontColor: '#90f2ff8c'
             },
             legend: {

@@ -12,6 +12,12 @@ a {
     text-transform: capitalize;
 }
 
+.netHash{
+    display: flex;
+    justify-content: center;   
+    padding-bottom: 1rem;
+}
+
 #coinIcon {
     text-transform: capitalize;
     width: 1em;
