@@ -5,10 +5,10 @@ var customHash = function(str) {
     // custom hash function makes the potential color space tighter for the
     // hasher, generating more distinct colors. Since so many pools have close
     // names, their hashes were generating similar colors
-    return ColorHash.BKDRHash(str) / 44;
+    return ColorHash.BKDRHash(str) / 5;
 };
 
-var colorHash = new ColorHash({hash: customHash, lightness: [0.3, 0.30, 0.39] });
+var colorHash = new ColorHash({hash: customHash, lightness: [0.2, 0.60, 0.60] });
 
 var poolStats = [];
 var difficulties = [];
@@ -79,7 +79,7 @@ var displayChart = function displayChart() {
     var networkRate = Math.floor(lastStats.difficulty / blockTargetInterval);
     var unknownRate = Math.max(0, networkRate - poolsRate);
 
-    var sortedPools = poolStats.concat([['solo mining', unknownRate, "rgb(1, 33, 55)"]]).sort(function(poolA, poolB) {
+    var sortedPools = poolStats.concat([['Solo', unknownRate, "rgb(1, 33, 63)"]]).sort(function(poolA, poolB) {
         if (poolA[1] > poolB[1]) {
             return -1;
         } else if (poolA[1] < poolB[1]) {
