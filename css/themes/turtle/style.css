@@ -182,13 +182,13 @@ table {
 
 thead {
     border-radius: 10px;
-    border: none;
-    background-color: rgb(0, 12, 46);
+    border: transparent;
+    background-color: transparent;
 }
 
 tr {
     background-color: rgb(1, 33, 55);
-    border: tra;
+    border: transparent;
 }
 
 #network-hash > thead > tr > th {
