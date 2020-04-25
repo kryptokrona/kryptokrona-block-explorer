@@ -8129,7 +8129,8 @@ button.close {
 
 .btn-default:hover {
   border: none;
-  background: #90f2ff31
+  background: #90f2ffa4;
+  color: #00113a;
 }
 
 .btn-primary {
