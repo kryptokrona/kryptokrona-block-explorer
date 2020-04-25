@@ -12,7 +12,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -126,7 +126,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-size: 1em;
 }
 
@@ -1396,7 +1396,7 @@ html {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #90f2ff8c;
@@ -1510,7 +1510,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-weight: 500;
   line-height: 1.1;
   color: #90f2ff8c;
@@ -1923,7 +1923,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Work Sans', sans-serif;
 }
 
 code {
@@ -6745,7 +6745,7 @@ button.list-group-item-danger.active:focus {
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-size: 16px;
   color: #90f2ff8c;
 }
@@ -7210,7 +7210,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -7344,7 +7344,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -7637,7 +7637,7 @@ button.close {
   width: 20px;
   height: 20px;
   line-height: 1;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .carousel-control .icon-prev:before {
