@@ -188,7 +188,7 @@ thead {
 
 tr {
     background-color: rgb(1, 33, 55);
-    border: none;
+    border: transparent;
 }
 
 #network-hash > thead > tr > th {
