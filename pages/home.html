@@ -6,27 +6,33 @@
         </div>
         <div class="panel-body">
           <div class="row">
+            <div class="listStats">
             <div class="col-sm-6 col-md-6">
               <ul class="nav nav-pills nav-stacked">
-                <li><i class="fa fa-bars"></i> Height: <span id="networkHeight"></span></li>
-                <li><i class="fa fa fa-exchange"></i> Transactions: <span id="networkTransactions"></span></li>
-                <li><i class="fa fa-certificate"></i> Reward: <span id="currentReward"></span></li>
-                <li><i class="fa fa-percent" aria-hidden="true"></i> Emission: <span id="emissionPercent"></span> %</li>
+                <li><i class="fa fa-bars"></i> Height:<h7> <span id="networkHeight"></span></h7></li>
+                <li><i class="fa fa fa-exchange"></i> Transactions:<h7> <span id="networkTransactions"></span></h7></li>
+                
+                <li><i class="fa fa-tachometer"></i> Hash Rate:<h7> <span id="networkHashrate"></span></h7></li>
+                <li><i class="fa fa-unlock-alt"></i> Current Difficulty: <h7><span id="networkDifficulty"></span></h7></li>
+                <li><i class="fa fa-lock"></i> Average Difficulty:<h7> <span id="avgDifficulty"></span></h7></li>
+                
               </ul>
             </div>
             <div class="col-sm-6 col-md-6">
               <ul class="nav nav-pills nav-stacked">
-                <li><i class="fa fa-unlock-alt"></i> Difficulty: <span id="networkDifficulty"></span></li>
-                <li><i class="fa fa-lock"></i> Average Difficulty: <span id="avgDifficulty"></span></li>
-                <li><i class="fa fa-tachometer"></i> Hash Rate: <span id="networkHashrate"></span></li>
-                <li><i class="fa fa-money"></i> Supply: <span id="totalCoins"></span></li>
+               <!-- <li><i class="fa fa-tachometer"></i> <h7>Nodes:</h7> <span id="networkNodes"></span></li> -->
+               
+               <li><i class="fa fa-certificate"></i> Reward: <h7><span id="currentReward"></span></h7></li>
+                <li><i class="fa fa-percent" aria-hidden="true"></i> Emission: <h7> <span id="emissionPercent"></span> %</h7></li>
+                <li><i class="fa fa-money"></i> Circulating Supply:<h7> <span id="totalCoins"></span></h7></li>
+                <li><i class="fa fa-money"></i> Total Supply:<h7> <span>1,000,000,000,000.00 XKR</span></h7></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
+  </div>
     <div class="col-sm-6 col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -36,7 +42,7 @@
   
         </div>
         <div class="panel-body chart-wrapper">
-          <canvas id="difficultyChart" height="220"></canvas>
+          <canvas id="difficultyChart" height="160"></canvas>
         </div>
       </div>
     </div>
@@ -418,9 +424,9 @@ function calcAvgHashRate() {
   var avgDiff = Math.round(sum / Difficulties.length);
   var avgHashRate = avgDiff / blockTargetInterval;
 
-  //updateText('avgDifficulty', getReadableDifficultyString(avgDiff, 0).toString());
-  //updateText('avgHashrate', getReadableHashRateString(avgDiff / blockTargetInterval));
-  // updateText('blockSolveTime', getReadableTime(lastStats.difficulty / avgHashRate)); Add back after timestamp is added to mempool
+  updateText('avgDifficulty', getReadableDifficultyString(avgDiff, 0).toString());
+  updateText('avgHashrate', getReadableHashRateString(avgDiff / blockTargetInterval));
+  updateText('blockSolveTime', getReadableTime(lastStats.difficulty / avgHashRate)); //Add back after timestamp is added to mempool
 }
 
 //  Kryptokrona MemPool Transactions

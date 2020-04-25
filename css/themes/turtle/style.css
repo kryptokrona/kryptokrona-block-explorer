@@ -16,14 +16,27 @@ a {
     display: flex;
     justify-content: center;   
     padding-bottom: 1rem;
+    
 }
 
+
+h7 {
+    color:#90f2ffc4;
+    font-weight: 800;
+}
+
+
 .row {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
     padding-left: 0rem;
     float: none;
 }
+
+.listStats {
+    padding-left: 2rem;
+}
+
 
 #coinIcon {
     text-transform: capitalize;
@@ -39,6 +52,7 @@ a {
 
 body {
     background: rgb(1, 38, 63);
+    color: #90f2ff47;
     padding-top: 65px;
     padding-bottom: 80px;
     overflow-y: scroll;
@@ -146,7 +160,7 @@ table td {
 }
 
 .nav-pills > li {
-    padding: 10px 10px;
+    padding: 4px 1px;
 }
 
 table {
