@@ -4763,6 +4763,7 @@ tbody.collapse.in {
 
 .input-wrapper {
   padding: 2rem;
+  padding-top: 0rem;
   background: rgb(1, 33, 55);
   border-radius: 10px;
 }
