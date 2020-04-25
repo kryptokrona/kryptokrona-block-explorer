@@ -662,7 +662,9 @@ function displayDiffChart() {
     },
     tooltips: {
       mode: 'index',
-      //displayColors: false,
+      displayColors: false,
+      fontColor: 'rgb(144, 242, 255)',
+      backgroundColor: 'rgb(1, 29, 47)',
       callbacks: {
         title: function(tooltipItem, data) {
           var height = data.datasets[3].data[tooltipItem[0].index];
