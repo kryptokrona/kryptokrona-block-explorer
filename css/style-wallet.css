@@ -86,6 +86,14 @@ html {
     padding: 0rem 0rem;
   }
 
+  .print-btn{
+      padding-top: 2rem;
+      display: flex;
+      justify-content: center;
+      
+
+  }
+
 
 
   .print {

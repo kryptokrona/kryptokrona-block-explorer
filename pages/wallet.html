@@ -4,141 +4,144 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <title>Kryptokrona Wallet Generator</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <link rel="shortcut icon" href="./assets/icon.png" type="image/x-icon" />
-  <link rel="stylesheet" href="./css/style-wallet.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+  <head>
+    <title>Kryptokrona Wallet Generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style-wallet.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+  </head>
 
-</head>
-
-<body>
-  </div>
-
-  <div class="hero-body">
-
-    <div class=" frontImg" style="margin:50px 0 50px 0;">
-      <img src="./img/icon.png" width="" height="100" />
+  <body>
     </div>
 
-    <div class="columnsGen">
+    <div class="hero-body">
 
-      <button class="btn-wallet" onclick="js:show_generate();" type="button" value="Generate a wallet">Create a
-        Wallet</button>
-
-      <button class="btn-wallet" onclick="js:show_restore();" type="button"
-        value="restore keys from seed phrase">Restore keys from seed</button>
-
-      <div id="generateDiv" style="display:none;">
-
-        <p class="noprint" style="margin-top: 20px; padding-left: 10px;">For good security, type a few random letters, words,
-          numbers, and or symbols below.</p>
-        <br>
-        
-        <div>
-          <input id="user_entropy_widget" class="input" type="text" style="width:100%; padding: 5px;" />
-        </div>
-
-        <br>
-        <div class="gen-btn">
-        <div>
-          <button class="btn-wallet" onclick="js:genwallet(null);" type="button"
-            value="Generate wallet">Generate</button>
-        </div>
-        </div>
-
-
+      <div class=" frontImg" style="margin:50px 0 50px 0;">
+        <img src="./img/icon.png" width="" height="100" />
       </div>
 
-      <div id="restore" style="display: none;">
+      <div class="columnsGen">
 
-        <p class="noprint" style="margin-top: 20px;">Paste your seed below to restore your keys.</p>
-        <div>
+        <button class="btn-wallet" onclick="js:show_generate();" type="button" value="Generate a wallet">Create a
+          Wallet</button>
+
+        <button class="btn-wallet" onclick="js:show_restore();" type="button" value="restore keys from seed phrase">Restore keys from seed</button>
+
+        <div id="generateDiv" style="display:none;">
+
+          <p class="noprint" style="margin-top: 20px; padding-left: 10px;">For good security, type a few random letters,
+            words,
+            numbers, and or symbols below.</p>
           <br>
-          <input id="seed_phrase" class="input" type="text" style="width:75%;" value="" />
+
+          <div>
+            <input id="user_entropy_widget" class="input" type="text" style="width:100%; padding: 5px;" />
+          </div>
+
+          <br>
+          <div class="gen-btn">
+            <div>
+              <button class="btn-wallet" onclick="js:genwallet(null);" type="button" value="Generate wallet">Generate</button>
+            </div>
+          </div>
+
+
         </div>
 
-        <br>
+        <div id="restore" style="display: none;">
 
-        <div class="has-text-centered">
-          <button class="btn-default" onclick="js:restore_keys(null);" type="button" value="Restore keys">Restore
-            Keys</button>
+          <p class="noprint" style="margin-top: 20px;">Paste your seed below to restore your keys.</p>
+          <div>
+            <br>
+            <input id="seed_phrase" class="input" type="text" style="width:75%;" value="" />
+          </div>
+
+          <br>
+
+          <div class="has-text-centered">
+            <button class="btn-default" onclick="js:restore_keys(null);" type="button" value="Restore keys">Restore
+              Keys</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="columns" id="step2" style="display:none;">
-    <div class="column is-12 d-print-block" style="display:none;">
-      <h3 class="subtitle is-size-6 d-print-block">Identicon</h3>
-      <div class="notification">
-        <p>Look for this identicon when sending XKR to this address (with supported software)</p>
-        <div id="identicon_widget"></div>
+    <div class="columns" id="step2" style="display:none;">
+      <div class="column is-12 d-print-block" style="display:none;">
+        <h3 class="subtitle is-size-6 d-print-block">Identicon</h3>
+        <div class="notification">
+          <p>Look for this identicon when sending XKR to this address (with supported software)</p>
+          <div id="identicon_widget"></div>
+        </div>
+      </div>
+
+      <div class="column is-12 d-print-block">
+        <h3 class="subtitle is-size-6 d-print-block">Public Address</h3>
+        <div class="notification">
+          <span style="font-family:monospace,monospace;word-break:break-all;" id="address_widget">Generating...</span>
+        </div>
       </div>
     </div>
 
-    <div class="column is-12 d-print-block">
-      <h3 class="subtitle is-size-6 d-print-block">Public Address</h3>
-      <div class="notification">
-        <span style="font-family:monospace,monospace;word-break:break-all;" id="address_widget">Generating...</span>
+    <div class="columns" id="step3" style="display:none;">
+      <div class="column is-12">
+        <h3 class="subtitle is-size-6 d-print-block">Seed Phrase</h3>
+        <div class="notificationSecret">
+          <span style="font-family:monospace,monospace;word-wrap:break-word;" id="mnemonic_widget">Generating...</span>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="columns" id="step3" style="display:none;">
-    <div class="column is-12">
-      <h3 class="subtitle is-size-6 d-print-block">Seed Phrase</h3>
-      <div class="notificationSecret">
-        <span style="font-family:monospace,monospace;word-wrap:break-word;" id="mnemonic_widget">Generating...</span>
+    <div class="columns" id="step4" style="display:none;">
+      <div class="column is-12 d-print-block">
+        <h3 class="subtitle is-size-6 d-print-block">View Key</h3>
+        <div class="notificationSecret">
+          <span style="font-family:monospace,monospace;word-break:break-all;" id="view_key_widget">Generating...</span>
+        </div>
+
+        <h3 class="subtitle is-size-6 d-print-block">Spend Key</h3>
+
+        <div class="notificationSecret">
+          <span style="font-family:monospace,monospace;word-break:break-all;" id="spend_key_widget">Generating...</span>
+        </div>
       </div>
+      <!---
+      <div class="print-btn">
+        <div class="button-print">
+          <input type="button" onClick="window.print()" class="btn-wallet" value="Print your paper wallet" />
+        </div>
+      </div>
+      -->
+
+
     </div>
-  </div>
-
-  <div class="columns" id="step4" style="display:none;">
-    <div class="column is-12 d-print-block">
-      <h3 class="subtitle is-size-6 d-print-block">View Key</h3>
-      <div class="notificationSecret">
-        <span style="font-family:monospace,monospace;word-break:break-all;" id="view_key_widget">Generating...</span>
-      </div>
-      
-      <h3 class="subtitle is-size-6 d-print-block">Spend Key</h3>
-
-      <div class="notificationSecret">
-        <span style="font-family:monospace,monospace;word-break:break-all;" id="spend_key_widget">Generating...</span>
-      </div>
     </div>
-  </div>
-
-  <div class="columns">
-    <!--<div class="column is-12 noprint has-text-centered">
-            <input type="button" onClick="window.print()" class="btn-default" value="Print your paper wallet" />
-          </div>-->
-  </div>
-  </div>
-  </div>
-
-  <footer class="hero-footer">
-
-    <div class="column">
-      Note: All generation is done client side, and no information is sent to the server <br>
+    </div>
     </div>
 
-  </footer>
-  </section>
+    <footer class="hero-footer">
+
+      <div class="column">
+        Note: All generation is done client side, and no information is sent to the server <br>
+      </div>
+
+    </footer>
+    </section>
 
 
-  <script type="text/javascript" src="./js/iframe-buster.js"></script>
-  <script type="text/javascript" src="./js/crypto_utils.js"></script>
-  <script type="text/javascript" src="./js/wallet.js"></script>
-  <script src="./js/qrcode.js"></script>
+    <script type="text/javascript" src="./js/iframe-buster.js"></script>
+    <script type="text/javascript" src="./js/crypto_utils.js"></script>
+    <script type="text/javascript" src="./js/wallet.js"></script>
+    <script src="./js/qrcode.js"></script>
+
 
   <!-- For printing -->
   <!-- Need to find a fix for generating prints when a wallet is restored. -->
 
   <div class="wallet print">
-    <img src="assets/img/keys.png" />
+    <img src="/img/img-wallet/keys.png" />
     <div class="amount-added-text">Seed</div>
     <div class="note-text" id="mnemonic_widget_copy">Seed</div>
     <div class="date-text">Date</div>
