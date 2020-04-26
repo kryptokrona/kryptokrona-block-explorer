@@ -7,24 +7,35 @@
             </div>
             <div class="panel-body">
                 <div class="listStats">
-                <div class="row">
-                    <div class="col-sm-6 col-md-6">
-                        <ul class="nav nav-pills nav-stacked">
-                            <li><i class="fa fa-tachometer"></i> Pools speed: <h7><span id="totalPoolsHashrate"></span></h7></li>
-                            <li><i class="fa fa-tachometer"></i> Network speed: <h7><span id="networkHashrate"></span></h7></li>
-                            <li><i class="fa fa-group"></i> Total miners: <h7><span id="total_miners"></span></h7></li>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><i class="fa fa-tachometer"></i> Pools speed: <h7><span
+                                            id="totalPoolsHashrate"></span></h7>
+                                </li>
+                                <li><i class="fa fa-tachometer"></i> Network speed: <h7><span
+                                            id="networkHashrate"></span></h7>
+                                </li>
+                                <li><i class="fa fa-group"></i> Total miners: <h7><span id="total_miners"></span></h7>
+                                </li>
 
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-6">
-                        <ul class="nav nav-pills nav-stacked">
-                            <li><i class="fa fa-unlock-alt"></i> Current difficulty: <h7><span id="networkDifficulty"></span></h7></li>
-                            <li><i class="fa fa-lock"></i> Average difficulty: <h7><span id="avgDifficulty"></span></h7></li>
-                            <li><i class="fa fa-tachometer"></i> Average Hashrate: <h7><span id="avgHashrate"></span></h7></li>
-                        </ul>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><i class="fa fa-unlock-alt"></i> Current difficulty: <h7><span
+                                            id="networkDifficulty"></span></h7>
+                                </li>
+                                <li><i class="fa fa-lock"></i> Average difficulty: <h7><span id="avgDifficulty"></span>
+                                    </h7>
+                                </li>
+                                <li><i class="fa fa-tachometer"></i> Average Hashrate: <h7><span
+                                            id="avgHashrate"></span></h7>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
@@ -38,9 +49,11 @@
                     <div class="col-sm-12 col-md-12">
                         <div id="calcHashHolder">
                             <div class="input-group">
-                                <input type="number" class="form-control" id="calcHashRate" placeholder="Enter your hash rate">
+                                <input type="number" class="form-control" id="calcHashRate"
+                                    placeholder="Enter your hash rate">
                                 <div class="input-group-btn">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="calcHashDropdown">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        id="calcHashDropdown">
                                         <span id="calcHashUnit" data-mul="1">KH/s</span> <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-right" role="menu" id="calcHashUnits">
@@ -50,7 +63,8 @@
                                     </ul>
                                 </div>
                                 <span class="input-group-addon">=</span>
-                                <span class="input-group-addon" id="calcHashResultsHolder"><span id="calcHashAmount"></span> <span id="calcHashSymbol"></span> XKR / day</span>
+                                <span class="input-group-addon" id="calcHashResultsHolder"><span
+                                        id="calcHashAmount"></span> <span id="calcHashSymbol"></span> XKR / day</span>
                             </div>
                         </div>
                     </div>
@@ -60,42 +74,42 @@
     </div>
 </div>
 <div class="panel panel-default" id="network-stats">
-<div class="panel-heading">
-    <h3 class="panel-title"><i class="fa fa-tachometer"></i> Pools</h3>
-</div>
-<div class="input-wrapper">
-<div class="table-responsive">
-    <table id="network-hash" class="table table-hover">
-        <thead>
-            <tr>
-                <th><span id="symbol"></span> Pools</th>
-                <th class="sorttable_numeric"><i class="fa fa-bars"></i> Height</th>
-                <th class="sorttable_numeric"><i class="fa fa-tachometer"></i> Hashrate</th>
-                <th class="sorttable_numeric"><i class="fa fa-group"></i> Miners</th>
-                <th class="sorttable_numeric"><i class="fa fa-money"></i> Total Fee</th>
-                <th class="sorttable_numeric"><i class="fa fa-sign-out"></i> Min. Payout</th>
-                <th><i class="fa fa-clock-o"></i> Last Block Found</th>
-            </tr>
-        </thead>
-        <tbody id="pools_rows">
-        </tbody>
-    </table>
-</div>
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-tachometer"></i> Pools</h3>
+    </div>
+    <div class="input-wrapper">
+        <div class="table-responsive">
+            <table id="network-hash" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><span id="symbol"></span> Pools</th>
+                        <th class="sorttable_numeric"><i class="fa fa-bars"></i> Height</th>
+                        <th class="sorttable_numeric"><i class="fa fa-tachometer"></i> Hashrate</th>
+                        <th class="sorttable_numeric"><i class="fa fa-group"></i> Miners</th>
+                        <th class="sorttable_numeric"><i class="fa fa-money"></i> Total Fee</th>
+                        <th class="sorttable_numeric"><i class="fa fa-sign-out"></i> Min. Payout</th>
+                        <th><i class="fa fa-clock-o"></i> Last Block Found</th>
+                    </tr>
+                </thead>
+                <tbody id="pools_rows">
+                </tbody>
+            </table>
+        </div>
 
 
 
 
-<div class="containerChart">
-    <div class="row">
-        <div class="netHash"><a>Network Hashrate Visualization </a></div>
-        <div class="col-lg-6 col-lg-offset-3">
-            
-            <canvas id="poolsChart" style="margin: 0 auto;" height="150"></canvas>
+        <div class="containerChart">
+            <div class="row">
+                <div class="netHash"><a>Network Hashrate Visualization </a></div>
+                <div class="col-lg-6 col-lg-offset-3">
+
+                    <canvas id="poolsChart" style="margin: 0 auto;" height="150"></canvas>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
-<script src="js/Chart.bundle.min.js"></script>
-<script src="js/color-hash.js"></script>
-<script src="js/sorttable.js"></script>
-<script src="js/pools.js"></script>
+    <script src="js/Chart.bundle.min.js"></script>
+    <script src="js/color-hash.js"></script>
+    <script src="js/sorttable.js"></script>
+    <script src="js/pools.js"></script>

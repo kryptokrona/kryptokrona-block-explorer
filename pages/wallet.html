@@ -4,24 +4,25 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <title>Kryptokrona Wallet Generator</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="./css/style-wallet.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
-  </head>
+<head>
+  <title>Kryptokrona Wallet Generator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="./css/style-wallet.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+</head>
 
-  <body>
-    </div><div class="input-wrapper">
+<body>
+  </div>
+  <div class="input-wrapper">
     <div class="panel-heading">
       <h3 class="panel-title">
         <h2><i class="fa fa-money" aria-hidden="true"></i> Wallet Generator</h2>
-      </div>
-      <br>
+    </div>
+    <br>
     <div class="hero-body">
-      
+
 
       <div class=" frontImg" style="margin:50px 0 50px 0;">
         <img src="./img/icon.png" width="" height="100" />
@@ -32,7 +33,8 @@
         <button class="btn-wallet" onclick="js:show_generate();" type="button" value="Generate a wallet">Create a
           Wallet</button>
 
-        <button class="btn-wallet" onclick="js:show_restore();" type="button" value="restore keys from seed phrase">Restore keys from seed</button>
+        <button class="btn-wallet" onclick="js:show_restore();" type="button"
+          value="restore keys from seed phrase">Restore keys from seed</button>
 
         <div id="generateDiv" style="display:none;">
 
@@ -48,31 +50,25 @@
           <br>
           <div class="gen-btn">
             <div>
-              <button class="btn-wallet" onclick="js:genwallet(null);" type="button" value="Generate wallet">Generate</button>
+              <button class="btn-wallet" onclick="js:genwallet(null);" type="button"
+                value="Generate wallet">Generate</button>
             </div>
           </div>
-
-
         </div>
 
         <div id="restoreDiv" style="display: none;">
 
           <p class="noprint" style="margin-top: 20px;">Paste your seed below to restore your keys.</p>
-          
-            <br>
-            <input id="seed_phrase" class="input" type="text" style="width:100%; padding: 5px;" value="" />
-            <br>
-            <br>
-            <div class="gen-btn">
-              <button class="btn-wallet" onclick="js:restore_keys(null);" type="button" value="Restore keys">Restore
-                Keys</button>
-            </div>
+
+          <br>
+          <input id="seed_phrase" class="input" type="text" style="width:100%; padding: 5px;" value="" />
+          <br>
+          <br>
+          <div class="gen-btn">
+            <button class="btn-wallet" onclick="js:restore_keys(null);" type="button" value="Restore keys">Restore
+              Keys</button>
           </div>
-
-         
-
-          
-        
+        </div>
       </div>
     </div>
 
@@ -116,23 +112,23 @@
         </div>
       </div>
     </div>
+  </div>
+  </div>
+  </div>
+
+  <footer class="hero-footer">
+
+    <div class="column">
+      Note: All generation is done client side, and no information is sent to the server <br>
     </div>
-    </div>
-    </div>
 
-    <footer class="hero-footer">
-
-      <div class="column">
-        Note: All generation is done client side, and no information is sent to the server <br>
-      </div>
-
-    </footer>
-    </section>
+  </footer>
+  </section>
 
 
-    <script type="text/javascript" src="./js/iframe-buster.js"></script>
-    <script type="text/javascript" src="./js/crypto_utils.js"></script>
-    <script type="text/javascript" src="./js/wallet.js"></script>
-    <script src="./js/qrcode.js"></script>
+  <script type="text/javascript" src="./js/iframe-buster.js"></script>
+  <script type="text/javascript" src="./js/crypto_utils.js"></script>
+  <script type="text/javascript" src="./js/wallet.js"></script>
+  <script src="./js/qrcode.js"></script>
 
 </html>
