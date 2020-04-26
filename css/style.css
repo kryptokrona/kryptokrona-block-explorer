@@ -127,7 +127,7 @@ footer {
 
 table td {
     font-family: 'Work Sans', sans-serif;
-    padding: 1rem;
+    padding: none;
 
 }
 
@@ -186,12 +186,14 @@ table td {
 table {
     color: #90f2ff8c;
     font-size: 12px;
+    border: none;
 }
 
 thead {
     border-radius: 10px;
     border: transparent;
     background-color: transparent;
+    padding-top: none;
 }
 
 tr {
@@ -225,10 +227,3 @@ tr {
     color: #90f2ff8c;
     float: right;
 }
-
-
-/* wallet */
-
-/* Copyright (c) 2020,  Kryptokrona Developers
-// Please see the included LICENSE file for more information.
-*/

@@ -1551,7 +1551,7 @@ h2,
 .h2,
 h3,
 .h3 {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
@@ -2989,7 +2989,7 @@ th {
 }
 
 .table>thead>tr>th {
-  padding-top: 16px;
+  padding-top: 5px;
   vertical-align: bottom;
 
 }
@@ -8219,11 +8219,11 @@ h6 {
 .table-bordered tbody tr.success:hover td,
 .table-bordered tbody tr.warning:hover td,
 .table-bordered tbody tr.danger:hover td {
-  border-color: #404040;
+  border-color: none;
 }
 
 .table-responsive>.table {
-  background-color: #343434;
+  background-color: transparent;
 }
 
 input,
@@ -8249,8 +8249,6 @@ textarea {
 .has-warning .form-control:focus {
   border-color: #90f2ff8c;
 }
-
-.has-warning .input-group-addon {}
 
 .has-error .help-block,
 .has-error .control-label,
@@ -8289,8 +8287,6 @@ textarea {
 .has-success .form-control:focus {
   border-color: #627bc4;
 }
-
-.has-success .input-group-addon {}
 
 legend {
   color: #90f2ff8c;

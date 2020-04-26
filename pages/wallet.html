@@ -14,9 +14,14 @@
   </head>
 
   <body>
-    </div>
-
+    </div><div class="input-wrapper">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <h2><i class="fa fa-money" aria-hidden="true"></i> Wallet Generator</h2>
+      </div>
+      <br>
     <div class="hero-body">
+      
 
       <div class=" frontImg" style="margin:50px 0 50px 0;">
         <img src="./img/icon.png" width="" height="100" />
@@ -107,15 +112,6 @@
           <span style="font-family:monospace,monospace;word-break:break-all;" id="spend_key_widget">Generating...</span>
         </div>
       </div>
-      <!---
-      <div class="print-btn">
-        <div class="button-print">
-          <input type="button" onClick="window.print()" class="btn-wallet" value="Print your paper wallet" />
-        </div>
-      </div>
-      -->
-
-
     </div>
     </div>
     </div>
@@ -135,36 +131,5 @@
     <script type="text/javascript" src="./js/crypto_utils.js"></script>
     <script type="text/javascript" src="./js/wallet.js"></script>
     <script src="./js/qrcode.js"></script>
-
-
-  <!-- For printing -->
-  <!-- Need to find a fix for generating prints when a wallet is restored. -->
-
-  <div class="wallet print">
-    <img src="/img/img-wallet/keys.png" />
-    <div class="amount-added-text">Seed</div>
-    <div class="note-text" id="mnemonic_widget_copy">Seed</div>
-    <div class="date-text">Date</div>
-    <div class="instruction-text">
-      <ul>
-        <li>
-          Deposit funds to this kryptokrona paper wallet by sending XKR to the <b>public</b> address.
-        </li>
-        <li>
-          <b>DO NOT REVEAL THE PRIVATE KEY</b> until you are ready to import the balance of this wallet in a Kryptokrona
-          client.
-        </li>
-      </ul>
-    </div>
-    <div id="spend_key_widget_copy" class="spend_key_widget"></div>
-    <div id="address_widget_copy" class="address_widget"></div>
-    <div id="qrcodeSecret_copy" class="qr-secret"></div>
-    <div id="address_qr_widget_copy" class="qr-address"></div>
-    <div id="view_key_widget_copy" class="view_key_widget"></div>
-    <div id="qrcodeView_copy" class="qr-view"></div>
-  </div>
-  </div>
-
-</body>
 
 </html>
