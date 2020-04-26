@@ -13,8 +13,6 @@
                 <li><i class="fa fa-bars"></i> Height:<h7> <span id="networkHeight"></span></h7>
                 </li>
 
-                
-
                 <li><i class="fa fa-tachometer"></i> Hash Rate:<h7> <span id="networkHashrate"></span></h7>
                 </li>
 
@@ -26,6 +24,11 @@
 
                 <li><i class="fa fa-cube"></i> Nodes:<h7> <span id="networkNodes"></span></h7>
                 </li>
+
+                 <!--Inactive nodes-->
+
+                <!--<li><i class="fa fa-cube"></i> Inactive Nodes:<h7> <span id="networkNodesGrey"></span></h7>
+                </li>-->
                 
 
               </ul>
@@ -46,7 +49,9 @@
                 <li><i class="fa fa-money"></i> Circulating Supply:<h7> <span id="totalCoins"></span></h7>
                 </li>
 
-                <!--
+                <!--Total supply-->
+
+                <!-- 
                 <li><i class="fa fa-money"></i> Total Supply:<h7> <span>1,000,000,000,000.00 XKR</span></h7>
                 </li>
                 -->
@@ -222,6 +227,8 @@
             updateText('emissionPercent', (block.alreadyGeneratedCoins / totalSupply * 100).toFixed(4));
             updateText('currentReward', getReadableCoins(block.baseReward, 4));
             updateText('networkNodes', localizeNumber(lastStats.white_peerlist_size.toString()));
+            //Show inactive Nodes
+            //updateText('networkNodes', localizeNumber(lastStats.grey_peerlist_size.toString()));
           }
         });
       }
