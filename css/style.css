@@ -12,19 +12,16 @@ a {
     text-transform: capitalize;
 }
 
-.netHash{
+.netHash {
     display: flex;
-    justify-content: center;   
+    justify-content: center;
     padding-bottom: 1rem;
-    
 }
-
 
 h7 {
-    color:#90f2ffc4;
+    color: #90f2ffc4;
     font-weight: 800;
 }
-
 
 .row {
     padding-top: 0rem;
@@ -49,7 +46,6 @@ h7 {
     padding-left: 2rem;
 }
 
-
 #coinIcon {
     text-transform: capitalize;
     width: 1em;
@@ -70,7 +66,8 @@ body {
     overflow-y: scroll;
 }
 
-#nav-brand, img {
+#nav-brand,
+img {
     padding: 1.2rem;
     padding-right: 2rem;
     padding-left: 2rem;
@@ -94,16 +91,16 @@ body {
     width: auto;
 }
 
-.stats > h3 > i {
+.stats>h3>i {
     font-size: 1em;
     width: 21px;
 }
 
-.stats > div {
+.stats>div {
     font-size: 0.85em;
 }
 
-.stats > div > .fa {
+.stats>div>.fa {
     width: 25px;
 }
 
@@ -128,7 +125,6 @@ footer {
 table td {
     font-family: 'Work Sans', sans-serif;
     padding: none;
-
 }
 
 .scrollup {
@@ -156,8 +152,6 @@ table td {
 .form-control {
     background-color: rgb(1, 38, 63);
     color: #90f2ff8c;
-    
-    
 }
 
 .navbar .theme-switch {
@@ -173,11 +167,11 @@ table td {
     padding: 0;
 }
 
-.nav-pills > li {
+.nav-pills>li {
     padding: 4px 1px;
 }
 
-.centerFooter{
+.centerFooter {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -203,23 +197,23 @@ tr {
     border: transparent;
 }
 
-#network-hash > thead > tr > th {
+#network-hash>thead>tr>th {
     cursor: pointer;
 }
 
-#pools_rows > tr > td {
+#pools_rows>tr>td {
     vertical-align: middle;
     text-align: center;
     white-space: pre-line;
 }
 
-#pools_header > tr > th:first-child,
-#pools_rows > tr > td:first-child {
+#pools_header>tr>th:first-child,
+#pools_rows>tr>td:first-child {
     text-align: left;
 }
 
-#pools_header > tr > th:last-child,
-#pools_rows > tr > td:last-child {
+#pools_header>tr>th:last-child,
+#pools_rows>tr>td:last-child {
     text-align: left;
 }
 

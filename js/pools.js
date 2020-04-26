@@ -1,14 +1,17 @@
 window.NETWORK_STAT_MAP = new Map(networkStat[symbol.toLowerCase()]);
 window.NETWORK_STAT_MAP2 = new Map(networkStat2[symbol.toLowerCase()]);
 
-var customHash = function(str) {
+var customHash = function (str) {
     // custom hash function makes the potential color space tighter for the
     // hasher, generating more distinct colors. Since so many pools have close
     // names, their hashes were generating similar colors
     return ColorHash.BKDRHash(str) / 5;
 };
 
-var colorHash = new ColorHash({hash: customHash, lightness: [0.2, 0.60, 0.60] });
+var colorHash = new ColorHash({
+    hash: customHash,
+    lightness: [0.2, 0.60, 0.60]
+});
 
 var poolStats = [];
 var difficulties = [];
@@ -23,7 +26,7 @@ var poolsRefreshed = 0;
 var poolsTable = document.getElementById('network-hash');
 sorttable.makeSortable(poolsTable);
 
-var calculateTotalFee = function(config) {
+var calculateTotalFee = function (config) {
     let totalFee = config.config.fee;
     for (let property in config.config.donation) {
         if (config.config.donation.hasOwnProperty(property)) {
@@ -33,7 +36,7 @@ var calculateTotalFee = function(config) {
     return parseFloat(totalFee.toFixed(2));
 };
 
-var renderPoolRow = function(host, name, data, d) {
+var renderPoolRow = function (host, name, data, d) {
 
     var agostring = $.timeago(d);
     var datestring = renderDate(d);
@@ -41,19 +44,19 @@ var renderPoolRow = function(host, name, data, d) {
     var pools_row = [];
 
     pools_row.push('<tr>');
-    pools_row.push('<td id=host-'+name+'><a target=blank href=http://'+host+'>'+name+'</a></td>');
-    pools_row.push('<td class="height" id=height-'+name+'>'+localizeNumber(data.network.height)+'</td>');
-    pools_row.push('<td id=hashrate-'+name+'>'+localizeNumber(data.pool.hashrate)+' H/s</td>');
-    pools_row.push('<td id=miners-'+name+'>'+localizeNumber(data.pool.miners)+'</td>');
-    pools_row.push('<td id=totalFee-'+name+'>'+calculateTotalFee(data)+'%</td>');
-    pools_row.push('<td id=minPayout-'+name+'>'+getReadableCoins(data.config.minPaymentThreshold,2)+'</td>');
-    pools_row.push('<td><span id=lastFound-'+name+'>'+datestring+'</span> (<span class="timeago" id="ago-'+name+'">'+agostring+'</span>)</td>');
+    pools_row.push('<td id=host-' + name + '><a target=blank href=http://' + host + '>' + name + '</a></td>');
+    pools_row.push('<td class="height" id=height-' + name + '>' + localizeNumber(data.network.height) + '</td>');
+    pools_row.push('<td id=hashrate-' + name + '>' + localizeNumber(data.pool.hashrate) + ' H/s</td>');
+    pools_row.push('<td id=miners-' + name + '>' + localizeNumber(data.pool.miners) + '</td>');
+    pools_row.push('<td id=totalFee-' + name + '>' + calculateTotalFee(data) + '%</td>');
+    pools_row.push('<td id=minPayout-' + name + '>' + getReadableCoins(data.config.minPaymentThreshold, 2) + '</td>');
+    pools_row.push('<td><span id=lastFound-' + name + '>' + datestring + '</span> (<span class="timeago" id="ago-' + name + '">' + agostring + '</span>)</td>');
     pools_row.push('</tr>');
 
     return pools_row.join('');
 };
 
-var translateAPI2 = function(data) {
+var translateAPI2 = function (data) {
     return {
         'network': {
             'height': '',
@@ -75,11 +78,15 @@ var displayChart = function displayChart() {
     // actually gathered, these numbers can be a bit wishy-washy when hashrate
     // flucuates in the moment. Occasionally pool rates will be greater than
     // the total hashrate, and the graph doesn't appreciate negative numbers.
-    var poolsRate = poolStats.reduce(function(v, p) { return v + p[1]; }, 0);
+    var poolsRate = poolStats.reduce(function (v, p) {
+        return v + p[1];
+    }, 0);
     var networkRate = Math.floor(lastStats.difficulty / blockTargetInterval);
     var unknownRate = Math.max(0, networkRate - poolsRate);
 
-    var sortedPools = poolStats.concat([['Solo', unknownRate, "#403062cc"]]).sort(function(poolA, poolB) {
+    var sortedPools = poolStats.concat([
+        ['Solo', unknownRate, "#403062cc"]
+    ]).sort(function (poolA, poolB) {
         if (poolA[1] > poolB[1]) {
             return -1;
         } else if (poolA[1] < poolB[1]) {
@@ -90,10 +97,16 @@ var displayChart = function displayChart() {
     });
 
     var chartData = {
-        labels: sortedPools.map(function(p) { return p[0]; }),
+        labels: sortedPools.map(function (p) {
+            return p[0];
+        }),
         datasets: [{
-            data: sortedPools.map(function(p) { return p[1]; }),
-            backgroundColor: sortedPools.map(function(p) { return p[2]; }),
+            data: sortedPools.map(function (p) {
+                return p[1];
+            }),
+            backgroundColor: sortedPools.map(function (p) {
+                return p[2];
+            }),
             borderColor: 'rgb(1, 33, 55)',
             borderWidth: 1,
             hoverBackgroundColor: 'rgb(1, 38, 63)',
@@ -131,7 +144,9 @@ var displayChart = function displayChart() {
                 backgroundColor: 'rgb(1, 33, 55)',
                 fontColor: '#90f2ff8c',
                 callbacks: {
-                    title: function (tooltipItem, data) { return data.labels[tooltipItem[0].index]; },
+                    title: function (tooltipItem, data) {
+                        return data.labels[tooltipItem[0].index];
+                    },
                     label: function (tooltipItem, data) {
                         var amount = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
                         var total = eval(data.datasets[tooltipItem.datasetIndex].data.join('+'));
@@ -148,15 +163,17 @@ var displayChart = function displayChart() {
         });
     } else {
         poolsChart.data = chartData;
-        poolsChart.update({duration: 0});
+        poolsChart.update({
+            duration: 0
+        });
     }
 }
 
 var lazyRefreshChart = _.debounce(displayChart, 50);
 
 
-NETWORK_STAT_MAP.forEach(function(url, host, map) {
-    $.getJSON(url + '/stats', function(data, textStatus, jqXHR) {
+NETWORK_STAT_MAP.forEach(function (url, host, map) {
+    $.getJSON(url + '/stats', function (data, textStatus, jqXHR) {
 
         var d = new Date(parseInt(data.pool.lastBlockFound));
         var index = host.indexOf('/');
@@ -178,12 +195,12 @@ NETWORK_STAT_MAP.forEach(function(url, host, map) {
 
         poolStats.push([poolName, parseInt(data.pool.hashrate), colorHash.hex(poolName)]);
 
-    }).always(function() {
+    }).always(function () {
         lazyRefreshChart();
     });
 });
 
-NETWORK_STAT_MAP2.forEach(function(url, host, map) {
+NETWORK_STAT_MAP2.forEach(function (url, host, map) {
     var index = host.indexOf("/");
     var poolName;
 
@@ -193,8 +210,8 @@ NETWORK_STAT_MAP2.forEach(function(url, host, map) {
         poolName = host.substr(0, index);
     }
 
-    $.getJSON(url + '/pool/stats', function(data, textStatus, jqXHR) {
-        var d = new Date(data.pool_statistics.lastBlockFoundTime*1000);
+    $.getJSON(url + '/pool/stats', function (data, textStatus, jqXHR) {
+        var d = new Date(data.pool_statistics.lastBlockFoundTime * 1000);
 
         var tdata = translateAPI2(data);
 
@@ -208,27 +225,27 @@ NETWORK_STAT_MAP2.forEach(function(url, host, map) {
 
         poolStats.push([poolName, data.pool_statistics.hashRate, colorHash.hex(poolName)]);
 
-        $.getJSON(url + '/network/stats', function(data, textStatus, jqXHR) {
-            updateText('height-'+poolName, localizeNumber(data.height));
+        $.getJSON(url + '/network/stats', function (data, textStatus, jqXHR) {
+            updateText('height-' + poolName, localizeNumber(data.height));
         });
 
-        $.getJSON(url + '/config', function(data, textStatus, jqXHR) {
-            updateText('totalFee-'+poolName, "PPLNS: "+data.pplns_fee+"%,\nPPS: "+data.pps_fee+"%,\nSolo: "+data.solo_fee+"%");
-            updateText('minPayout-'+poolName, "Wallet: "+getReadableCoins(data.min_wallet_payout,2)+",\nExchange: "+getReadableCoins(data.min_exchange_payout,2));
+        $.getJSON(url + '/config', function (data, textStatus, jqXHR) {
+            updateText('totalFee-' + poolName, "PPLNS: " + data.pplns_fee + "%,\nPPS: " + data.pps_fee + "%,\nSolo: " + data.solo_fee + "%");
+            updateText('minPayout-' + poolName, "Wallet: " + getReadableCoins(data.min_wallet_payout, 2) + ",\nExchange: " + getReadableCoins(data.min_exchange_payout, 2));
         });
-    }).always(function() {
+    }).always(function () {
         lazyRefreshChart();
     });
 });
 
 
-setInterval(function(){
+setInterval(function () {
 
     totalHashrate = 0;
     totalMiners = 0;
     poolStats = [];
 
-    NETWORK_STAT_MAP.forEach(function(url, host, map) {
+    NETWORK_STAT_MAP.forEach(function (url, host, map) {
 
         var index = host.indexOf("/");
         var poolName;
@@ -246,23 +263,23 @@ setInterval(function(){
             totalHashrate += parseInt(data.pool.hashrate);
             totalMiners += parseInt(data.pool.miners);
 
-            updateText('height-'+poolName, localizeNumber(data.network.height));
-            updateText('hashrate-'+poolName, localizeNumber(data.pool.hashrate)+' H/s');
-            updateText('miners-'+poolName, localizeNumber(data.pool.miners));
-            updateText('lastFound-'+poolName, datestring);
-            updateText('ago-'+poolName, agostring);
+            updateText('height-' + poolName, localizeNumber(data.network.height));
+            updateText('hashrate-' + poolName, localizeNumber(data.pool.hashrate) + ' H/s');
+            updateText('miners-' + poolName, localizeNumber(data.pool.miners));
+            updateText('lastFound-' + poolName, datestring);
+            updateText('ago-' + poolName, agostring);
             updateText('totalPoolsHashrate', getReadableHashRateString(totalHashrate) + '/sec');
             updateText('total_miners', localizeNumber(totalMiners));
             updateText('networkHashrate', getReadableHashRateString(lastStats.difficulty / blockTargetInterval) + '/sec');
             updateText('networkDifficulty', getReadableDifficultyString(lastStats.difficulty, 0).toString());
 
             poolStats.push([poolName, parseInt(data.pool.hashrate), colorHash.hex(poolName)]);
-        }).always(function() {
+        }).always(function () {
             lazyRefreshChart();
         });
     });
 
-    NETWORK_STAT_MAP2.forEach(function(url, host, map) {
+    NETWORK_STAT_MAP2.forEach(function (url, host, map) {
 
         var index = host.indexOf("/");
         var poolName;
@@ -272,13 +289,13 @@ setInterval(function(){
             poolName = host.substr(0, index);
         }
 
-        $.getJSON(url + '/pool/stats', (data, textStatus, jqXHR) =>{
-            var d = new Date(data.pool_statistics.lastBlockFoundTime*1000);
+        $.getJSON(url + '/pool/stats', (data, textStatus, jqXHR) => {
+            var d = new Date(data.pool_statistics.lastBlockFoundTime * 1000);
             var datestring = renderDate(d);
             var agostring = $.timeago(d);
 
-            updateText('hashrate-'+poolName, localizeNumber(data.pool_statistics.hashRate)+' H/s');
-            updateText('miners-'+poolName, localizeNumber(data.pool_statistics.miners));
+            updateText('hashrate-' + poolName, localizeNumber(data.pool_statistics.hashRate) + ' H/s');
+            updateText('miners-' + poolName, localizeNumber(data.pool_statistics.miners));
             // updateText('totalFee'+poolName, calculateTotalFee(data)+'%');
 
             totalHashrate += parseInt(data.pool_statistics.hashRate);
@@ -287,12 +304,12 @@ setInterval(function(){
             updateText('total_miners', localizeNumber(totalMiners));
 
             poolStats.push([poolName, data.pool_statistics.hashRate, colorHash.hex(poolName)]);
-        }).always(function() { 
+        }).always(function () {
             lazyRefreshChart();
         });
 
         $.getJSON(url + '/network/stats', (data, textStatus, jqXHR) => {
-            updateText('height-'+poolName, localizeNumber(data.height));
+            updateText('height-' + poolName, localizeNumber(data.height));
         });
     });
 
@@ -300,6 +317,7 @@ setInterval(function(){
 
 
 var xhrGetBlocks;
+
 function getBlocks() {
     if (xhrGetBlocks) xhrGetBlocks.abort();
     xhrGetBlocks = $.ajax({
@@ -315,12 +333,12 @@ function getBlocks() {
         }),
         dataType: 'json',
         cache: 'false',
-        success: function(data){
-            if(data.result) {
+        success: function (data) {
+            if (data.result) {
                 $.when(
                     renderBlocks(data.result.blocks)
-                ).then(function() {
-                    setTimeout(function(){
+                ).then(function () {
+                    setTimeout(function () {
                         calcAvgHashRate();
                     }, 100)
                 });
@@ -329,15 +347,16 @@ function getBlocks() {
     })
 }
 
-function renderBlocks(blocksResults){
-    for (var i = 0; i < blocksResults.length; i ++){
+function renderBlocks(blocksResults) {
+    for (var i = 0; i < blocksResults.length; i++) {
         var block = blocksResults[i];
         difficulties.push(parseInt(block.difficulty));
     }
 }
 
-function calcAvgHashRate(){
+function calcAvgHashRate() {
     var sum = difficulties.reduce(add, 0);
+
     function add(a, b) {
         return a + b;
     }
@@ -349,36 +368,36 @@ function calcAvgHashRate(){
     //updateText('blockSolveTime', getReadableTime(lastStats.difficulty / avgHashRate));
 }
 
-function renderLastBlock(){
+function renderLastBlock() {
     $.ajax({
         url: api + '/json_rpc',
         method: "POST",
         data: JSON.stringify({
-            jsonrpc:"2.0",
+            jsonrpc: "2.0",
             id: "test",
-            method:"getlastblockheader",
+            method: "getlastblockheader",
             params: {
 
             }
         }),
         dataType: 'json',
         cache: 'false',
-        success: function(data){
+        success: function (data) {
             last_block_hash = data.result.block_header.hash;
             $.ajax({
                 url: api + '/json_rpc',
                 method: "POST",
                 data: JSON.stringify({
-                    jsonrpc:"2.0",
+                    jsonrpc: "2.0",
                     id: "test",
-                    method:"f_block_json",
+                    method: "f_block_json",
                     params: {
                         hash: last_block_hash
                     }
                 }),
                 dataType: 'json',
                 cache: 'false',
-                success: function(data){
+                success: function (data) {
                     var block = data.result.block;
                     lastReward = parseInt(block.baseReward);
                 }
@@ -391,34 +410,33 @@ function renderLastBlock(){
 /* Hash Profitability Calculator */
 
 $('#calcHashRate').keyup(calcEstimateProfit).change(calcEstimateProfit);
-$('#calcHashUnits > li > a').click(function(e){
+$('#calcHashUnits > li > a').click(function (e) {
     e.preventDefault();
     $('#calcHashUnit').text($(this).text()).data('mul', $(this).data('mul'));
     calcEstimateProfit();
 });
 
 
-function calcEstimateProfit(){
+function calcEstimateProfit() {
     try {
-        var rateUnit = Math.pow(1024,parseInt($('#calcHashUnit').data('mul')));
+        var rateUnit = Math.pow(1024, parseInt($('#calcHashUnit').data('mul')));
         var hashRate = parseFloat($('#calcHashRate').val()) * rateUnit;
-        var profit = (hashRate * 86400 / avgDiff /*lastStats.difficulty*/) * lastReward;
+        var profit = (hashRate * 86400 / avgDiff /*lastStats.difficulty*/ ) * lastReward;
         if (profit) {
             updateText('calcHashAmount', getReadableCoins(profit, 2, true));
             return;
         }
-    }
-    catch(e){ }
+    } catch (e) {}
     updateText('calcHashAmount', '');
 }
 
 currentPage = {
-    destroy: function(){},
-    init: function(){
+    destroy: function () {},
+    init: function () {
         getBlocks();
         renderLastBlock();
     },
-    update: function(){
+    update: function () {
         updateText('networkHashrate', getReadableHashRateString(lastStats.difficulty / blockTargetInterval) + '/sec');
         updateText('networkDifficulty', getReadableDifficultyString(lastStats.difficulty, 0).toString());
         getBlocks();

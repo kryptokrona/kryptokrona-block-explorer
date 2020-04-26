@@ -527,7 +527,6 @@
   function displayDiffChart() {
     var ctx = document.getElementById("difficultyChart");
     var chartData = {
-      //labels: [].concat(Blocks).reverse(),
       labels: [].concat(formatDate(Timestamps)).reverse(),
       datasets: [{
         data: [].concat(Blocks).reverse(),
@@ -696,11 +695,7 @@
             fontSize: 9,
             fontColor: "#CCC",
             autoSkip: true,
-            //maxRotation: 90,
-            //minRotation: 90
-            //display:false
           }
-          //display: false
         }]
       },
       tooltips: {
@@ -712,33 +707,8 @@
           title: function (tooltipItem, data) {
             var height = data.datasets[3].data[tooltipItem[0].index];
             var time = new Date(data.labels[tooltipItem[0].index]).toLocaleString();
-            //return 'Блок №: ' + height + ' - ' + time + '';
             return time + '';
-          },
-          /*
-          label: function(tooltipItem, data) {
-              var diff        = data.datasets[0].data[tooltipItem.index];
-              var txcount = data.datasets[1].data[tooltipItem.index];
-              var size        = data.datasets[2].data[tooltipItem.index];
-
-              var diff_swatch_color = data.datasets[0].borderColor;
-
-              console.log(diff_swatch_color);
-
-              var diff_swatch = '<span style="color="'+ diff_swatch_color +'">&bullet;</span>';
-
-              var multistringText = [];
-
-              var str1 = diff_swatch + 'Складність: ' + diff + '';
-              var str2 = 'Розмір: ' + size + '';
-              var str3 = 'Транзакції: ' + txcount + '';
-
-              multistringText.push(str1);
-              multistringText.push(str2);
-              multistringText.push(str3);
-
-              return multistringText;
-          }*/
+          }
         }
       }
     };
@@ -771,7 +741,6 @@
       sizes.push(size);
       times.push(time);
     }
-    //diffChart.data.labels = labels.reverse();
     if (diffChart) {
       diffChart.data.labels = times.reverse();
       diffChart.data.datasets[0].data = labels.reverse();
@@ -783,7 +752,6 @@
   }
 
   function loadMoreChart() {
-    //diffChart.data.labels = [].concat(Blocks).reverse();
     diffChart.data.labels = [].concat(Timestamps).reverse();
     diffChart.data.datasets[0].data = [].concat(Blocks).reverse();
     diffChart.data.datasets[1].data = [].concat(Difficulties).reverse();

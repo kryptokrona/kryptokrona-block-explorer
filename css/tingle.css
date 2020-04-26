@@ -121,7 +121,8 @@
 
 .tingle-modal-box__footer--sticky {
   position: fixed;
-  bottom: -200px; /* TODO : find a better way */
+  bottom: -200px;
+  /* TODO : find a better way */
   z-index: 10001;
   opacity: 1;
   -webkit-transition: bottom .3s ease-in-out .3s;

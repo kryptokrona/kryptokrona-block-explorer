@@ -1,13 +1,13 @@
-var blockchainExplorer 	= "?hash={id}#blockchain_block";
+var blockchainExplorer = "?hash={id}#blockchain_block";
 var transactionExplorer = "?hash={id}#blockchain_transaction";
-var paymentIdExplorer 	= "?hash={id}#blockchain_payment_id";
+var paymentIdExplorer = "?hash={id}#blockchain_payment_id";
 
 var style_cookie_name = "style";
 var style_cookie_duration = 365;
 var style_domain = window.location.hostname;
 
 
-var renderDate = function(d) {
+var renderDate = function (d) {
     return d.getFullYear() + '-' +
         ('0' + (d.getMonth() + 1)).slice(-2) + '-' +
         ('0' + d.getDate()).slice(-2) + ' ' +
@@ -16,7 +16,7 @@ var renderDate = function(d) {
 };
 
 
-$(document).ready(function() {
+$(document).ready(function () {
     if (donationAddress !== undefined && donationAddress !== "") {
         $("#donations").show();
         $("#donationAddress").html(donationAddress);
@@ -27,33 +27,33 @@ function getTransactionUrl(id) {
     return transactionExplorer.replace('{symbol}', symbol.toLowerCase()).replace('{id}', id);
 }
 
-$.fn.update = function(txt){
+$.fn.update = function (txt) {
     var el = this[0];
     if (el.textContent !== txt)
         el.textContent = txt;
     return this;
 };
 
-function updateTextClasses(className, text){
+function updateTextClasses(className, text) {
     var els = document.getElementsByClassName(className);
-    for (var i = 0; i < els.length; i++){
+    for (var i = 0; i < els.length; i++) {
         var el = els[i];
         if (el.textContent !== text)
             el.textContent = text;
     }
 }
 
-function updateText(elementId, text){
+function updateText(elementId, text) {
     var el = document.getElementById(elementId);
-    if (el.textContent !== text){
+    if (el.textContent !== text) {
         el.textContent = text;
     }
     return el;
 }
 
-function updateTextLinkable(elementId, text){
+function updateTextLinkable(elementId, text) {
     var el = document.getElementById(elementId);
-    if (el.innerHTML !== text){
+    if (el.innerHTML !== text) {
         el.innerHTML = text;
     }
     return el;
@@ -67,17 +67,17 @@ function localizeNumber(number) {
     return numberFormatter.format(number);
 }
 
-function getReadableHashRateString(hashrate){
+function getReadableHashRateString(hashrate) {
     var i = 0;
-    var byteUnits = [' H', ' kH', ' MH', ' GH', ' TH', ' PH', ' EH', ' ZH', ' YH' ];
-    while (hashrate > 1000){
+    var byteUnits = [' H', ' kH', ' MH', ' GH', ' TH', ' PH', ' EH', ' ZH', ' YH'];
+    while (hashrate > 1000) {
         hashrate = hashrate / 1000;
         i++;
     }
     return localizeNumber(hashrate.toFixed(2)) + byteUnits[i];
 }
 
-function getReadableDifficultyString(difficulty, precision){
+function getReadableDifficultyString(difficulty, precision) {
     if (isNaN(parseFloat(difficulty)) || !isFinite(difficulty)) return 0;
     if (typeof precision === 'undefined') precision = 0;
     var units = ['', 'k', 'M', 'G', 'T', 'P'],
@@ -85,38 +85,38 @@ function getReadableDifficultyString(difficulty, precision){
     if (units[number] === undefined || units[number] === null) {
         return 0
     }
-    return localizeNumber((difficulty / Math.pow(1000, Math.floor(number))).toFixed(precision)) + ' ' +  units[number];
+    return localizeNumber((difficulty / Math.pow(1000, Math.floor(number))).toFixed(precision)) + ' ' + units[number];
 }
 
-function formatBlockLink(hash){
+function formatBlockLink(hash) {
     return '<a href="' + getBlockchainUrl(hash) + '">' + hash + '</a>';
 }
 
-function getReadableCoins(coins, digits, withoutSymbol){
+function getReadableCoins(coins, digits, withoutSymbol) {
     var amount = (parseInt(coins || 0) / coinUnits).toFixed(digits || coinUnits.toString().length - 1);
     return localizeNumber(amount) + (withoutSymbol ? '' : (' ' + symbol));
 }
 
-function formatDate(time){
+function formatDate(time) {
     if (!time) return '';
     return renderDate(new Date(parseInt(time) * 1000));
 }
 
-function formatPaymentLink(hash){
+function formatPaymentLink(hash) {
     return '<a href="' + getTransactionUrl(hash) + '">' + hash + '</a>';
 }
 
-function pulseLiveUpdate(){
+function pulseLiveUpdate() {
     var stats_update = document.getElementById('stats_updated');
     stats_update.style.transition = 'opacity 100ms ease-out';
     stats_update.style.opacity = 1;
-    setTimeout(function(){
+    setTimeout(function () {
         stats_update.style.transition = 'opacity 7000ms linear';
         stats_update.style.opacity = 0;
     }, 500);
 }
 
-window.onhashchange = function(){
+window.onhashchange = function () {
     routePage();
 };
 
@@ -127,12 +127,12 @@ function fetchLiveStats() {
         dataType: 'json',
         type: 'GET',
         cache: 'false'
-    }).done(function(data){
+    }).done(function (data) {
         pulseLiveUpdate();
         lastStats = data;
         currentPage.update();
     }).always(function () {
-        setTimeout(function() {
+        setTimeout(function () {
             fetchLiveStats();
         }, refreshDelay);
     });
@@ -144,6 +144,7 @@ function floatToString(float) {
 
 
 var xhrPageLoading;
+
 function routePage(loadedCallback) {
 
     if (currentPage) currentPage.destroy();
@@ -176,11 +177,11 @@ function getBlockchainUrl(id) {
     return blockchainExplorer.replace('{id}', id);
 }
 
-$(function(){
-    $.get(api + '/getinfo', function(data){
+$(function () {
+    $.get(api + '/getinfo', function (data) {
         try {
             lastStats = JSON.parse(data);
-        } catch(e) {
+        } catch (e) {
             lastStats = data;
         }
         routePage(fetchLiveStats);
@@ -188,22 +189,21 @@ $(function(){
 });
 
 // Blockexplorer functions
-urlParam = function(name){
+urlParam = function (name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results==null){
+    if (results == null) {
         return null;
-    }
-    else{
+    } else {
         return results[1] || 0;
     }
 }
 
-$(function() {
+$(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
 
 function hex2a(hexx) {
-    var hex = hexx.toString();//force conversion
+    var hex = hexx.toString(); //force conversion
     var str = '';
     for (var i = 0; i < hex.length; i += 2)
         str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
