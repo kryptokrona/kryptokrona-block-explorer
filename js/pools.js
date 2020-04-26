@@ -79,7 +79,7 @@ var displayChart = function displayChart() {
     var networkRate = Math.floor(lastStats.difficulty / blockTargetInterval);
     var unknownRate = Math.max(0, networkRate - poolsRate);
 
-    var sortedPools = poolStats.concat([['Solo', unknownRate, "rgb(1, 33, 63)"]]).sort(function(poolA, poolB) {
+    var sortedPools = poolStats.concat([['Solo', unknownRate, "#403062cc"]]).sort(function(poolA, poolB) {
         if (poolA[1] > poolB[1]) {
             return -1;
         } else if (poolA[1] < poolB[1]) {
@@ -94,8 +94,9 @@ var displayChart = function displayChart() {
         datasets: [{
             data: sortedPools.map(function(p) { return p[1]; }),
             backgroundColor: sortedPools.map(function(p) { return p[2]; }),
-            borderColor: '#90f2ff8c',
+            borderColor: 'rgb(1, 33, 55)',
             borderWidth: 1,
+            hoverBackgroundColor: 'rgb(1, 38, 63)',
             segmentShowStroke: false
         }]
     };
@@ -127,6 +128,8 @@ var displayChart = function displayChart() {
             tooltips: {
                 enabled: true,
                 mode: 'single',
+                backgroundColor: 'rgb(1, 33, 55)',
+                fontColor: '#90f2ff8c',
                 callbacks: {
                     title: function (tooltipItem, data) { return data.labels[tooltipItem[0].index]; },
                     label: function (tooltipItem, data) {
