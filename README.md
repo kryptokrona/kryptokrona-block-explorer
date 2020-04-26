@@ -13,5 +13,6 @@ Block explorer for Kryptokrona, a CryptoNote based cryptocurrency.
 
 ### Note
 
-A lot of this code is from the great Karbovanets/Karbowanec-Blockchain-Explorer.
+Powered by Turtle Blockchain Explorer v. 1.0.0, partially based on Cryptonote-universal-pool and Karbowanec-Blockchain-Explorer.
+
 The style was redesigned by ux33 @ kryptokrona.
