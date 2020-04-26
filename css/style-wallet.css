@@ -59,7 +59,7 @@ html {
 ::after,
 ::before,
 ::-moz-focus-outer {
-  box-sizing: inherit;
+  
   border: none;
   color: none;
 }
