@@ -175,6 +175,14 @@ table td {
     padding: 4px 1px;
 }
 
+.centerFooter{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 table {
     color: #90f2ff8c;
     font-size: 12px;
