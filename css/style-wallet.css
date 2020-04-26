@@ -12,8 +12,8 @@ html {
 
   #seed_phrase {
     background: rgb(1, 33, 55);
-    border: 1px solid #90f2ff8c;
-    color: rgb(211, 211, 211);
+    border: 1px solid #90f2ff3b;
+    color: #90f2ff;
     border-radius: 5px;
   }
 
@@ -426,6 +426,16 @@ html {
   }
 
   .generateDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding-left: 4rem;
+
+  }
+
+  .restoreDiv {
     display: flex;
     flex-direction: column;
     justify-content: center;

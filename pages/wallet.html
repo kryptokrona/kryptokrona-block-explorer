@@ -55,21 +55,24 @@
 
         </div>
 
-        <div id="restore" style="display: none;">
+        <div id="restoreDiv" style="display: none;">
 
           <p class="noprint" style="margin-top: 20px;">Paste your seed below to restore your keys.</p>
-          <div>
+          
             <br>
-            <input id="seed_phrase" class="input" type="text" style="width:75%;" value="" />
+            <input id="seed_phrase" class="input" type="text" style="width:100%; padding: 5px;" value="" />
+            <br>
+            <br>
+            <div class="gen-btn">
+              <button class="btn-wallet" onclick="js:restore_keys(null);" type="button" value="Restore keys">Restore
+                Keys</button>
+            </div>
           </div>
 
-          <br>
+         
 
-          <div class="has-text-centered">
-            <button class="btn-default" onclick="js:restore_keys(null);" type="button" value="Restore keys">Restore
-              Keys</button>
-          </div>
-        </div>
+          
+        
       </div>
     </div>
 

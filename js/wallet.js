@@ -4,14 +4,14 @@
 
 var show_generate = function() {
   document.getElementById("generateDiv").style.display = "block";
-  document.getElementById("restore").style.display = "none";
+  document.getElementById("restoreDiv").style.display = "none";
   document.getElementById("step2").style.display = "none";
   document.getElementById("step3").style.display = "none";
   document.getElementById("step4").style.display = "none";
 };
 
 var show_restore = function() {
-  document.getElementById("restore").style.display = "block";
+  document.getElementById("restoreDiv").style.display = "block";
   document.getElementById("generateDiv").style.display = "none";
   document.getElementById("step2").style.display = "none";
   document.getElementById("step3").style.display = "none";
