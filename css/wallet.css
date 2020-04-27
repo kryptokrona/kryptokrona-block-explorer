@@ -1,4 +1,3 @@
-
 /* Wallet Style */
 
 html {
@@ -59,7 +58,6 @@ html {
 ::after,
 ::before,
 ::-moz-focus-outer {
-  
   border: none;
   color: none;
 }

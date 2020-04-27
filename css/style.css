@@ -1,225 +1,225 @@
 @import url("bootstrap.css");
 
 a {
-    color: #90f2ff8c;
+  color: #90f2ff8c;
 }
 
 .explorer-search {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 
 #coinName {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 .netHash {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1rem;
 }
 
 h7 {
-    color: #90f2ffea;
-    font-weight: 500;
+  color: #90f2ffea;
+  font-weight: 500;
 }
 
 .row {
-    padding-top: 0rem;
-    padding-bottom: 0rem;
-    padding-left: 0rem;
-    float: none;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  padding-left: 0rem;
+  float: none;
 }
 
 .row2 {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    padding-left: 1rem;
-    float: none;
-    background: rgb(1, 33, 55);
-    border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  float: none;
+  background: rgb(1, 33, 55);
+  border-radius: 10px;
 }
 
 .listStats {
-    padding-left: 2rem;
+  padding-left: 2rem;
 }
 
 #coinIcon {
-    text-transform: capitalize;
-    width: 1em;
-    height: 1em;
-    display: inline-block;
-    vertical-align: middle;
-    color: #90f2ff8c;
-    border-radius: 50%;
-    text-align: center;
-    margin-top: -4px;
+  text-transform: capitalize;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: middle;
+  color: #90f2ff8c;
+  border-radius: 50%;
+  text-align: center;
+  margin-top: -4px;
 }
 
 body {
-    background: rgb(1, 38, 63);
-    color: #90f2ff47;
-    padding-top: 65px;
-    padding-bottom: 10px;
-    overflow-y: scroll;
+  background: rgb(1, 38, 63);
+  color: #90f2ff47;
+  padding-top: 65px;
+  padding-bottom: 10px;
+  overflow-y: scroll;
 }
 
 #nav-brand,
 img {
-    padding: 1.2rem;
-    padding-right: 2rem;
-    padding-left: 2rem;
+  padding: 1.2rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
 }
 
 #loading {
-    font-size: 2em;
+  font-size: 2em;
 }
 
 #wrapperTxn {
-    background: white;
+  background: white;
 }
 
 .stats {
-    margin-bottom: 10px;
-    margin-top: 5px;
-    font-size: 1em;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  font-size: 1em;
 }
 
 .stats:last-child {
-    width: auto;
+  width: auto;
 }
 
 .stats>h3>i {
-    font-size: 1em;
-    width: 21px;
+  font-size: 1em;
+  width: 21px;
 }
 
 .stats>div {
-    font-size: 0.85em;
+  font-size: 0.85em;
 }
 
 .stats>div>.fa {
-    width: 25px;
+  width: 25px;
 }
 
 #stats_updated {
-    opacity: 0;
-    height: 40px;
-    line-height: 40px;
-    color: #90f2ff8c;
-    font-size: 0.9em;
-    position: absolute;
-    right: 10px;
-    top: 0;
+  opacity: 0;
+  height: 40px;
+  line-height: 40px;
+  color: #90f2ff8c;
+  font-size: 0.9em;
+  position: absolute;
+  right: 10px;
+  top: 0;
 }
 
 footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    margin: 30px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin: 30px 0;
 }
 
 table td {
-    font-family: 'Work Sans', sans-serif;
-    padding: none;
+  font-family: 'Work Sans', sans-serif;
+  padding: none;
 }
 
 .scrollup {
-    opacity: 0.3;
-    position: fixed;
-    bottom: 50px;
-    right: 100px;
-    display: none;
-    text-align: center;
-    line-height: 50px;
-    font-size: 50px;
-    -webkit-transition: color 200ms ease-in-out;
-    -moz-transition: color 200ms ease-in-out;
-    -o-transition: color 200ms ease-in-out;
-    -ms-transition: color 200ms ease-out;
-    display: none;
-    overflow: hidden;
+  opacity: 0.3;
+  position: fixed;
+  bottom: 50px;
+  right: 100px;
+  display: none;
+  text-align: center;
+  line-height: 50px;
+  font-size: 50px;
+  -webkit-transition: color 200ms ease-in-out;
+  -moz-transition: color 200ms ease-in-out;
+  -o-transition: color 200ms ease-in-out;
+  -ms-transition: color 200ms ease-out;
+  display: none;
+  overflow: hidden;
 }
 
 #block.hash,
 #transaction.hash {
-    word-break: break-all;
+  word-break: break-all;
 }
 
 .form-control {
-    background-color: rgb(1, 38, 63);
-    color: #90f2ff8c;
+  background-color: rgb(1, 38, 63);
+  color: #90f2ff8c;
 }
 
 .navbar .theme-switch {
-    background: transparent;
-    border: none;
-    color: #90f2ff8c;
-    line-height: 21px;
-    padding-top: 9.5px;
-    padding-bottom: 9.5px;
+  background: transparent;
+  border: none;
+  color: #90f2ff8c;
+  line-height: 21px;
+  padding-top: 9.5px;
+  padding-bottom: 9.5px;
 }
 
 .navbar-brand {
-    padding: 0;
+  padding: 0;
 }
 
 .nav-pills>li {
-    padding: 4px 1px;
+  padding: 4px 1px;
 }
 
 .centerFooter {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 table {
-    color: #90f2ff8c;
-    font-size: 12px;
-    border: none;
+  color: #90f2ff8c;
+  font-size: 12px;
+  border: none;
 }
 
 thead {
-    border-radius: 10px;
-    border: transparent;
-    background-color: transparent;
-    padding-top: none;
+  border-radius: 10px;
+  border: transparent;
+  background-color: transparent;
+  padding-top: none;
 }
 
 tr {
-    background-color: rgb(1, 33, 55);
-    border: transparent;
+  background-color: rgb(1, 33, 55);
+  border: transparent;
 }
 
 #network-hash>thead>tr>th {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #pools_rows>tr>td {
-    vertical-align: middle;
-    text-align: center;
-    white-space: pre-line;
+  vertical-align: middle;
+  text-align: center;
+  white-space: pre-line;
 }
 
 #pools_header>tr>th:first-child,
 #pools_rows>tr>td:first-child {
-    text-align: center;
+  text-align: center;
 }
 
 #pools_header>tr>th:last-child,
 #pools_rows>tr>td:last-child {
-    text-align: center;
+  text-align: center;
 }
 
 #block-range-wrapper {
-    font-size: 12px;
-    line-height: 20px;
-    color: #90f2ff8c;
-    float: right;
+  font-size: 12px;
+  line-height: 20px;
+  color: #90f2ff8c;
+  float: right;
 }
