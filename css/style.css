@@ -19,8 +19,8 @@ a {
 }
 
 h7 {
-    color: #90f2ffc4;
-    font-weight: 800;
+    color: #90f2ffea;
+    font-weight: 500;
 }
 
 .row {
@@ -209,12 +209,12 @@ tr {
 
 #pools_header>tr>th:first-child,
 #pools_rows>tr>td:first-child {
-    text-align: left;
+    text-align: center;
 }
 
 #pools_header>tr>th:last-child,
 #pools_rows>tr>td:last-child {
-    text-align: left;
+    text-align: center;
 }
 
 #block-range-wrapper {

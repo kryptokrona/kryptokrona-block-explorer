@@ -10,19 +10,19 @@
             <div class="col-sm-6 col-md-6">
               <ul class="nav nav-pills nav-stacked">
 
-                <li><i class="fa fa-bars"></i> Height:<h7> <span id="networkHeight"></span></h7>
+                <li>Height:<h7> <span id="networkHeight"></span></h7>
                 </li>
 
-                <li><i class="fa fa-tachometer"></i> Hash Rate:<h7> <span id="networkHashrate"></span></h7>
+                <li>Hash Rate:<h7> <span id="networkHashrate"></span></h7>
                 </li>
 
-                <li><i class="fa fa-unlock-alt"></i> Current Difficulty: <h7><span id="networkDifficulty"></span></h7>
+                <li>Current Difficulty: <h7><span id="networkDifficulty"></span></h7>
                 </li>
 
-                <li><i class="fa fa-lock"></i> Average Difficulty:<h7> <span id="avgDifficulty"></span></h7>
+                <li>Average Difficulty:<h7> <span id="avgDifficulty"></span></h7>
                 </li>
 
-                <li><i class="fa fa-cube"></i> Nodes:<h7> <span id="networkNodes"></span></h7>
+                <li>Nodes:<h7> <span id="networkNodes"></span></h7>
                 </li>
 
                  <!--Inactive nodes-->
@@ -36,17 +36,17 @@
             <div class="col-sm-6 col-md-6">
               <ul class="nav nav-pills nav-stacked">
 
-                <li><i class="fa fa fa-exchange"></i> Transactions:<h7> <span id="networkTransactions"></span></h7>
+                <li>Transactions:<h7> <span id="networkTransactions"></span></h7>
                 </li>
 
-                <li><i class="fa fa-certificate"></i> Reward: <h7><span id="currentReward"></span></h7>
+                <li>Reward: <h7><span id="currentReward"></span></h7>
                 </li>
 
-                <li><i class="fa fa-percent" aria-hidden="true"></i> Emission: <h7> <span id="emissionPercent"></span> %
+                <li>Emission: <h7> <span id="emissionPercent"></span> %
                   </h7>
                 </li>
 
-                <li><i class="fa fa-money"></i> Circulating Supply:<h7> <span id="totalCoins"></span></h7>
+                <li>Circulating Supply:<h7> <span id="totalCoins"></span></h7>
                 </li>
 
                 <!--Total supply-->
@@ -396,13 +396,13 @@
     var dateTime = new Date(block.timestamp * 1000).toISOString();
     row.setAttribute('data-dt', dateTime);
     var columns =
-      '<td class="blk-height">' + localizeNumber(block.height) + '</td>' +
+      '<td class="blk-height">' + '<h7>' + localizeNumber(block.height) + '</h7>' + '</td>' +
       '<td class="blk-size">' + localizeNumber(block.cumul_size) + '</td>' +
-      '<td class="blk-hash">' + formatBlockLink(block.hash) + '</td>' +
+      '<td class="blk-hash">' + '<h7>' +  formatBlockLink(block.hash) +  '</h7>' + '</td>' +
       '<td class="blk-diff">' + localizeNumber(block.difficulty) + '</td>' +
       '<td class="blk-tx">' + localizeNumber(block.tx_count) + '</td>' +
-      '<td class="date-time">' + formatDate(block.timestamp) + ' (<time class="timeago" datetime="' + dateTime +
-      '"></time>)</td>';
+      '<td class="date-time">' + '<h7>' + formatDate(block.timestamp) +  ' (<time class="timeago" datetime="' + dateTime +
+      '"></time>)</td>' +  '</h7>' ;
 
     Difficulties.push(parseInt(block.difficulty));
     Blocks.push(parseInt(block.height));
