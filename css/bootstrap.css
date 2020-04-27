@@ -5423,8 +5423,6 @@ select[multiple].input-group-sm>.input-group-btn>.btn {
     width: 100%;
   }
 
-  
-
   .navbar-form .control-label {
     margin-bottom: 0;
     vertical-align: middle;
@@ -5520,11 +5518,11 @@ select[multiple].input-group-sm>.input-group-btn>.btn {
 
 @media (min-width: 768px) {
   .navbar-left {
-    float: left !important;
+    /* float: left !important; */
   }
 
   .navbar-right {
-    float: right !important;
+    /* float: right !important; */
     margin-right: -15px;
   }
 
@@ -7159,6 +7157,14 @@ button.close {
 }
 
 @media (min-width: 992px) {
+  .navbar-left {
+    float: left !important;
+  }
+
+  .navbar-right {
+    float: right !important; 
+    margin-right: -15px;
+  }
   .modal-lg {
     width: 900px;
   }
