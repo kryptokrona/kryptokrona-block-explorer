@@ -9,9 +9,9 @@ var refreshDelay = 30000;
 // pools stats
 var networkStat = {
  "xkr": [
-	["pool.kryptokrona.se", "https://explorer.kryptokrona.se/pool1/stats"],
-	["pool2.kryptokrona.se", "https://explorer.kryptokrona.se/pool2/stats"],
-	["pool3.kryptokrona.se", "https://explorer.kryptokrona.se/pool3/stats"]
+	["pool.kryptokrona.se", "https://explorer.kryptokrona.se/pool1/"],
+	["pool2.kryptokrona.se", "https://explorer.kryptokrona.se/pool2/"],
+	["pool3.kryptokrona.se", "https://explorer.kryptokrona.se/pool3/"]
 	//["pool-name", "pool-url:port"],
 	//["pool-name", "pool-url:port"]
  ]
