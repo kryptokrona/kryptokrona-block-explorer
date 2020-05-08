@@ -6,6 +6,11 @@ var totalSupply =  100000000000000;
 var symbol = 'XKR';
 var refreshDelay = 30000;
 
+
+const ExplorerConfig = {
+	apiBaseUrl: 'https://explorer.kryptokrona.se/api'
+  }
+
 // pools stats
 var networkStat = {
  "xkr": [
