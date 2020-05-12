@@ -5446,7 +5446,7 @@ button.close {
   padding: 3px 8px;
   color: #90f2ff8c;
   text-align: center;
-  background-color: rgb(1, 29, 47);
+  background-color:  rgb(1, 33, 55);
   border-radius: 2px;
 }
 
@@ -8714,23 +8714,23 @@ legend {
     
     .btn-default:focus,
     .btn-default.focus {
-      color: #90f2fff3;
-      background-color: rgb(52, 152, 219, 0.411);
+      color: black;
+      background-color: #858585f3;
       border-color: transparent;
     }
     
     .btn-default:hover {
-      color: #90f2fff3;
-      background-color: rgb(52, 152, 219, 0.411);
+      color: black;
+      background-color: #858585f3;
       border-color: transparent;
     }
     
     .btn-default:active,
     .btn-default.active,
     .open>.dropdown-toggle.btn-default {
-      color: #90f2fff3;
-      background-color: rgb(52, 152, 219, 0.411);
-      border-color: rgb(0, 61, 92);
+      color: black;
+      background-color: #858585f3;
+      border-color: transparent;
     }
     
     .btn-default:active:hover,
@@ -8742,9 +8742,9 @@ legend {
     .btn-default:active.focus,
     .btn-default.active.focus,
     .open>.dropdown-toggle.btn-default.focus {
-      color: #90f2fff3;
-      background-color: rgb(52, 152, 219, 0.411);
-      border-color: rgb(0, 61, 92);
+      color: black;
+      background-color: #858585f3;
+      border-color: transparent;
     }
     
     .btn-default:active,
@@ -10366,12 +10366,12 @@ legend {
     }
     
     .navbar-default .navbar-toggle {
-      border-color: #90f2ff26;
+      border-color: transparent;
     }
     
     .navbar-default .navbar-toggle:hover,
     .navbar-default .navbar-toggle:focus {
-      background-color: rgb(1, 33, 55);
+      background-color: rgb(142, 142, 142);
     }
     
     .navbar-default .navbar-toggle .icon-bar {
@@ -10648,7 +10648,7 @@ legend {
     
     
     .alert-info {
-      background-color: #003158;
+      background-color:#a2a2a2;
       border-color: transparent;
       color: black;
     }
@@ -10658,13 +10658,13 @@ legend {
     }
     
     .alert-warning {
-      background-color: #003158;
+      background-color: #a2a2a2;
       border-color: transparent;
       color: black;
     }
     
     .alert-danger {
-      background-color: #003158;
+      background-color: #a2a2a2;
       border-color: transparent;
       color: black;
     }
@@ -11541,7 +11541,7 @@ legend {
       padding: 3px 8px;
       color: black;
       text-align: center;
-      background-color: rgb(1, 29, 47);
+      background-color: rgb(222, 222, 222);
       border-radius: 2px;
     }
     

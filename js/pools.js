@@ -107,7 +107,7 @@ var displayChart = function displayChart() {
             backgroundColor: sortedPools.map(function (p) {
                 return p[2];
             }),
-            borderColor: 'rgb(1, 33, 55)',
+            borderColor: 'rgba(67, 67, 67, 0)',
             borderWidth: 1,
             hoverBackgroundColor: 'rgb(1, 38, 63)',
             segmentShowStroke: false
@@ -129,7 +129,7 @@ var displayChart = function displayChart() {
             legend: {
                 position: 'bottom',
                 labels: {
-                    fontColor: '#90f2ff8c'
+                    fontColor: '#000000'
                 },
             },
             layout: {
@@ -141,8 +141,8 @@ var displayChart = function displayChart() {
             tooltips: {
                 enabled: true,
                 mode: 'single',
-                backgroundColor: 'rgb(1, 33, 55)',
-                fontColor: '#90f2ff8c',
+                backgroundColor: 'rgba(67, 67, 67, 0.541)',
+                fontColor: '#000000',
                 callbacks: {
                     title: function (tooltipItem, data) {
                         return data.labels[tooltipItem[0].index];

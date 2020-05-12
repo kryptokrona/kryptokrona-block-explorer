@@ -53,6 +53,7 @@ h7 {
   padding: 1.07rem;
   margin-top: 1.4rem;
   margin-left: 1.5rem; 
+  margin-right: 1rem;
   background-size: cover;
 }
 
@@ -475,6 +476,7 @@ tr {
   padding: 1.2rem;
   margin-top: 1.4rem;
   margin-left: 1.5rem; 
+  margin-right: 1rem;
   background-size: cover;
 }
 
@@ -482,4 +484,3 @@ tr {
   background-image: url(/img/icon-lightmode.svg);
 }
 }
-
