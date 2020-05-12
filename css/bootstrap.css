@@ -9551,7 +9551,7 @@ legend {
     .input-wrapper {
       padding: 2rem;
       padding-top: 0;
-      background: rgb(1, 33, 55);
+      background: rgb(177, 177, 177);
       border-radius: 10px;
     }
     
@@ -9658,7 +9658,7 @@ legend {
       line-height: 1;
       color: black;
       text-align: center;
-      background-color: rgb(1, 38, 63);
+      background-color: hsla(0, 0%, 40%, 0.2);
       border-radius: 2px;
     }
     
@@ -11233,8 +11233,8 @@ legend {
     }
     
     .panel-default>.panel-heading .badge {
-      color: #100633;
-      background-color: black;
+      color: #dedede;
+      background-color: rgba(36, 36, 36, 0.603);
     }
     
     .panel-primary>.panel-heading {
@@ -12003,7 +12003,7 @@ legend {
     }
     
     .btn-default {
-      background: rgb(52, 152, 219, 0.2);
+      background: rgba(101, 101, 101, 0.2);
       color: black;
     }
     

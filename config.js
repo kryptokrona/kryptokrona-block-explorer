@@ -1,4 +1,4 @@
-var api = 'https://explorer.kryptokrona.se/api';
+var api = 'http://pool.kryptokrona.se:11898';
 var donationAddress = "SEKReX2avthCKT4YUUKV3jgZ1Hderk9XbRciqp8vHVPoDSb9nA1dCV86Jia3TkD4jWgfxeh1AEYV3DKEAesSb7mSAvNqf6cB6kR";
 var blockTargetInterval = 90; 
 var coinUnits = 100; 
