@@ -286,7 +286,7 @@ tr {
   }
   
   body {
-    background: rgb(196, 196, 196);
+    background: rgb(230, 230, 230);
     color: #1a1a1abb;
     padding-top: 65px;
     padding-bottom: 10px;
@@ -294,7 +294,7 @@ tr {
   }
 
   .containerChart{
-    background: rgb(177, 177, 177);
+    background: rgb(198, 198, 198);
   }
   
   #nav-brand,
@@ -339,7 +339,7 @@ tr {
     opacity: 0;
     height: 40px;
     line-height: 40px;
-    color: #ffffff8c;
+    color: #161515e9;
     font-size: 0.9em;
     position: absolute;
     right: 10px;
@@ -425,7 +425,7 @@ tr {
   }
   
   tr {
-    background: rgb(177, 177, 177) !important;
+    background: rgb(198, 198, 198) !important;
     color: black;
     border: transparent;
   }
@@ -453,8 +453,6 @@ tr {
   #block-range-wrapper {
     font-size: 12px;
     line-height: 20px;
-    color: #171717e1;
-  
-  
+    color: #171717e1;  
 }
 }

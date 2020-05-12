@@ -8149,11 +8149,11 @@ legend {
       line-height: 1.42857143;
       color: black;
       background-color: rgb(1, 38, 63);
-      border: rgb(1, 38, 63) solid 1px;
+      border: transparent solid 1px;
     }
     
     .form-control:focus {
-      border-color: #66aee9a4;
+      border-color: transparent;
       outline: 0;
       
     }
@@ -8709,20 +8709,20 @@ legend {
     .btn-default {
       color: black;
       background-color: rgb(52, 152, 219, 0.2);
-      border-color: rgb(0, 61, 92);
+      border-color: transparent;
     }
     
     .btn-default:focus,
     .btn-default.focus {
       color: #90f2fff3;
       background-color: rgb(52, 152, 219, 0.411);
-      border-color: rgb(0, 61, 92);
+      border-color: transparent;
     }
     
     .btn-default:hover {
       color: #90f2fff3;
       background-color: rgb(52, 152, 219, 0.411);
-      border-color: rgb(0, 61, 92);
+      border-color: transparent;
     }
     
     .btn-default:active,
@@ -9551,8 +9551,11 @@ legend {
     .input-wrapper {
       padding: 2rem;
       padding-top: 0;
-      background: rgb(177, 177, 177);
-      border-radius: 10px;
+      background: rgb(198, 198, 198);
+      border-top-left-radius: 0px !important;
+      border-top-right-radius: 0px !important;
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
     }
     
     .input-group[class*="col-"] {
@@ -11043,7 +11046,7 @@ legend {
       padding: 10px;
       border-bottom-left-radius: 1rem;
       border-bottom-right-radius: 1rem;
-      background: rgb(177, 177, 177);
+      background: rgb(198, 198, 198);
     }
     
     .panel-heading {
@@ -11229,7 +11232,7 @@ legend {
     
     .panel-default>.panel-heading {
       color: black;
-      background-color: rgb(177, 177, 177);
+      background-color: rgb(198, 198, 198);
     }
     
     .panel-default>.panel-heading .badge {
@@ -11994,7 +11997,7 @@ legend {
     }
     
     .navbar-default {
-      background-color: rgb(177, 177, 177);
+      background-color: rgb(198, 198, 198);
     }
     
     .btn,
@@ -12009,9 +12012,9 @@ legend {
     
     .btn-default:hover {
       border: none;
-      color: #90f2fff3;
-      background-color: rgb(52, 152, 219, 0.411);
-      border-color: rgb(0, 61, 92);
+      color: black;
+      background-color: rgba(67, 67, 67, 0.411);
+      border-color: transparent;
     }
     
     .btn-primary {
