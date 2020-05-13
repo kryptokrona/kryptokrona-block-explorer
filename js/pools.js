@@ -5,12 +5,12 @@ var customHash = function (str) {
     // custom hash function makes the potential color space tighter for the
     // hasher, generating more distinct colors. Since so many pools have close
     // names, their hashes were generating similar colors
-    return ColorHash.BKDRHash(str) / 5;
+    return ColorHash.BKDRHash(str) / 6;
 };
 
 var colorHash = new ColorHash({
     hash: customHash,
-    lightness: [0.2, 0.60, 0.60]
+    lightness: [225, 0.75, 0.25]
 });
 
 var poolStats = [];
@@ -85,7 +85,7 @@ var displayChart = function displayChart() {
     var unknownRate = Math.max(0, networkRate - poolsRate);
 
     var sortedPools = poolStats.concat([
-        ['Solo', unknownRate, "#403062cc"]
+        ['Solo', unknownRate, "#7b5773ea"]
     ]).sort(function (poolA, poolB) {
         if (poolA[1] > poolB[1]) {
             return -1;
@@ -109,7 +109,7 @@ var displayChart = function displayChart() {
             }),
             borderColor: 'rgba(67, 67, 67, 0)',
             borderWidth: 1,
-            hoverBackgroundColor: 'rgb(1, 38, 63)',
+            hoverBackgroundColor: '#2b2b2bea',
             segmentShowStroke: false
         }]
     };
@@ -129,7 +129,7 @@ var displayChart = function displayChart() {
             legend: {
                 position: 'bottom',
                 labels: {
-                    fontColor: '#000000'
+                    fontColor: '#808383de'
                 },
             },
             layout: {
@@ -443,3 +443,4 @@ currentPage = {
         renderLastBlock();
     }
 };
+
