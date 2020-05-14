@@ -1,6 +1,5 @@
 @import url("bootstrap.css");
 
-@media (prefers-color-scheme: dark) {
 a {
   color: gray;
 }
@@ -237,7 +236,7 @@ tr {
   line-height: 20px;
   color: #gray;
   float: right;
-}}
+}
 
 @media (prefers-color-scheme: light) {
 
