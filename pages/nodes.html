@@ -2,18 +2,16 @@
 <html>
 
 <head>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link href="/css/style.css" rel="stylesheet">
 </head>
 
 <body>
-
     <main>
         <section class="section">
             <div class="input-wrapper">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <h2><i class="fa fa-server" aria-hidden="true"></i> Nodes</h2>
+                        <h2>Public Nodes</h2>
                 </div>
                 <br>
                 <div class="panel-block">
@@ -21,25 +19,44 @@
                         <thead>
                             <tr>
                                 <th><i class="fas fa-id-badge"></i>&nbsp; Node Name</th>
+                                <!-- <th><i class="fas fa-plug"></i>&nbsp; Url</th> -->
                                 <th><i class="fas fa-plug"></i>&nbsp; Hostname:Port</th>
-                                <th><i class="fas fa-exchange-alt"></i>&nbsp; Fee</th>
+                                <!-- <th><i class="fas fa-plug"></i>&nbsp; SSL</th>
+                                <th><i class="fas fa-plug"></i>&nbsp; Cache</th> -->
+                                
+                                <!-- <th><i class="fas fa-exchange-alt"></i>&nbsp; Fee</th>
                                 <th><i class="fas fa-code-branch"></i>&nbsp; Version</th>
                                 <th><i class="fas fa-layer-group"></i>&nbsp; Height</th>
                                 <th><i class="fas fa-link"></i>&nbsp; In/Out (Tx)</th>
-                                <th><i class="fas fa-history"></i>&nbsp; History</th>
+                                <th><i class="fas fa-history"></i>&nbsp; History</th> -->
                             </tr>
                         </thead>
                     </table>
-                </div>
-                <div class="has-text-centered">Node checks are performed approximately once every two (2) minutes.
                 </div>
             </div>
 
             </div>
         </section>
     </main>
+    <script>
+        $.getJSON("pages/nodes.json", function (data) {
+            var items = [];
+
+            for (node in data.nodes) {
+                
+                let this_node = data.nodes[node];
+                let name = this_node.name;
+                let url = this_node.url;
+                let port = this_node.port;
+                let cache = this_node.cache;
+
+                let row = "<tr><td>" + name + "</td><td>" + url + ":" + port + "</td></tr>";
+                
+                $('#nodes').append(row);
+            }
+        });
+    </script>
     <script src="/config.js"></script>
-    <script src="/js/nodes.js"></script>
 </body>
 
 </html>

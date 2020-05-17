@@ -1,0 +1,25 @@
+{
+  "nodes": [
+    {
+      "name": "Göta Pool",
+      "url": "gota.kryptokrona.se",
+      "port": 11898,
+      "ssl": false,
+      "cache": false
+    },
+    {
+      "name": "XKR Seed",
+      "url": "seed.kryptokrona.se",
+      "port": 11898,
+      "ssl": false,
+      "cache": false
+    },
+    {
+      "name": "Wasa",
+      "url": "wasa.kryptokrona.se",
+      "port": 11898,
+      "ssl": false,
+      "cache": false
+    }
+  ]
+}
