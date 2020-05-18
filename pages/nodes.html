@@ -18,17 +18,13 @@
                     <table id="nodes" class="table table-striped table-bordered is-fullwidth">
                         <thead>
                             <tr>
-                                <th><i class="fas fa-id-badge"></i>&nbsp; Node Name</th>
-                                <!-- <th><i class="fas fa-plug"></i>&nbsp; Url</th> -->
-                                <th><i class="fas fa-plug"></i>&nbsp; Hostname:Port</th>
+                                <th><i class="fas fa-id-badge"></i>&nbsp; Name</th>
+                                <th><i class="fas fa-plug"></i>&nbsp; Url:Port</th>
                                 <!-- <th><i class="fas fa-plug"></i>&nbsp; SSL</th>
-                                <th><i class="fas fa-plug"></i>&nbsp; Cache</th> -->
+                                <th><i class="fas fa-plug"></i>&nbsp; Cache</th>  -->
+                                <th><i class="fas fa-plug"></i>&nbsp; Version</th>
+                                <th><i class="fas fa-plug"></i>&nbsp; Fee</th>
                                 
-                                <!-- <th><i class="fas fa-exchange-alt"></i>&nbsp; Fee</th>
-                                <th><i class="fas fa-code-branch"></i>&nbsp; Version</th>
-                                <th><i class="fas fa-layer-group"></i>&nbsp; Height</th>
-                                <th><i class="fas fa-link"></i>&nbsp; In/Out (Tx)</th>
-                                <th><i class="fas fa-history"></i>&nbsp; History</th> -->
                             </tr>
                         </thead>
                     </table>
@@ -49,8 +45,10 @@
                 let url = this_node.url;
                 let port = this_node.port;
                 let cache = this_node.cache;
+                let version = this_node.version;
+                let fee = this_node.fee;
 
-                let row = "<tr><td>" + name + "</td><td>" + url + ":" + port + "</td></tr>";
+                let row = "<tr><td>" + name + "</td><td>" + url + ":" + port + "</td><td>"  + version + "</td><td>" + fee +"</td></tr>";
                 
                 $('#nodes').append(row);
             }
