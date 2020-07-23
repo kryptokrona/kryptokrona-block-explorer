@@ -8,23 +8,24 @@ var refreshDelay = 30000;
 
 
 const ExplorerConfig = {
-	apiBaseUrl: 'https://explorer.kryptokrona.se/api'
+    apiBaseUrl: 'https://explorer.kryptokrona.se/api'
   }
 
 // pools stats
 var networkStat = {
  "xkr": [
-	["pool.kryptokrona.se", "https://explorer.kryptokrona.se/pool1/"],
-	["pool2.kryptokrona.se", "https://explorer.kryptokrona.se/pool2/"],
-	["pool4.kryptokrona.se", "https://explorer.kryptokrona.se/pool4/"]
-	//["pool-name", "pool-url:port"],
-	//["pool-name", "pool-url:port"]
+    ["Göta", "https://explorer.kryptokrona.se/pool1/"],
+    ["Malmgruvan", "https://explorer.kryptokrona.se/pool2/"],
+	["Swepool", "https://explorer.kryptokrona.se/pool3/"],
+	["Floki", "https://explorer.kryptokrona.se/floki/"]
+    //["pool-name", "pool-url:port"],
+    //["pool-name", "pool-url:port"]
  ]
 };
 
 
 var networkStat2 = {
-	"xkr": [
+    "xkr": [
 
-	]
+    ]
    };
