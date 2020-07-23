@@ -16,7 +16,7 @@ var networkStat = {
  "xkr": [
     ["Göta", "https://explorer.kryptokrona.se/pool1/"],
     ["Malmgruvan", "https://explorer.kryptokrona.se/pool2/"],
-	["Swepool", "https://explorer.kryptokrona.se/pool3"],
+	["Swepool", "https://explorer.kryptokrona.se/pool4"],
 	["Floki", "https://explorer.kryptokrona.se/floki"]
     //["pool-name", "pool-url:port"],
     //["pool-name", "pool-url:port"]
