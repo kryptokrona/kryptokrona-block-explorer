@@ -17,7 +17,7 @@ var networkStat = {
     ["Göta", "https://explorer.kryptokrona.se/pool1/"],
     ["Malmgruvan", "https://explorer.kryptokrona.se/pool2/"],
 	["Swepool", "https://explorer.kryptokrona.se/pool4"],
-	["Floki", "https://explorer.kryptokrona.se/floki"]
+	["Floki", "https://floki.kryptokrona.se/api"]
     //["pool-name", "pool-url:port"],
     //["pool-name", "pool-url:port"]
  ]
