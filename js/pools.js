@@ -1,17 +1,14 @@
 window.NETWORK_STAT_MAP = new Map(networkStat[symbol.toLowerCase()]);
 window.NETWORK_STAT_MAP2 = new Map(networkStat2[symbol.toLowerCase()]);
 
-var customHash = function (str) {
+var customHash = function(str) {
     // custom hash function makes the potential color space tighter for the
     // hasher, generating more distinct colors. Since so many pools have close
     // names, their hashes were generating similar colors
-    return ColorHash.BKDRHash(str) / 6;
+    return ColorHash.BKDRHash(str) / 25;
 };
 
-var colorHash = new ColorHash({
-    hash: customHash,
-    lightness: [225, 0.75, 0.25]
-});
+var colorHash = new ColorHash({hash: customHash, lightness: [0.55, 0.66, 0.77] });
 
 var poolStats = [];
 var difficulties = [];
