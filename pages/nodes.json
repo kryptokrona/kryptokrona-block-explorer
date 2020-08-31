@@ -35,6 +35,16 @@
       "cache": false,
       "version": "0.0.1",
       "fee": "0.00"
+    },
+     {
+      "name": "Gamersnest",
+      "url": "pool.gamersnest.org",
+      "port": 11898,
+      "ssl": false,
+      "cache": false,
+      "version": "0.0.1",
+      "fee": "0.02"
     }
+    
   ]
 }
