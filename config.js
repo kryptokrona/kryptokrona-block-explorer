@@ -17,8 +17,8 @@ var networkStat = {
     ["pool.kryptokrona.se", "https://explorer.kryptokrona.se/pool1/"],
     ["pool2.kryptokrona.se", "https://explorer.kryptokrona.se/pool2/"],
 	["swepool.kryptokrona.se", "https://explorer.kryptokrona.se/pool4"],
-	["floki.kryptokrona.se", "https://floki.kryptokrona.se/api"]
-    //["pool-name", "pool-url:port"],
+	["floki.kryptokrona.se", "https://floki.kryptokrona.se/api"],
+    ["pool.gamersnest.org", "pool.gamersnest.org:8117"],
     //["pool-name", "pool-url:port"]
  ]
 };
