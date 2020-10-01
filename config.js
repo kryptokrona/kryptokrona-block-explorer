@@ -19,7 +19,7 @@ var networkStat = {
 	["swepool.kryptokrona.se", "https://explorer.kryptokrona.se/pool4"],
 	["floki.kryptokrona.se", "https://floki.kryptokrona.se/api"],
     ["pool.gamersnest.org", "pool.gamersnest.org:8117"],
-    //["pool-name", "pool-url:port"]
+    ["letshash.it", "https://letshash.it:8279/stats"]
  ]
 };
 
