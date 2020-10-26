@@ -5,7 +5,7 @@ var customHash = function(str) {
     // custom hash function makes the potential color space tighter for the
     // hasher, generating more distinct colors. Since so many pools have close
     // names, their hashes were generating similar colors
-    return ColorHash.BKDRHash(str) / 25;
+    return ColorHash.BKDRHash(str) / 13;
 };
 
 var colorHash = new ColorHash({hash: customHash, lightness: [0.55, 0.66, 0.77] });
@@ -440,4 +440,3 @@ currentPage = {
         renderLastBlock();
     }
 };
-
