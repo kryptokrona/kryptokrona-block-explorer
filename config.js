@@ -1,8 +1,8 @@
 var api = 'https://explorer.kryptokrona.se/api';
 var donationAddress = "SEKReX2avthCKT4YUUKV3jgZ1Hderk9XbRciqp8vHVPoDSb9nA1dCV86Jia3TkD4jWgfxeh1AEYV3DKEAesSb7mSAvNqf6cB6kR";
-var blockTargetInterval = 90; 
-var coinUnits = 100; 
-var totalSupply =  100000000000000; 
+var blockTargetInterval = 90;
+var coinUnits = 100000; 
+var totalSupply =  100000000000000;
 var symbol = 'XKR';
 var refreshDelay = 30000;
 
