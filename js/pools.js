@@ -45,6 +45,8 @@ var renderPoolRow = function (host, name, data, d) {
     pools_row.push('<td class="height" id=height-' + name + '>' + localizeNumber(data.network.height) + '</td>');
     pools_row.push('<td id=hashrate-' + name + '>' + localizeNumber(data.pool.hashrate) + ' H/s</td>');
     pools_row.push('<td id=miners-' + name + '>' + localizeNumber(data.pool.miners) + '</td>');
+    pools_row.push('<td id=hashrateSolo-' + name + '>' + localizeNumber(data.pool.hashrateSolo = data.pool.hashrateSolo || 0) + ' H/s</td>');
+    pools_row.push('<td id=minersSolo-' + name + '>' + localizeNumber(data.pool.minersSolo = data.pool.minersSolo || 0) + '</td>'); 
     pools_row.push('<td id=totalFee-' + name + '>' + calculateTotalFee(data) + '%</td>');
     pools_row.push('<td id=minPayout-' + name + '>' + getReadableCoins(data.config.minPaymentThreshold, 2) + '</td>');
     pools_row.push('<td><span id=lastFound-' + name + '>' + datestring + '</span> (<span class="timeago" id="ago-' + name + '">' + agostring + '</span>)</td>');
@@ -184,13 +186,13 @@ NETWORK_STAT_MAP.forEach(function (url, host, map) {
 
         $('#pools_rows').append(renderPoolRow(host, poolName, data, d));
 
-        totalHashrate += parseInt(data.pool.hashrate);
-        totalMiners += parseInt(data.pool.miners);
+        totalHashrate += parseInt(data.pool.hashrate+data.pool.hashrateSolo);
+        totalMiners += parseInt(data.pool.miners+data.pool.minersSolo);
 
         updateText('totalPoolsHashrate', getReadableHashRateString(totalHashrate) + '/sec');
         updateText('total_miners', localizeNumber(totalMiners));
 
-        poolStats.push([poolName, parseInt(data.pool.hashrate), colorHash.hex(poolName)]);
+        poolStats.push([poolName, parseInt(data.pool.hashrate+data.pool.hashrateSolo), colorHash.hex(poolName)]);
 
     }).always(function () {
         lazyRefreshChart();
