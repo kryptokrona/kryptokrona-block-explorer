@@ -16,12 +16,12 @@ var networkStat = {
  "xkr": [
     ["pool.kryptokrona.se", "https://explorer.kryptokrona.se/pool1/"],
     ["pool2.kryptokrona.se", "https://explorer.kryptokrona.se/pool2/"],
-  	["swepool.org", "https://swepool.org/api"],
-  	["floki.kryptokrona.se", "https://floki.kryptokrona.se/api"],
+    ["swepool.org", "https://swepool.org/api"],
+    ["floki.kryptokrona.se", "https://floki.kryptokrona.se/api"],
     ["pool.gamersnest.org", "https://explorer.kryptokrona.se/pool.gamersnest.org/"],
     ["letshash.it", "https://letshash.online:15040"],
     ["gabberpool.nl/XKR", "https://gabberpool.nl:1122"],
-    ["Spookyplanet.nl", "https://spookyplanet.nl:1172"],
+    ["spookyplanet.nl/pool/xkr", "https://spookyplanet.nl:1172"],
     ["xkr.pool-pay.com", "https://xkr.pool-pay.com:5383"]
  ]
 };
