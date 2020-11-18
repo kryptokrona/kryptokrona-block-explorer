@@ -187,8 +187,8 @@ NETWORK_STAT_MAP.forEach(function (url, host, map) {
 
         $('#pools_rows').append(renderPoolRow(host, poolName, data, d));
 
-        totalHashrate += parseInt(data.pool.hashrate+(data.pool.hashrateSolo = data.pool.hashrateSolo || 0));
-        totalMiners += parseInt(data.pool.miners+(data.pool.minersSolo = data.pool.minersSolo || 0));
+        totalHashrate += parseInt(data.pool.hashrate + (data.pool.hashrateSolo = data.pool.hashrateSolo || 0));
+        totalMiners += parseInt(data.pool.miners + (data.pool.minersSolo = data.pool.minersSolo || 0));
 
         updateText('totalPoolsHashrate', getReadableHashRateString(totalHashrate) + '/sec');
         updateText('total_miners', localizeNumber(totalMiners));
@@ -261,8 +261,8 @@ setInterval(function () {
             var datestring = renderDate(d);
             var agostring = $.timeago(d);
 
-            totalHashrate += parseInt(data.pool.hashrate);
-            totalMiners += parseInt(data.pool.miners);
+            totalHashrate += parseInt(data.pool.hashrate + (data.pool.hashrateSolo = data.pool.hashrateSolo || 0));
+            totalMiners += parseInt(data.pool.miners+ (data.pool.minersSolo = data.pool.minersSolo || 0));
 
             updateText('height-' + poolName, localizeNumber(data.network.height));
             updateText('hashrate-' + poolName, localizeNumber(data.pool.hashrate + (data.pool.hashrateSolo = data.pool.hashrateSolo || 0)) + ' H/s');
@@ -277,7 +277,7 @@ setInterval(function () {
             updateText('networkHashrate', getReadableHashRateString(lastStats.difficulty / blockTargetInterval) + '/sec');
             updateText('networkDifficulty', getReadableDifficultyString(lastStats.difficulty, 0).toString());
 
-            poolStats.push([poolName, parseInt(data.pool.hashrate), colorHash.hex(poolName)]);
+            poolStats.push([poolName, parseInt(data.pool.hashrate + (data.pool.hashrateSolo = data.pool.hashrateSolo || 0)), colorHash.hex(poolName)]);
         }).always(function () {
             lazyRefreshChart();
         });
