@@ -257,7 +257,7 @@ setInterval(function () {
         }
 
         $.getJSON(url + '/stats', (data, textStatus, jqXHR) => {
-            var d = new Date(parseInt(data.pool.lastBlockFound));
+            var d = new Date(parseInt(data.pool.lastBlockFound = data.pool.lastBlockFound || 0));
             var datestring = renderDate(d);
             var agostring = $.timeago(d);
 
@@ -267,7 +267,7 @@ setInterval(function () {
             updateText('height-' + poolName, localizeNumber(data.network.height));
             updateText('hashrate-' + poolName, localizeNumber(data.pool.hashrate + (data.pool.hashrateSolo = data.pool.hashrateSolo || 0)) + ' H/s');
             updateText('miners-' + poolName, localizeNumber(data.pool.miners + (data.pool.minersSolo = data.pool.minersSolo || 0)));
-            updateText('workers-' + poolName, localizeNumber(data.pool.workers + (data.pool.workersSolo = data.pool.workersSolo || 0)));
+            updateText('workers-' + poolName, localizeNumber((data.pool.workers = data.pool.workers || 0) + (data.pool.workersSolo = data.pool.workersSolo || 0)));
             updateText('totalPayments-' + poolName, localizeNumber(data.pool.totalPayments) );
             updateText('totalMinersPaid-' + poolName, localizeNumber(data.pool.totalMinersPaid) );
             updateText('lastFound-' + poolName, datestring);
