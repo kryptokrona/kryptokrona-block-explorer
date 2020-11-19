@@ -43,8 +43,10 @@ var renderPoolRow = function (host, name, data, d) {
     pools_row.push('<tr>');
     pools_row.push('<td id=host-' + name + '><a target=blank href=http://' + host + '>' + name + '</a></td>');
     pools_row.push('<td class="height" id=height-' + name + '>' + localizeNumber(data.network.height) + '</td>');
-    pools_row.push('<td id=hashrate-' + name + '>' + localizeNumber(data.pool.hashrate)+ ' | ' + (data.pool.hashrateSolo = data.pool.hashrateSolo || 0) + ' H/s</td>');
-    pools_row.push('<td id=miners-' + name + '>' + localizeNumber(data.pool.miners) + ' | ' + (data.pool.minersSolo = data.pool.minersSolo || 0) + '</td>');
+    pools_row.push('<td id=hashrate-' + name + '>' + localizeNumber(data.pool.hashrate) + ' H/s</td>');
+    pools_row.push('<td id=hashrateSolo-' + name + '>' + localizeNumber(data.pool.hashrateSolo = data.pool.hashrateSolo || 0) + ' H/s</td>');
+    pools_row.push('<td id=miners-' + name + '>' + localizeNumber(data.pool.miners) + '</td>');
+    pools_row.push('<td id=minersSolo-' + name + '>' + localizeNumber(data.pool.minersSolo = data.pool.minersSolo || 0) + '</td>');
     pools_row.push('<td id=workers-' + name + '>' + localizeNumber(data.pool.workers = data.pool.workers || data.pool.miners) + ' | ' + (data.pool.workersSolo = data.pool.workersSolo || 0) + '</td>');
     pools_row.push('<td id=totalFee-' + name + '>' + calculateTotalFee(data) + '%</td>');
     pools_row.push('<td id=minPayout-' + name + '>' + getReadableCoins(data.config.minPaymentThreshold, 2) + '</td>');
@@ -265,8 +267,10 @@ setInterval(function () {
             totalMiners += parseInt(data.pool.miners+ (data.pool.minersSolo = data.pool.minersSolo || 0));
 
             updateText('height-' + poolName, localizeNumber(data.network.height));
-            updateText('hashrate-' + poolName, localizeNumber(data.pool.hashrate + (data.pool.hashrateSolo = data.pool.hashrateSolo || 0)) + ' H/s');
+            updateText('hashrate-' + poolName, localizeNumber(data.pool.hashrate) + ' H/s');
+            updateText('hashrateSolo-' + poolName, localizeNumber(data.pool.hashrateSolo = data.pool.hashrateSolo || 0) + ' H/s');
             updateText('miners-' + poolName, localizeNumber(data.pool.miners + (data.pool.minersSolo = data.pool.minersSolo || 0)));
+            updateText('minersSolo-' + poolName, localizeNumber(data.pool.minersSolo = data.pool.minersSolo || 0));
             updateText('workers-' + poolName, localizeNumber((data.pool.workers = data.pool.workers || 0) + (data.pool.workersSolo = data.pool.workersSolo || 0)));
             updateText('totalPayments-' + poolName, localizeNumber(data.pool.totalPayments) );
             updateText('totalMinersPaid-' + poolName, localizeNumber(data.pool.totalMinersPaid) );
