@@ -6,7 +6,7 @@
       "port": 11898,
       "ssl": false,
       "cache": false,
-      "version": "0.0.1",
+      "version": "0.1.0.2",
       "fee": "0.00"
     },
     {
@@ -15,7 +15,7 @@
       "port": 11898,
       "ssl": false,
       "cache": false,
-      "version": "0.0.1",
+      "version": "0.1.0.2",
       "fee": "0.00"
     },
     {
@@ -24,16 +24,7 @@
       "port": 11898,
       "ssl": false,
       "cache": false,
-      "version": "0.0.1",
-      "fee": "0.00"
-    },
-    {
-      "name": "Fenrir",
-      "url": "fenrir.kryptokrona.se",
-      "port": 11898,
-      "ssl": false,
-      "cache": false,
-      "version": "0.0.1",
+      "version": "0.1.0.2",
       "fee": "0.00"
     },
      {
@@ -42,7 +33,16 @@
       "port": 11898,
       "ssl": false,
       "cache": false,
-      "version": "0.0.1",
+      "version": "0.1.0.2",
+      "fee": "0.02"
+    },
+     {
+      "name": "Techynode",
+      "url": "techynode.ddns.net",
+      "port": 11898,
+      "ssl": false,
+      "cache": false,
+      "version": "0.1.0.2",
       "fee": "0.02"
     }
     
