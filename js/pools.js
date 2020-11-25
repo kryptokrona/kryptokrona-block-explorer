@@ -15,6 +15,8 @@ var difficulties = [];
 var poolsChart = null;
 var totalHashrate = 0;
 var totalMiners = 0;
+var totalWorkers = 0;
+var totalPaid = 0;
 var lastReward = 0;
 var avgDiff = 0;
 
@@ -129,7 +131,7 @@ var displayChart = function displayChart() {
                 fontColor: '#90f2ff8c'
             },
             legend: {
-                position: 'bottom',
+                position: 'left',
                 labels: {
                     fontColor: '#808383de'
                 },
@@ -137,7 +139,7 @@ var displayChart = function displayChart() {
             layout: {
                 padding: {
                     left: 0,
-                    right: 0
+                    right: 100
                 },
             },
             tooltips: {
@@ -191,9 +193,13 @@ NETWORK_STAT_MAP.forEach(function (url, host, map) {
 
         totalHashrate += parseInt(data.pool.hashrate + (data.pool.hashrateSolo = data.pool.hashrateSolo || 0));
         totalMiners += parseInt(data.pool.miners + (data.pool.minersSolo = data.pool.minersSolo || 0));
+        totalWorkers += parseInt(data.pool.workers + (data.pool.workersSolo = data.pool.workersSolo || 0));
+        totalPaid += parseInt(data.pool.totalMinersPaid + (data.pool.totalMinersPaidSolo = data.pool.totalMinersPaidSolo || 0));
 
         updateText('totalPoolsHashrate', getReadableHashRateString(totalHashrate) + '/sec');
         updateText('total_miners', localizeNumber(totalMiners));
+        updateText('total_workers', localizeNumber(totalWorkers));
+        updateText('total_paid', localizeNumber(totalPaid));
 
         poolStats.push([poolName, parseInt(data.pool.hashrate+(data.pool.hashrateSolo = data.pool.hashrateSolo || 0)), colorHash.hex(poolName)]);
 
