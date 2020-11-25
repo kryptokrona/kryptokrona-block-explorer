@@ -1,6 +1,6 @@
 <!-- // pools stats by MainCoins @ http://krb.mypool.name -->
 <div class="row">
-    <div class="col-sm-12 col-md-6">
+    <div class="col-sm-3 col-md-6">
         <div class="panel panel-default" id="network-stats">
             <div class="panel-heading">
                 <h3 class="panel-title">Stats</h3>
@@ -8,7 +8,7 @@
             <div class="panel-body">
                 <div class="listStats">
                     <div class="row">
-                        <div class="col-sm-6 col-md-6">
+                        <div class="col-sm-3 col-md-6">
                             <ul class="nav nav-pills nav-stacked">
 
                                 <li>Network speed: <h7><span
@@ -21,21 +21,24 @@
 
                                 <li>Total miners: <h7><span id="total_miners"></span></h7>
                                 </li>
-
-                            </ul>
-                        </div>
-                        <div class="col-sm-6 col-md-6">
+                                
+				<li>Total workers: <h7><span id="total_workers"></span></h7>
+                                </li>
+			    </ul>
+			</div>
+                        <div class="col-sm-3 col-md-6">
                             <ul class="nav nav-pills nav-stacked">
-
                                 <li>Current difficulty: <h7><span
                                             id="networkDifficulty"></span></h7>
                                 </li>
 
-                                <li>Average difficulty: <h7><span id="avgDifficulty"></span>
-                                    </h7>
+				<li>Average difficulty: <h7><span id="avgDifficulty"></span></h7>
                                 </li>
                                 <li>Average Hashrate: <h7><span
                                             id="avgHashrate"></span></h7>
+                                </li>
+                                <li>Miners Paid: <h7><span
+                                            id="total_paid"></span></h7>
                                 </li>
 
                             </ul>
@@ -45,14 +48,14 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-12 col-md-6">
+   <div class="col-sm-3 col-md-6">
         <div class="panel panel-default" id="network-stats">
             <div class="panel-heading">
                 <h3 class="panel-title">Estimate Mining Profits</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-sm-12 col-md-12">
+                    <div class="col-sm-3 col-md-12">
                         <div id="calcHashHolder">
                             <div class="input-group">
                                 <input type="number" class="form-control" id="calcHashRate"
@@ -78,7 +81,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
 <div class="panel panel-default" id="network-stats">
     <div class="panel-heading">
         <h3 class="panel-title">Pools</h3>
@@ -106,20 +109,22 @@
                 </tbody>
             </table>
         </div>
-
-
-
-
-        <div class="containerChart">
-            <div class="row">
-                <div class="netHash"><a>Network Hashrate Visualization </a></div>
-                <div class="col-lg-6 col-lg-offset-3">
-
-                    <canvas id="poolsChart" style="margin: 0 auto;" height="150"></canvas>
-                </div>
-            </div>
-        </div>
     </div>
+</div>
+    
+<div class="panel panel-default" id="network-stats">
+    <div class="panel-heading">
+        <div class="containerChart">
+       		<h3 class="panel-title">Network Hashrate Visualization</h3>
+        <div class="row">
+           <div class="netHash"></div>
+           	<div class="col-lg-24 col-lg-offset-1">
+               		<canvas id="poolsChart" style="margin: 0 auto;" height="120"></canvas>
+               	</div>
+        </div>
+       	</div>
+    </div>
+</div>
     <script src="js/Chart.bundle.min.js"></script>
     <script src="js/color-hash.js"></script>
     <script src="js/sorttable.js"></script>
