@@ -1,13 +1,57 @@
 <?php
-require '../util.php';
-$config = (require '../../config.php');
 
-$hashData = fetch_rpc($config['api'], 'getlastblockheader', '""');
-$hash = $hashData['result']['block_header']['hash'];
+$config = (require '../config.php');
 
-$blockData = fetch_rpc($config['api'], 'f_block_json', '{"hash":"'.$hash.'"}');
-$supplyRaw = $blockData[result][block][alreadyGeneratedCoins];
+$data_string = '{"jsonrpc":"2.0","id":"test","method":"getlastblockheader","params":" "}';
 
-$supply = number_format($supplyRaw / $config['coinUnits'], 2, ".", "");
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,$api_url."/json_rpc");
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'Content-Type: application/json',
+    'Content-Length: ' . strlen($data_string))
+);
+
+$result = curl_exec($ch);
+
+// Decode the response
+$responseData = json_decode($result, TRUE, 4);
+
+// Print the date from the response
+// print_r($responseData);
+
+$hash = $responseData['result']['block_header']['hash'];
+
+curl_close($ch);
+
+// ---
+
+$data_string2 = '{"jsonrpc":"2.0","id":"test","method":"f_block_json","params":{"hash":"'.$hash.'"}}';
+
+
+$ch2 = curl_init();
+curl_setopt($ch2, CURLOPT_URL, $api_url."/json_rpc");
+curl_setopt($ch2, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($ch2, CURLOPT_POSTFIELDS, $data_string2);
+curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch2, CURLOPT_HTTPHEADER, array(
+    'Content-Type: application/json',
+    'Content-Length: ' . strlen($data_string2))
+);
+
+$block = curl_exec($ch2);
+
+// Decode the response
+$blockData = json_decode($block, TRUE);
+
+#print_r($blockData);
+
+$supplyRaw = $blockData['result']['block']['alreadyGeneratedCoins'];
+
+$supply  = number_format($supplyRaw / $coinUnits, 2, ".", "");
 
 print_r($supply);
+
+curl_close($ch2);

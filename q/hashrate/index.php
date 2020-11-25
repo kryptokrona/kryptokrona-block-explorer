@@ -1,10 +1,18 @@
 <?php
-require '../util.php';
-$config = (require '../../config.php');
+	$config = (require '../config.php');
+	$ch = curl_init();
 
-$info = fetch_getinfo($config['api']);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, $api_url."/getinfo");
 
-$difficulty = $info['difficulty'];
-$hashrate = round($difficulty / $config['blockTargetInterval']);
+	$result = curl_exec($ch);
 
-print_r($hashrate);
+	$obj = json_decode($result, TRUE);
+	curl_close($ch);	
+
+	$difficulty = $obj['difficulty'];
+	$hashrate = round($difficulty / $blockTargetInterval);
+
+	print_r($hashrate);
+?>
