@@ -22,7 +22,8 @@ var networkStat = {
     ["letshash.it", "https://letshash.online:15040"],
     ["gabberpool.nl/XKR", "https://gabberpool.nl:1122"],
     ["spookyplanet.nl/pool/xkr", "https://spookyplanet.nl:1172"],
-    ["xkr.pool-pay.com", "https://xkr.pool-pay.com:5383"]
+    ["xkr.pool-pay.com", "https://xkr.pool-pay.com:5383"],
+    ["kryptokrona.compool.net", "https://api.compool.net/xkr/v1"]
  ]
 };
 
