@@ -18,7 +18,7 @@ var networkStat = {
     ["pool2.kryptokrona.se", "https://explorer.kryptokrona.se/pool2/"],
     ["swepool.org", "https://swepool.org/api"],
     ["floki.kryptokrona.se", "https://floki.kryptokrona.se/api"],
-    ["pool.gamersnest.org", "https://explorer.kryptokrona.se/pool.gamersnest.org/"],
+    ["pool.gamersnest.org", "https://explorer.kryptokrona.se/gamersnest/"],
     ["letshash.it", "https://letshash.online:15040"],
     ["gabberpool.nl/XKR", "https://gabberpool.nl:1122"],
     ["spookyplanet.nl/pool/xkr", "https://spookyplanet.nl:1172"],
