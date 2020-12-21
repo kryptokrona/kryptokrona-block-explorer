@@ -23,7 +23,8 @@ var networkStat = {
     ["gabberpool.nl/XKR", "https://gabberpool.nl:1122"],
     ["spookyplanet.nl/pool/xkr", "https://spookyplanet.nl:1172"],
     ["xkr.pool-pay.com", "https://xkr.pool-pay.com:5383"],
-    ["kryptokrona.compool.net", "https://api.compool.net/xkr/v1"]
+    ["kryptokrona.compool.net", "https://api.compool.net/xkr/v1"],
+    ["http://xkr-worldmining.servebeer.com", "http://connectme.servebeer.com:8118"]
  ]
 };
 
