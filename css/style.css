@@ -505,7 +505,7 @@ tr {
 	border: none;
   }
 
-  #restoreFromSeedButton, #generateWalletButton, #restoreFromMnemonicButton, #decodeButton, #generateRandomPaymentIDButton, #encodeAddressButton {
+  #restoreFromSeedButton, #generateWalletButton, #restoreFromMnemonicButton, #decodeButton, #generateRandomPaymentIDButton, #encodeAddressButton, #sign_check, #sign_generate  {
 	background-color:#3a353f!important;
 	border: #3a353f!important;
   }
