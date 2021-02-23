@@ -521,3 +521,9 @@ tr {
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 0%)!important;
 }
+
+.alert {
+	background-color: #2f2e30;
+	display: flex;
+	justify-content: center;
+}
