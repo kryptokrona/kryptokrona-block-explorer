@@ -100,6 +100,18 @@ async function renderBlocksTransactions() {
             document.getElementById('block8_time').innerHTML = moment(block.timestamp * 1000).fromNow();
             document.getElementById('block1').innerHTML = block.height+7;
           }
+          if(dataB.result.block_header.height == block.height) {
+            document.getElementById('block4_txs').innerHTML = numberWithCommas(block.height+1);
+          }
+          if(dataB.result.block_header.height == block.height) {
+            document.getElementById('block3_txs').innerHTML = numberWithCommas(block.height+2);
+          }
+          if(dataB.result.block_header.height == block.height) {
+            document.getElementById('block2_txs').innerHTML = numberWithCommas(block.height+3);
+          }
+          if(dataB.result.block_header.height == block.height) {
+            document.getElementById('block1_txs').innerHTML = numberWithCommas(block.height+4);
+          }
         }
       });
 

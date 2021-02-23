@@ -1,3 +1,4 @@
+
 //Labels
 
 var numberFormatter = new Intl.NumberFormat('en-US'); // US formatting, force commas.
@@ -61,6 +62,9 @@ setInterval(async function() {
   renderLabelsCharts();
 }, 30000);
 
+
+
+
 //Charts
 
 let hashrateData = [];
@@ -70,8 +74,8 @@ let transactionsData = [];
 let blockTime = [];
 
 async function renderCharts() {
-  await getLatestBlock().then(async(latestBlock) => {
-    for(let i = 1; i < 500; i=i+5) {
+  await getLatestBlock().then(async (latestBlock) => {
+    for (let i = 1; i < 500; i = i + 5) {
       await getBlock(latestBlock.result.block_header.height - i).then(data => {
         let block = data.result.block_header;
 
@@ -83,7 +87,7 @@ async function renderCharts() {
       });
     }
   });
-  
+
   hashrateData.reverse();
   difficultyData.reverse();
   blockSizeData.reverse();
@@ -121,6 +125,7 @@ async function renderCharts() {
     grid: {
       strokeDashArray: 4,
     },
+
     xaxis: {
       labels: {
         padding: 0,

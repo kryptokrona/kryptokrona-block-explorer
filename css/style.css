@@ -496,3 +496,28 @@ tr {
 	flex-direction: row;
 	justify-content: space-between;
 } 
+
+.form-control {
+	background-color:#2f2e30;
+	overflow: hidden;
+	border-radius: 0.50rem;
+	color: white;
+	border: none;
+  }
+
+  #restoreFromSeedButton, #generateWalletButton, #restoreFromMnemonicButton, #decodeButton, #generateRandomPaymentIDButton, #encodeAddressButton {
+	background-color:#3a353f!important;
+	border: #3a353f!important;
+  }
+
+  .btn-check:focus+.btn-primary, .btn-primary:focus {
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    box-shadow: 0 0 0 0.25rem rgb(49 132 253 / 0%)!important;
+}
+
+.btn-check:focus+.btn, .btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 0%)!important;
+}
