@@ -489,3 +489,10 @@ tr {
     color: 5ff2f0;
   }
 }
+
+
+#labels-div{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+} 

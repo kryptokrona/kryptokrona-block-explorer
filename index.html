@@ -138,8 +138,8 @@
       <div class="row">
         <div class="col-12 col-md-6 mb-4">
           <div class="card card-dark">
-            <div class="card-header card-header-dark h6">
-              Hashrate
+            <div class="card-header card-header-dark h6" id="labels-div">
+              Hashrate <span id="hashrateDataAmount" class="badge rounded-pill bg-secondary">0</span>
             </div>
             <div class="card-body card-chart">
               <div id="hashrate-chart"></div>
@@ -149,8 +149,8 @@
 
         <div class="col-12 col-md-6 mb-4">
           <div class="card card-dark">
-            <div class="card-header card-header-dark h6">
-              Difficulty
+            <div class="card-header card-header-dark h6" id="labels-div">
+              Difficulty <span id="difficultyDataAmount" class="badge rounded-pill bg-secondary">0</span>
             </div>
             <div class="card-body card-chart">
               <div id="difficulty-chart"></div>
@@ -163,8 +163,8 @@
       <div class="row">
         <div class="col-12 col-md-6 mb-4">
           <div class="card card-dark">
-            <div class="card-header card-header-dark h6">
-              Block size
+            <div class="card-header card-header-dark h6" id="labels-div">
+              Block size <span id="blockSizeDataAmount" class="badge rounded-pill bg-secondary">0</span>
             </div>
             <div class="card-body card-chart">
               <div id="blocksize-chart"></div>
@@ -174,8 +174,8 @@
 
         <div class="col-12 col-md-6 mb-4">
           <div class="card card-dark">
-            <div class="card-header card-header-dark h6">
-              Transactions
+            <div class="card-header card-header-dark h6" id="labels-div">
+              Transactions <span id="transactionsDataAmount" class="badge rounded-pill bg-secondary">0</span>
             </div>
             <div class="card-body card-chart">
               <div id="transactions-chart"></div>
@@ -188,7 +188,7 @@
       <div class="row">
         <div class="col-12 mb-4">
           <div class="card card-dark">
-            <div class="card-header card-header-dark h6">
+            <div class="card-header card-header-dark h6" id="labels-div">
               Transaction pool <span id="transactionPoolAmount" class="badge rounded-pill bg-secondary">0</span>
             </div>
             <div class="card-body">
