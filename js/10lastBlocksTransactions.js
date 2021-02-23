@@ -71,7 +71,6 @@ async function renderBlocksTransactions() {
             document.getElementById('block5_size').innerHTML = numberWithCommas(block.block_size);
             document.getElementById('block5_txs').innerHTML = numberWithCommas(block.num_txes);
             document.getElementById('block5_time').innerHTML = (moment(block.timestamp * 1000).fromNow() == "a few seconds ago" ? 'seconds ago' : moment(block.timestamp * 1000).fromNow());
-            document.getElementById('block4').innerHTML = block.height+1;
           }
           if(dataB.result.block_header.height-1 == block.height) {
             document.getElementById('block6').innerHTML = block.height;
@@ -80,7 +79,6 @@ async function renderBlocksTransactions() {
             document.getElementById('block6_size').innerHTML = numberWithCommas(block.block_size);
             document.getElementById('block6_txs').innerHTML = numberWithCommas(block.num_txes);
             document.getElementById('block6_time').innerHTML = moment(block.timestamp * 1000).fromNow();
-            document.getElementById('block3').innerHTML = block.height+3;
           }
           if(dataB.result.block_header.height-2 == block.height) {
             document.getElementById('block7').innerHTML = block.height;
@@ -89,7 +87,6 @@ async function renderBlocksTransactions() {
             document.getElementById('block7_size').innerHTML = numberWithCommas(block.block_size);
             document.getElementById('block7_txs').innerHTML = numberWithCommas(block.num_txes);
             document.getElementById('block7_time').innerHTML = moment(block.timestamp * 1000).fromNow();
-            document.getElementById('block2').innerHTML = block.height+5;
           }
           if(dataB.result.block_header.height-3 == block.height) {
             document.getElementById('block8').innerHTML = block.height;
@@ -98,7 +95,6 @@ async function renderBlocksTransactions() {
             document.getElementById('block8_size').innerHTML = numberWithCommas(block.block_size);
             document.getElementById('block8_txs').innerHTML = numberWithCommas(block.num_txes);
             document.getElementById('block8_time').innerHTML = moment(block.timestamp * 1000).fromNow();
-            document.getElementById('block1').innerHTML = block.height+7;
           }
           if(dataB.result.block_header.height == block.height) {
             document.getElementById('block4_txs').innerHTML = numberWithCommas(block.height+1);
