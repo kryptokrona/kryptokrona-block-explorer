@@ -74,7 +74,8 @@
               Pools
             </div>
             <div class="card-body">
-              <table class="table scrollStyle" style="display: block; overflow-x: auto; white-space: nowrap; table-layout: fixed;" id="poolList">
+              <table class="table scrollStyle"
+                style="display: block; overflow-x: auto; white-space: nowrap; table-layout: fixed;" id="poolList">
                 <thead>
                   <tr>
                     <th scope="col" style="width:500px;">Pool</th>
@@ -119,19 +120,42 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6 mb-4">
-          <div class="card card-dark">
-            <div class="card-header card-header-dark">
-              Profitability Calculator
+        <!-- mining calc needs more work -->
+
+        <!-- <div class="col-sm-3 col-md-6">
+          <div class="panel panel-default" id="network-stats">
+            <div class="panel-heading">
+              <h3 class="panel-title">Estimate Mining Profits</h3>
             </div>
-            <div class="card-body">
-              <div class="input-group">
-                <input type="number" class="form-control" id="calcHashRate" placeholder="Enter your hash rate in KH/s">
-                <p style="margin-left:10px;">XKR per day</p>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-sm-3 col-md-12">
+                  <div id="calcHashHolder">
+                    <div class="input-group">
+                      <input type="number" class="form-control" id="calcHashRate" placeholder="Enter your hash rate">
+                      <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                          id="calcHashDropdown">
+                          <span id="calcHashUnit" data-mul="1">KH/s</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu" id="calcHashUnits">
+                          <li><a href="#" data-mul="0">H/s</a></li>
+                          <li><a href="#" data-mul="1">KH/s</a></li>
+                          <li><a href="#" data-mul="2">MH/s</a></li>
+                        </ul>
+                      </div>
+                      <span class="input-group-addon">=</span>
+                      <span class="input-group-addon" id="calcHashResultsHolder">
+                        <span id="calcHashAmount"></span> 
+                        <span id="calcHashSymbol"></span> XKR / day</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
+
       </div>
 
     </div>
@@ -147,6 +171,7 @@
   <script src="config.js"></script>
   <script src="js/base.js"></script>
   <script src="js/pools.js"></script>
+  <script src="js/probCalc.js"></script>
 
 </body>
 

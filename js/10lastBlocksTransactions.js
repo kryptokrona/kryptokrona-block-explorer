@@ -168,3 +168,4 @@ renderBlocksTransactions();
 setInterval(async function() {
   renderBlocksTransactions();
 }, 30000);
+
