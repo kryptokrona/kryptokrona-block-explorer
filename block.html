@@ -58,7 +58,7 @@
                         document.getElementById('blockBaseReward').innerHTML = numberWithCommas((block.baseReward / (10 ** decimals)).toFixed(2)) + " " + ticker;
                         document.getElementById('blockReward').innerHTML = numberWithCommas((block.reward / (10 ** decimals)).toFixed(2)) + " " + ticker;
                         document.getElementById('blockTransSize').innerHTML = numberWithCommas(block.transactionsCumulativeSize);
-                        document.getElementById('blockTransFee').innerHTML = numberWithCommas(block.totalFeeAmount) + " " + ticker;
+                        document.getElementById('blockTransFee').innerHTML = numberWithCommas(block.totalFeeAmount / 100000) + " " + ticker;
                         document.getElementById('blockPrevBlock').innerHTML = block.prev_hash;
 
                         document.getElementById('transactionCount').innerHTML = numberWithCommas(block.transactions.length);
