@@ -184,7 +184,12 @@ body {
   background-color:#1E1D1F;
   padding-top: 4rem;
   padding-bottom: 4rem;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255,255,255,0.5);
+}
+
+body, a {
+
+  color: rgba(255,255,255,0.5)
 }
 
 .bg-dark {
@@ -215,6 +220,7 @@ body {
 
 .card-header {
   font-family: 'Montserrat';
+  font-weight: 700;
 }
 
 .card-chart {
@@ -222,16 +228,16 @@ body {
 }
 
 .table-responsive, .table {
-  color:rgba(255,255,255,0.9);
+  color:rgba(255,255,255,0.8);
 }
 
 .table > thead {
-
+  color: #f1f2f3;
   font-family: "Montserrat";
 }
 
 .link-white {
-  color:rgba(255,255,255,0.9);
+  color:rgba(255,255,255,0.7);
   text-decoration:none;
 }
 
