@@ -1,1 +1,1 @@
-![Github pic](https://user-images.githubusercontent.com/36674091/104006759-d7ac2d80-519e-11eb-984e-e0802e901cc9.png)
+![Github pic](https://github.com/kryptokrona/kryptokrona-block-explorer/blob/blocksum-fork/img/blocksum-screenshot.png?raw=true)
