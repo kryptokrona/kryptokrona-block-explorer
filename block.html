@@ -40,7 +40,7 @@
                     await getByBlockHash(hash).then(async(data) => {
                         let block = data.result.block;
                         document.getElementById('blockHash').innerHTML = block.hash;
-                        document.getElementById('blockNoB').innerHTML = block.height;
+                        document.getElementById('blockNoB').innerHTML = numberWithCommas(block.height);
                         document.getElementById('blockSizeB').innerHTML = numberWithCommas(block.blockSize);
                         document.getElementById('blockTxsB').innerHTML = numberWithCommas(block.transactions.length);
                         document.getElementById('blockTimeB').innerHTML = moment(block.timestamp * 1000).fromNow();
