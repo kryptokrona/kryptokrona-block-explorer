@@ -237,6 +237,12 @@ body {
   background-color: #1E1D1F;
   padding-top: 4rem;
   padding-bottom: 4rem;
+  color: rgba(255,255,255,0.5);
+}
+
+body, a {
+
+  color: rgba(255,255,255,0.5)
 }
 
 .bg-dark {
@@ -252,8 +258,8 @@ body {
 }
 
 .container {
-  color: #ffffff;
-  top: 30px;
+  color:#f1f2f3;
+  top:30px;
 }
 
 .card-dark {
@@ -265,18 +271,27 @@ body {
   background-color: #222123;
 }
 
+.card-header {
+  font-family: 'Montserrat';
+  font-weight: 700;
+}
+
 .card-chart {
   padding: 0px;
 }
 
-.table-responsive,
-.table {
-  color: #ffffff;
+.table-responsive, .table {
+  color:rgba(255,255,255,0.8);
+}
+
+.table > thead {
+  color: #f1f2f3;
+  font-family: "Montserrat";
 }
 
 .link-white {
-  color: #ffffff;
-  text-decoration: none;
+  color:rgba(255,255,255,0.7);
+  text-decoration:none;
 }
 
 .link-white:hover {
@@ -366,11 +381,12 @@ body>main>div.row>center>div>div:nth-child(6) {}
 }
 
 .block {
-  padding: 5px;
-  border-radius: 5px;
-  height: 100%;
-  background-color: #1E1D1F;
-  position: relative;
+	padding:5px;
+	border-radius:5px;
+	height:100%;
+	background-color:#1E1D1F;
+	position: relative;
+  font-size: 11px;
 }
 
 .block-click:hover {
@@ -467,25 +483,25 @@ tr {
 }
 
 .apexcharts-legend-text {
-  color: #ffffff !important;
+
 }
 
 .apexcharts-tooltip {
-  line-height: 1;
-  color: #fff;
-  background: #2c2c2c !important;
-  border: 0 !important;
-  border-radius: 3px !important;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  white-space: nowrap;
-  z-index: 12;
-  pointer-events: none;
-  position: absolute;
-  box-shadow: 2px 2px 6px -4px #2c2c2c;
-  cursor: default;
-  font-size: 14px;
+	line-height: 1;
+	color: #f1f2f3;
+	background: #2c2c2c!important;
+	border: 0!important;
+	border-radius: 3px!important;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	white-space: nowrap;
+	z-index: 12;
+	pointer-events: none;
+	position: absolute;
+	box-shadow: 2px 2px 6px -4px #2c2c2c;
+	cursor: default;
+	font-size: 14px;
 }
 
 .apexcharts-tooltip-title {
@@ -507,7 +523,7 @@ tr {
 
 .navbar-brand {
   font-family: "Montserrat";
-  color: white;
+  color: #f1f2f3;
   font-weight: 700;
 }
 
@@ -521,7 +537,7 @@ tr {
   color: rgba(0, 0, 0, 0.7);
   text-align: center;
   width: 100%;
-  color: white;
+  color: #f1f2f3;
   line-height: 29px;
   vertical-align: middle;
   margin-left: 10px;
@@ -579,10 +595,11 @@ tr {
 }
 
 
-#labels-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+#labels-div{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+  font-weight: bolder;
 }
 
 .form-control {
@@ -605,12 +622,11 @@ tr {
   border: #3a353f !important;
 }
 
-.btn-check:focus+.btn-primary,
-.btn-primary:focus {
-  color: #fff;
-  background-color: #0b5ed7;
-  border-color: #0a58ca;
-  box-shadow: 0 0 0 0.25rem rgb(49 132 253 / 0%) !important;
+  .btn-check:focus+.btn-primary, .btn-primary:focus {
+
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    box-shadow: 0 0 0 0.25rem rgb(49 132 253 / 0%)!important;
 }
 
 .btn-check:focus+.btn,
@@ -620,7 +636,82 @@ tr {
 }
 
 .alert {
-  background-color: #2f2e30;
-  display: flex;
-  justify-content: center;
+	background-color: #2f2e30;
+	display: flex;
+	justify-content: center;
+}
+
+.block span:first-of-type {
+
+  font-family: 'Montserrat';
+}
+
+.lds-grid {
+  display: inline-block;
+  position: relative;
+  transform: scale(0.44);
+  width: 100%;
+  margin-left: 5%;
+  top: -10%;
+}
+.lds-grid div {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  animation: lds-grid 1.2s linear infinite;
+}
+.lds-grid div:nth-child(1) {
+  top: 8px;
+  left: 8px;
+  animation-delay: 0s;
+}
+.lds-grid div:nth-child(2) {
+  top: 8px;
+  left: 32px;
+  animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(3) {
+  top: 8px;
+  left: 56px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(4) {
+  top: 32px;
+  left: 8px;
+  animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(5) {
+  top: 32px;
+  left: 32px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(6) {
+  top: 32px;
+  left: 56px;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(7) {
+  top: 56px;
+  left: 8px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(8) {
+  top: 56px;
+  left: 32px;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(9) {
+  top: 56px;
+  left: 56px;
+  animation-delay: -1.6s;
+}
+@keyframes lds-grid {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
