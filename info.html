@@ -25,13 +25,15 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">kryptokrona</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item nav-item-space active">
-              <a class="nav-link" aria-current="page" href="index.html"><i class="fas fa-tachometer-alt menu-item-fa"></i></a>
+              <a class="nav-link" aria-current="page" href="index.html"><i
+                  class="fas fa-tachometer-alt menu-item-fa"></i></a>
             </li>
             <li class="nav-item nav-item-space">
               <a class="nav-link" href="blocks.html"><i class="fas fa-cubes menu-item-fa"></i></a>
@@ -53,7 +55,8 @@
             </li>
           </ul>
           <form class="d-flex" style="margin-bottom:0px;">
-            <input class="form-control me-2" type="search" id="searchBar" placeholder="TXID, block height, hash" aria-label="TXID, block height, hash">
+            <input class="form-control me-2" type="search" id="searchBar" placeholder="TXID, block height, hash"
+              aria-label="TXID, block height, hash">
           </form>
         </div>
       </div>
@@ -61,52 +64,64 @@
   </header>
 
   <main role="main">
-
     <div class="container">
+        <div class="center-everything">
 
-      <div class="row mb-4 mt-3">
-        <div class="col-12 mb-4">
-          <center>
-            <img src="img/blocksum.png" width="400px"><br><br><br><br>
+            <div class="about-project">
+            <img src="img/blocksum.png" id="blocksum-logo">
             <h3>About the project</h3>
-            <div style="width:600px"><p>Blocksum is an open-source kryptokrona explorer, which aims to your best alternative when exploring the chain — inspired by mempool.</p></div><br><br>
+              <p>Blocksum is an open-source kryptokrona explorer, 
+                 which aims to your best alternative when exploring the chain — inspired by mempool.</p>
+            </div>
 
             <h3>Operations</h3><br>
-            <table>
-              <tr style="color:#ffffff">
-                <td>
-                  <center>
-                    <a href="https://github.com/Node313" target="_blank"><img src="https://avatars1.githubusercontent.com/u/36674091?s=460&u=26c85054909bdb12cc74639b630016e92ebfdbb9&v=4" width="80px" style="border-radius:50%"></a><br><br>
-                    <b><a href="https://github.com/Node313" class="link-white" style="text-decoration: underline;" target="_blank">@Node313</a></b>
-                  </center>
-                </td>
-              </tr>
-            </table><br><br><br>
+            <div class="developers">
+              <div class="dev">
+                <a href="https://github.com/Node313" target="_blank">
+                  <img
+                    src="https://avatars1.githubusercontent.com/u/36674091?s=460&u=26c85054909bdb12cc74639b630016e92ebfdbb9&v=4"
+                    id="dev-img"></a>
+                <a href="https://github.com/Node313" class="link-white" target="_blank">@Node313</a>
+              </div>
+            </div>
 
             <h3>Contributors</h3><br>
+            <div class="developers">
 
-            <div class="developers" style="display: flex; flex-direction: row; justify-content: center;">
-              <div class="dev" style="padding: 1rem;">
-              <a href="https://github.com/cuperus" target="_blank">
-                <img src="https://avatars3.githubusercontent.com/u/4290485?s=460&u=588f7f76ad26faedf8a09e69ba15566ab8d78a64&v=4" width="80px" style="border-radius:50%"></a><br><br>
-              <b><a href="https://github.com/cuperus" class="link-white" style="text-decoration: underline;" target="_blank">@cuperus</a></b></div>
+              <div class="dev">
+                <a href="https://github.com/cuperus" target="_blank">
+                  <img
+                    src="https://avatars3.githubusercontent.com/u/4290485?s=460&u=588f7f76ad26faedf8a09e69ba15566ab8d78a64&v=4"
+                    id="dev-img"></a>
+                <a href="https://github.com/cuperus" class="link-white" target="_blank">@cuperus</a>
+              </div>
 
-              <div class="dev" style="padding: 1rem;">
-              <a href="https://github.com/f-r00t" target="_blank">
-                <img src="https://avatars.githubusercontent.com/u/3246908?s=400&v=4" width="80px" style="border-radius:50%"></a><br><br>
-              <b><a href="https://github.com/f-r00t" class="link-white" style="text-decoration: underline;" target="_blank">@fruktstav</a></b></div>
+              <div class="dev">
+                <a href="https://github.com/f-r00t" target="_blank">
+                  <img src="https://avatars.githubusercontent.com/u/3246908?s=400&v=4" id="dev-img"></a>
+                <a href="https://github.com/f-r00t" class="link-white" target="_blank">@fruktstav</a>
+                </div>
 
-              <div class="dev" style="padding: 1rem;">
-              <a href="https://github.com/ux33-331" target="_blank">
-                <img src="https://avatars.githubusercontent.com/u/61588635?s=460&u=376586d347f72d28e1ed2f6c8d281d6885ad7627&v=4" width="80px" style="border-radius:50%"></a><br><br>
-              <b><a href="https://github.com/ux33-331" class="link-white" style="text-decoration: underline;" target="_blank">@ux33_331</a></b></div>
+              <div class="dev">
+                <a href="https://github.com/ux33-331" target="_blank">
+                  <img
+                    src="https://avatars.githubusercontent.com/u/61588635?s=460&u=376586d347f72d28e1ed2f6c8d281d6885ad7627&v=4"
+                    id="dev-img"></a>
+                <a href="https://github.com/ux33-331" class="link-white" target="_blank">@ux33_331</a>
+              </div>
+
+              <div class="dev">
+                <a href="https://github.com/n9lsjr" target="_blank">
+                  <img
+                    src="https://avatars.githubusercontent.com/u/49562138?s=460&v=4"
+                    id="dev-img"></a>
+                <a href="https://github.com/n9lsjr" class="link-white" target="_blank">@n9lsjr</a>
+              </div>
+
             </div>
-            
         </div>
       </div>
-
     </div>
-
   </main>
 
   <!-- FOOTER -->
