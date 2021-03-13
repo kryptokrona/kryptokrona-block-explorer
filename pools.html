@@ -1,0 +1,178 @@
+<html lang="en">
+<link type="text/css" rel="stylesheet" id="dark-mode-general-link">
+<link type="text/css" rel="stylesheet" id="dark-mode-custom-link">
+<style lang="en" type="text/css" id="dark-mode-custom-style"></style>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>Blocksum ~ Pools</title>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/fontawesome.min.css" rel="stylesheet">
+  <link href="css/all.min.css" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="img/64x64.png" />
+
+  <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">kryptokrona</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item nav-item-space active">
+              <a class="nav-link" aria-current="page" href="index.html"><i
+                  class="fas fa-tachometer-alt menu-item-fa"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="blocks.html"><i class="fas fa-cubes menu-item-fa"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="transactions.html"><i class="fas fa-money-bill-alt"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="pools.html"><i class="fas fa-swimming-pool"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="nodes.html"><i class="fas fa-server"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="tools.html"><i class="fas fa-tools"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="info.html"><i class="fas fa-info"></i></a>
+            </li>
+          </ul>
+          <form class="d-flex" style="margin-bottom:0px;">
+            <input class="form-control me-2" type="search" id="searchBar" placeholder="TXID, block height, hash"
+              aria-label="TXID, block height, hash">
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main role="main">
+
+    <div class="container">
+
+      <div class="row mb-4 mt-3">
+        <div class="col-12 mb-4">
+          <div class="card card-dark">
+            <div class="card-header card-header-dark">
+              Pools
+            </div>
+            <div class="card-body">
+              <table class="table scrollStyle"
+                style="display: block; overflow-x: auto; white-space: nowrap; table-layout: fixed;" id="poolList">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width:500px;">Pool</th>
+                    <th scope="col" style="width:500px;">Height</th>
+                    <th scope="col" style="width:500px;">Hashrate</th>
+                    <th scope="col" style="width:500px;">Solo Hashrate</th>
+                    <th scope="col" style="width:500px;">Miners</th>
+                    <th scope="col" style="width:500px;">Solo Miners</th>
+                    <th scope="col" style="width:500px;">Fee</th>
+                    <th scope="col" style="width:500px;">Min. Payout</th>
+                    <th scope="col" style="width:500px;">Tot. Payouts</th>
+                    <th scope="col" style="width:500px;">Tot. Payed</th>
+                    <th scope="col" style="width:500px;">Last Block Found</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 mb-4">
+          <div class="card card-dark">
+            <div class="card-header card-header-dark">
+              Pie
+            </div>
+            <div class="card-body">
+              <div id="pieChart"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 mb-4">
+          <div class="card card-dark">
+            <div class="card-header card-header-dark">
+              Chart
+            </div>
+            <div class="card-body">
+              <div id="poolChart"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- mining calc needs more work -->
+
+        <!-- <div class="col-sm-3 col-md-6">
+          <div class="panel panel-default" id="network-stats">
+            <div class="panel-heading">
+              <h3 class="panel-title">Estimate Mining Profits</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-sm-3 col-md-12">
+                  <div id="calcHashHolder">
+                    <div class="input-group">
+                      <input type="number" class="form-control" id="calcHashRate" placeholder="Enter your hash rate">
+                      <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                          id="calcHashDropdown">
+                          <span id="calcHashUnit" data-mul="1">KH/s</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu" id="calcHashUnits">
+                          <li><a href="#" data-mul="0">H/s</a></li>
+                          <li><a href="#" data-mul="1">KH/s</a></li>
+                          <li><a href="#" data-mul="2">MH/s</a></li>
+                        </ul>
+                      </div>
+                      <span class="input-group-addon">=</span>
+                      <span class="input-group-addon" id="calcHashResultsHolder">
+                        <span id="calcHashAmount"></span> 
+                        <span id="calcHashSymbol"></span> XKR / day</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://momentjs.com/downloads/moment.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/apexcharts.min.js"></script>
+  <script src="config.js"></script>
+  <script src="js/base.js"></script>
+  <script src="js/pools.js"></script>
+  <script src="js/probCalc.js"></script>
+
+</body>
+
+</html>

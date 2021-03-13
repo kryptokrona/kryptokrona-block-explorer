@@ -1,315 +1,294 @@
-<!DOCTYPE html>
 <html lang="en">
+<link type="text/css" rel="stylesheet" id="dark-mode-general-link">
+<link type="text/css" rel="stylesheet" id="dark-mode-custom-link">
+<style lang="en" type="text/css" id="dark-mode-custom-style"></style>
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
-	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="icon" type="image/icon" href="favicon.ico">
-	<title>Kryptokrona [XKR] Explorer</title>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.4.0/jquery.timeago.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	<link href="css/style.css" rel="stylesheet">
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300&display=swap" rel="stylesheet">
-	<script src="./config.js"></script>
-	<script src="js/main.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>kryptokrona block explorer</title>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/fontawesome.min.css" rel="stylesheet">
+  <link href="css/all.min.css" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="img/64x64.png" />
+
+  <link href="css/style.css" rel="stylesheet">
+
 </head>
 
 <body>
-	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Menu</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand " href="#">
-					<span class="icon icon-xkr"></span>
 
-				</a>
-				<div id="stats_updated"><i class="fa fa-bolt"></i></div>
-			</div>
-			<div class="collapse navbar-collapse">
-				<ul class="nav navbar-nav navbar-left explorer_menu">
-					<li><a class="hot_link" data-page="home.html" href="#">
-							Explorer
-						</a></li>
-					<li><a class="hot_link" data-page="markets.html" href="#markets">
-							Markets
-						</a></li>
-					<li><a class="hot_link" data-page="pools.html" href="#pools">
-							Pools
-						</a></li>
-					<li><a class="hot_link" data-page="check_txn.html" href="#check_txn">
-							TXNs
-						</a></li>
-					<li><a class="hot_link" data-page="nodes.html" href="#nodes">
-							Nodes
-						</a></li>
-					<li><a class="hot_link" data-page="api.html" href="#api">
-						       	API
-						</a></li>
-					<li><a href="/3d/">3D VIEW <i class="fa fa-cube">
-							</i></a></li>
-					<li style="display:none;"><a class="hot_link" data-page="blockchain_block.html"
-							href="#blockchain_block"><i class="fa fa-cubes"></i> Block
-						</a></li>
-					<li style="display:none;"><a class="hot_link" data-page="blockchain_transaction.html"
-							href="#blockchain_transaction"><i class="fa fa-cubes"></i> Transaction
-						</a></li>
-					<li style="display:none;"><a class="hot_link" data-page="blockchain_payment_id.html"
-							href="#blockchain_payment_id"><i class="fa fa-cubes"></i> Transactions by Payment ID
-						</a></li>
-					<li><a style="display:none;" class="hot_link" data-page="support.html" href="#support">
-							<i class="fa fa-comments"></i> Help
-						</a></li>
-				</ul>
-				<div class="nav col-md-5 navbar-right explorer-search">
-					<div class="input-group">
-						<input class="form-control" placeholder="Search by block height / hash, tx hash, payment id"
-							id="txt_search">
-						<span class="input-group-btn"><button class="btn btn-default" type="button" id="btn_search">
-								<span><i class="fa fa-search"></i></span>
-							</button></span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div id="loading"><div id="loadingLogo"></div></div>
 
-	<script>
-		$('#btn_search').click(function (e) {
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">kryptokrona</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item nav-item-space active">
+              <a class="nav-link" aria-current="page" href="index.html"><i class="fas fa-tachometer-alt menu-item-fa"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="blocks.html"><i class="fas fa-cubes menu-item-fa"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="transactions.html"><i class="fas fa-money-bill-alt"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="pools.html"><i class="fas fa-swimming-pool"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="nodes.html"><i class="fas fa-server"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="tools.html"><i class="fas fa-tools"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="info.html"><i class="fas fa-info"></i></a>
+            </li>
+          </ul>
+          <div class="d-flex" style="margin-bottom:0px;">
+            <input class="form-control me-2" type="search" id="searchBar" placeholder="TXID, block height, hash" aria-label="TXID, block height, hash">
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-			var text = document.getElementById('txt_search').value;
+  <main role="main">
 
-			function GetSearchBlockbyHeight() {
+    <div class="row" style="color:#f1f2f3; margin-top:60px; margin-bottom:75px; margin-right:0px;">
+      <center>
+        <div class="blocks-wrapper">
+          <div class="block-border-light block-margin-right blockOpacity30">
+            <div class="block">
+              <span id="block1_txs" style="font-size:23px; font-weight:bold;"></span><br>
+              <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+              <span id="block1_size" style="font-size:11px; opacity: 0;">0</span> <br>
+              <span style="font-size:14px;opacity: 0;"><span id="block1_txs">0</span> tx</span><br>
+              <span style="font-size:11px;">In ~6min</span><br>
+            </div>
+          </div>
 
-				var block, xhrGetSearchBlockbyHeight;
-				if (xhrGetSearchBlockbyHeight) xhrGetSearchBlockbyHeight.abort();
+          <div class="block-border-light block-margin-right blockOpacity50">
+            <div class="block">
+              <span id="block2_txs" style="font-size:23px; font-weight:bold;">0</span><br>
+              <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+              <span id="block2_size" style="font-size:11px; opacity: 0;">0</span> <br>
+              <span style="font-size:14px; opacity: 0;"><span id="block2_txs" >0</span> tx</span><br>
+              <span style="font-size:11px;">In ~5min</span><br>
+            </div>
+          </div>
 
-				xhrGetSearchBlockbyHeight = $.ajax({
-					url: api + '/json_rpc',
-					method: "POST",
-					data: JSON.stringify({
-						jsonrpc: "2.0",
-						id: "blockbyheight",
-						method: "getblockheaderbyheight",
-						params: {
-							height: parseInt(text)
-						}
-					}),
-					dataType: 'json',
-					cache: 'false',
-					success: function (data) {
-						if (data.result) {
-							block = data.result.block_header;
-							window.location.href = getBlockchainUrl(block.hash);
-						} else if (data.error) {
-							wrongSearchAlert();
-						}
-					}
-				});
-			}
+          <div class="block-border-light block-margin-right">
+            <div class="block">
+              <span id="block3_txs" style="font-size:23px; font-weight:bold;"></span><br>
+              <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+              <span id="block3_size" style="font-size:11px; opacity: 0;">0</span> <br>
+              <span style="font-size:14px;opacity: 0;"><span id="block3_txs">0</span> tx</span><br>
+              <span style="font-size:11px;">In ~3min</span><br>
+            </div>
+          </div>
 
-			function GetSearchBlock() {
-				var block, xhrGetSearchBlock;
-				if (xhrGetSearchBlock) xhrGetSearchBlock.abort();
-				xhrGetSearchBlock = $.ajax({
-					url: api + '/json_rpc',
-					method: "POST",
-					data: JSON.stringify({
-						jsonrpc: "2.0",
-						id: "GetSearchBlock",
-						method: "f_block_json",
-						params: {
-							hash: text
-						}
-					}),
-					dataType: 'json',
-					cache: 'false',
-					success: function (data) {
-						if (data.result) {
-							block = data.result.block;
-							sessionStorage.setItem('searchBlock', JSON.stringify(block));
-							window.location.href = getBlockchainUrl(block.hash);
-						} else if (data.error) {
-							$.ajax({
-								url: api + '/json_rpc',
-								method: "POST",
-								data: JSON.stringify({
-									jsonrpc: "2.0",
-									id: "test",
-									method: "f_transaction_json",
-									params: {
-										hash: text
-									}
-								}),
-								dataType: 'json',
-								cache: 'false',
-								success: function (data) {
-									if (data.result) {
-										sessionStorage.setItem('searchTransaction', JSON
-											.stringify(data.result));
-										window.location.href = transactionExplorer.replace(
-											'{id}', text);
-									} else if (data.error) {
-										xhrGetTsx = $.ajax({
-											url: api + '/json_rpc',
-											method: "POST",
-											data: JSON.stringify({
-												jsonrpc: "2.0",
-												id: "test",
-												method: "k_transactions_by_payment_id",
-												params: {
-													payment_id: text
-												}
-											}),
-											dataType: 'json',
-											cache: 'false',
-											success: function (data) {
-												if (data.result) {
-													txsByPaymentId = data.result
-														.transactions;
-													sessionStorage.setItem(
-														'txsByPaymentId', JSON
-														.stringify(
-															txsByPaymentId));
-													window.location.href =
-														paymentIdExplorer.replace(
-															'{id}', text);
-												} else if (data.error) {
-													$('#page').after(
-														'<div class="alert alert-warning alert-dismissable fade in" style="position: fixed; right: 50px; top: 50px;">' +
-														'<button type="button" class="close" ' +
-														'data-dismiss="alert" aria-hidden="true">' +
-														'&times;' +
-														'</button>' +
-														'We could not find anything.' +
-														'</div>');
-												}
-											}
-										});
+          <div class="block-border-light">
+            <div class="block">
+              <span id="block4_txs" style="font-size:23px; font-weight:bold;"></span><br>
+              <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+              <span id="block4_size" style="font-size:11px; opacity: 0;">0</span> <br>
+              <span style="font-size:14px; opacity: 0;"><span id="block4_txs">0</span> tx</span><br>
+              <span style="font-size:11px;">In ~90sec</span><br>
+            </div>
+          </div>
 
-									}
-								}
-							});
-						}
-					}
-				});
-			}
+          <div class="vertical-spacing">&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;</div>
 
-			if (text.length < 64) {
-				GetSearchBlockbyHeight();
-			} else if (text.length == 64) {
-				GetSearchBlock();
-			} else {
-				wrongSearchAlert();
-			}
+          <div class="block-border">
+            <div class="block block-click" id="block5-click">
+              <span id="block5" style="font-size:23px; font-weight:bold;">0</span><br>
+              <span id="block5_size" style="font-size:11px;">0</span> bytes<br>
+              <span style="font-size:14px;"><span id="block5_txs">0</span> tx</span><br>
+              <span style="font-size:11px;" id="block5_time">-</span><br>
+            </div>
+          </div>
+          <div class="block-border block-margin-left">
+            <div class="block block-click" id="block6-click">
+              <span id="block6" style="font-size:23px; font-weight:bold;">0</span><br>
+              <span id="block6_size" style="font-size:11px;">0</span> bytes<br>
+              <span style="font-size:14px;"><span id="block6_txs">0</span> tx</span><br>
+              <span style="font-size:11px;" id="block6_time">-</span><br>
+            </div>
+          </div>
+          <div class="block-border block-margin-left blockOpacity50">
+            <div class="block block-click" id="block7-click">
+              <span id="block7" style="font-size:23px; font-weight:bold;">0</span><br>
+              <span id="block7_size" style="font-size:11px;">0</span> bytes<br>
+              <span style="font-size:14px;"><span id="block7_txs">0</span> tx</span><br>
+              <span style="font-size:11px;" id="block7_time">-</span><br>
+            </div>
+          </div>
+          <div class="block-border block-margin-left blockOpacity30">
+            <div class="block block-click" id="block8-click">
+              <span id="block8" style="font-size:23px; font-weight:bold;">0</span><br>
+              <span id="block8_size" style="font-size:11px;">0</span> bytes<br>
+              <span style="font-size:14px;"><span id="block8_txs">0</span> tx</span><br>
+              <span style="font-size:11px;" id="block8_time">-</span><br>
+            </div>
+          </div>
+        </div>
+      </center>
+    </div>
 
-			e.preventDefault();
+    <div class="container">
 
-		});
+      <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+          <div class="card card-dark">
+            <div class="card-header card-header-dark h6" id="labels-div">
+              Hashrate <span id="hashrateDataAmount" class="badge rounded-pill bg-secondary">0</span>
+            </div>
+            <div class="card-body card-chart">
+              <div id="hashrate-chart"></div>
+            </div>
+          </div>
+        </div>
 
-		function wrongSearchAlert() {
-			$('#page').after(
-				'<div class="alert alert-danger alert-dismissable fade in" style="position: fixed; right: 50px; top: 50px;">' +
-				'<button type="button" class="close" ' +
-				'data-dismiss="alert" aria-hidden="true">' +
-				'&times;' +
-				'</button>' +
-				'<strong>Wrong search query!</strong><br /> Please enter block height or hash, transaction hash, or payment id.' +
-				'</div>');
-		}
+        <div class="col-12 col-md-6 mb-4">
+          <div class="card card-dark">
+            <div class="card-header card-header-dark h6" id="labels-div">
+              Difficulty <span id="difficultyDataAmount" class="badge rounded-pill bg-secondary">0</span>
+            </div>
+            <div class="card-body card-chart">
+              <div id="difficulty-chart"></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-		$('#txt_search').keyup(function (e) {
-			if (e.keyCode === 13)
-				$('#btn_search').click();
-		});
-	</script>
 
-	<div id="content">
-		<div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+          <div class="card card-dark">
+            <div class="card-header card-header-dark h6" id="labels-div">
+              Block size <span id="blockSizeDataAmount" class="badge rounded-pill bg-secondary">0</span>
+            </div>
+            <div class="card-body card-chart">
+              <div id="blocksize-chart"></div>
+            </div>
+          </div>
+        </div>
 
-			<div id="page"></div>
+        <div class="col-12 col-md-6 mb-4">
+          <div class="card card-dark">
+            <div class="card-header card-header-dark h6" id="labels-div">
+              Transactions <span id="transactionsDataAmount" class="badge rounded-pill bg-secondary">0</span>
+            </div>
+            <div class="card-body card-chart">
+              <div id="transactions-chart"></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-			<p id="loading" class="text-center"><i class="fa fa-circle-o-notch fa-spin"></i></p>
 
-		</div>
-	</div>
+      <div class="row">
+        <div class="col-12 mb-4">
+          <div class="card card-dark">
+            <div class="card-header card-header-dark h6" id="labels-div">
+              Transaction pool <span id="transactionPoolAmount" class="badge rounded-pill bg-secondary">0</span>
+            </div>
+            <div class="card-body">
+              <table class="table scrollStyle" style="display: block; overflow-x: auto; white-space: nowrap; table-layout: fixed;" id="transactionPool">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width:500px;">Amount</th>
+                    <th scope="col" style="width:500px;">USD</th>
+                    <th scope="col" style="width:500px;">Fee</th>
+                    <th scope="col" style="width:500px;">Hash</th>
+                  </tr>
+                </thead>
+                <tbody id="transactionPoolList">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
 
-	<footer>
-		<div class="container">
-			<div class="row2">
-				<div class="centerFooter">
 
-					<a href="http://kryptokrona.se/">KRYPTOKRONA.SE</a></li>
-					<p>
-						<small>
-							&copy; 2020 <strong>UX33 @ XKR</strong> <br>
-						</small>
-					</p>
-					</a>
+      <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+          <div class="card card-dark">
+            <div class="card-header card-header-dark h6">
+              Latest blocks
+            </div>
+            <div class="card-body">
+              <table class="table scrollStyle" style="display: block; overflow-x: auto; white-space: nowrap; table-layout: fixed;" id="10latestBlocks">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width:500px;">Height</th>
+                    <th scope="col" style="width:500px;">Mined</th>
+                    <th scope="col" style="width:500px;">TXs</th>
+                    <th scope="col" style="width:500px;">Size</th>
+                    <th scope="col" style="width:500px;">Reward</th>
+                    <th scope="col" style="width:500px;">Difficulty</th>
+                  </tr>
+                </thead>
+                <tbody id="10latestBlocksList">
+                </tbody>
+              </table>
+              <center><a href="blocks.html" class="link-white">Show more blocks »</a></center>
+            </div>
+          </div>
+        </div>
 
-					<!--<p>
-							<small>
-								This copyright should be left intact
-								Powered by <a target="_blank" href="https://github.com/turtlecoin/block-explorer"><i
-										class="fa fa-github"></i> Turtle Blockchain Explorer</a> v. 1.0.0.<br />
-								<span class="text-muted">Code from <strong>Karbowanec Blockchain Explorer</strong><br />
-									<span class="text-muted">Partially based on
-										<strong>cryptonote-universal-pool</strong><br />
-										open sourced under the <a
-											href="http://www.gnu.org/licenses/gpl-2.0.html">GPL</a></span>
-							</small>
-						</p> -->
-				</div>
-			</div>
-		</div>
-	</footer>
+        <div class="col-12 col-md-6">
+          <div class="card card-dark">
+            <div class="card-header card-header-dark h6">
+              Latest transactions
+            </div>
+            <div class="card-body">
+              <table class="table scrollStyle" style="display: block; overflow-x: auto; white-space: nowrap; table-layout: fixed;" id="10latestTransactions">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width:500px;">Hash</th>
+                    <th scope="col" style="width:500px;">Amount</th>
+                    <th scope="col" style="width:500px;">USD</th>
+                    <th scope="col" style="width:500px;">Fee</th>
+                  </tr>
+                </thead>
+                <tbody id="10latestTransactionsList">
+                </tbody>
+              </table>
+              <center><a href="transactions.html" class="link-white">Show more transactions »</a></center>
+            </div>
+          </div>
+        </div>
+      </div>
 
-	<a href="#" class="scrollup"><i class="fa fa-chevron-circle-up"></i></a>
-	<script type="text/javascript">
-		jQuery(function ($) {
-			$(document).ready(function () {
-				$(window).scroll(function () {
-					if ($(this).scrollTop() > 500) {
-						$('.scrollup').fadeIn();
-					} else {
-						$('.scrollup').fadeOut();
-					}
-				});
 
-				$('.scrollup').click(function () {
-					$("html, body").animate({
-						scrollTop: 0
-					}, 600);
-					return false;
-				});
+    </div>
 
-				$('.scrollup').css('opacity', '0.3');
+  </main>
 
-				$('.scrollup').hover(function () {
-					$(this).stop().animate({
-						opacity: 0.9
-					}, 400);
-				}, function () {
-					$(this).stop().animate({
-						opacity: 0.3
-					}, 400);
-				});
+  <!-- FOOTER -->
 
-			});
-		});
-		$('.navbar-collapse ul li a').click(function () {
-			$('.navbar-toggle:visible').click();
-		});
-	</script>
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://momentjs.com/downloads/moment.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/apexcharts.min.js"></script>
+  <script src="config.js"></script>
+  <script src="js/base.js"></script>
+  <script src="js/index_charts.js"></script>
+  <script src="js/index_labels.js"></script>
+  <script src="js/10lastBlocksTransactions.js"></script>
+
 </body>
 
 </html>

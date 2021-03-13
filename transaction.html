@@ -1,0 +1,233 @@
+<html lang="en">
+<link type="text/css" rel="stylesheet" id="dark-mode-general-link">
+<link type="text/css" rel="stylesheet" id="dark-mode-custom-link">
+<style lang="en" type="text/css" id="dark-mode-custom-style"></style>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>Blocksum</title>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/fontawesome.min.css" rel="stylesheet">
+  <link href="css/all.min.css" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="img/64x64.png" />
+
+  <link href="css/style.css" rel="stylesheet">
+  
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://momentjs.com/downloads/moment.js"></script>
+  <script src="config.js"></script>
+  <script src="js/base.js"></script>
+
+  <script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const hash = urlParams.get('hash')
+    if(hash.length !== 64) {
+      window.location.href = "index.html";
+    } else {
+      async function getTrans() {
+        await getTransaction(hash).then(async(data) => {
+          let transaction = data.result;
+
+          document.getElementById('transHash').innerHTML = transaction.txDetails.hash;
+          document.getElementById('transTime').innerHTML = timeConvert(transaction.block.timestamp);
+          document.getElementById('transMixin').innerHTML = transaction.txDetails.mixin;
+          document.getElementById('transHeight').innerHTML = numberWithCommas(transaction.block.height);
+          document.getElementById('transPaymentId').innerHTML = (transaction.txDetails.paymentId == "" ? '-' : transaction.txDetails.paymentId);
+          document.getElementById('transSize').innerHTML = numberWithCommas(transaction.txDetails.size);
+          document.getElementById('transFee').innerHTML = numberWithCommas((transaction.txDetails.fee / (10 ** decimals)).toFixed(2)) + " " + ticker;;
+          document.getElementById('transAmountOut').innerHTML = numberWithCommas((transaction.txDetails.amount_out / (10 ** decimals)).toFixed(2)) + " " + ticker;;
+          document.getElementById('transBlockHash').innerHTML = transaction.block.hash;
+          document.getElementById('inputCount').innerHTML = numberWithCommas(transaction.tx.vin.length);
+          document.getElementById('outputCount').innerHTML = numberWithCommas(transaction.tx.vout.length);
+          await getLatestBlock().then(async(dataL) => {
+            document.getElementById('transConfirmation').innerHTML = numberWithCommas(dataL.result.block_header.height - transaction.block.height);
+          });
+          
+          for(k = 0; k < transaction.tx.vin.length; k++) {
+            var tbodyRef = document.getElementById('inputs').getElementsByTagName('tbody')[0];
+            var newRow = tbodyRef.insertRow();
+
+            var tr=document.createElement('tr');
+            tr.innerHTML = `
+            <td value="${transaction.tx.vin[k].value.amount}">${transaction.tx.vin[k].value.amount}</td>
+            <td value="${transaction.tx.vin[k].value.k_image}">${transaction.tx.vin[k].value.k_image}</td>
+            <td value="${transaction.tx.vin[k].type}">${transaction.tx.vin[k].type}</td>`;
+            tbodyRef.appendChild(tr);
+          }
+
+          for(k = 0; k < transaction.tx.vout.length; k++) {
+            var tbodyRef = document.getElementById('outputs').getElementsByTagName('tbody')[0];
+            var newRow = tbodyRef.insertRow();
+
+            var tr=document.createElement('tr');
+            tr.innerHTML = `
+            <td value="${transaction.tx.vout[k].amount}">${transaction.tx.vout[k].amount}</td>
+            <td value="${transaction.tx.vout[k].target.data.key}">${transaction.tx.vout[k].target.data.key}</td>
+            <td value="${transaction.tx.vout[k].type}">${transaction.tx.vout[k].type}</td>`;
+            tbodyRef.appendChild(tr);
+          }
+        });
+      }
+
+      getTrans();
+    }
+  </script>
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">kryptokrona</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item nav-item-space active">
+              <a class="nav-link" aria-current="page" href="index.html"><i class="fas fa-tachometer-alt menu-item-fa"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="blocks.html"><i class="fas fa-cubes menu-item-fa"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="transactions.html"><i class="fas fa-money-bill-alt"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="pools.html"><i class="fas fa-swimming-pool"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="nodes.html"><i class="fas fa-server"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="info.html"><i class="fas fa-info"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="tools.html"><i class="fas fa-tools"></i></a>
+            </li>
+          </ul>
+          <form class="d-flex" style="margin-bottom:0px;">
+            <input class="form-control me-2" type="search" id="searchBar" placeholder="TXID, block height, hash" aria-label="TXID, block height, hash">
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main role="main">
+
+    <div class="container">
+
+      <div class="row mb-4 mt-3">
+        <div class="col-12 mb-4">
+          <div class="card card-dark">
+            <div class="card-header card-header-dark">
+              <span id="transHash">-</span>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4">
+                  <div class="row">
+                    <div class="col-5" style="line-height:27px;">
+                      <b>
+                        Date & Time<br>
+                        Confirmations<br>
+                        Mixin<br>
+                        Block Height<br>
+                        Fee<br>
+                      </b>
+                    </div>
+                    <div class="col-5" style="line-height:27px;">
+                      <span id="transTime">-</span><br>
+                      <span id="transConfirmation">-</span><br>
+                      <span id="transMixin">-</span><br>
+                      <span id="transHeight">-</span><br>
+                      <span id="transFee">-</span><br>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="row">
+                    <div class="col-4" style="line-height:27px;">
+                      <b>
+                        Total Amount<br>
+                        Size<br>
+                        Payment ID<br>
+                        Block Hash<br>
+                      </b>
+                    </div>
+                    <div class="col-6" style="line-height:27px;">
+                      <span id="transAmountOut">-</span><br>
+                      <span id="transSize">-</span><br>
+                      <span id="transPaymentId">-</span><br>
+                      <span id="transBlockHash">-</span><br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 mb-4">
+          <div class="card card-dark">
+            <div class="card-header card-header-dark">
+              Inputs <span id="inputCount" class="badge rounded-pill bg-secondary">0</span>
+            </div>
+            <div class="card-body">
+              <table class="table" id="inputs">
+                <thead>
+                  <tr>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Key Image</th>
+                    <th scope="col">Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 mb-4"> 
+          <div class="card card-dark">
+            <div class="card-header card-header-dark">
+              Outputs <span id="outputCount" class="badge rounded-pill bg-secondary">0</span>
+            </div>
+            <div class="card-body">
+              <table class="table" id="outputs">
+                <thead>
+                  <tr>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Key Image</th>
+                    <th scope="col">Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/apexcharts.min.js"></script>
+
+</body>
+
+</html>

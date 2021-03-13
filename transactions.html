@@ -1,0 +1,111 @@
+<html lang="en">
+<link type="text/css" rel="stylesheet" id="dark-mode-general-link">
+<link type="text/css" rel="stylesheet" id="dark-mode-custom-link">
+<style lang="en" type="text/css" id="dark-mode-custom-style"></style>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>Blocksum ~ Transactions</title>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/fontawesome.min.css" rel="stylesheet">
+  <link href="css/all.min.css" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="img/64x64.png" />
+
+  <link href="css/style.css" rel="stylesheet">
+  <script>
+    let amountQ = 100;
+  </script>
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">kryptokrona</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item nav-item-space active">
+              <a class="nav-link" aria-current="page" href="index.html"><i class="fas fa-tachometer-alt menu-item-fa"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="blocks.html"><i class="fas fa-cubes menu-item-fa"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="transactions.html"><i class="fas fa-money-bill-alt"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="pools.html"><i class="fas fa-swimming-pool"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="nodes.html"><i class="fas fa-server"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="info.html"><i class="fas fa-info"></i></a>
+            </li>
+            <li class="nav-item nav-item-space">
+              <a class="nav-link" href="tools.html"><i class="fas fa-tools"></i></a>
+            </li>
+          </ul>
+          <form class="d-flex" style="margin-bottom:0px;">
+            <input class="form-control me-2" type="search" id="searchBar" placeholder="TXID, block height, hash" aria-label="TXID, block height, hash">
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main role="main">
+
+    <div class="container">
+
+      <div class="row mb-4 mt-3">
+        <div class="col-12">
+          <div class="card card-dark">
+            <div class="card-header card-header-dark">
+              Latest transactions
+            </div>
+            <div class="card-body">
+              <table class="table scrollStyle" style="display: block; overflow-x: auto; white-space: nowrap; table-layout: fixed;" id="10latestTransactions">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width:500px;">Hash</th>
+                    <th scope="col" style="width:500px;">Amount</th>
+                    <th scope="col" style="width:500px;">USD</th>
+                    <th scope="col" style="width:500px;">Fee</th>
+                  </tr>
+                </thead>
+                <tbody id="10latestTransactionsList">
+                </tbody>
+              </table>
+              <center><a href="#" onclick="renderBlocksTransactions(amountQ); amountQ += 50;" class="link-white" style="text-decoration:underline;">Load more »</a></center>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://momentjs.com/downloads/moment.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/apexcharts.min.js"></script>
+  <script src="config.js"></script>
+  <script src="js/base.js"></script>
+  <script src="js/getTransactions.js"></script>
+
+</body>
+
+</html>

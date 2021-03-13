@@ -1,0 +1,245 @@
+<html lang="en">
+<link type="text/css" rel="stylesheet" id="dark-mode-general-link">
+<link type="text/css" rel="stylesheet" id="dark-mode-custom-link">
+<style lang="en" type="text/css" id="dark-mode-custom-style"></style>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Blocksum</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/fontawesome.min.css" rel="stylesheet">
+    <link href="css/all.min.css" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="img/64x64.png" />
+
+    <link href="css/style.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="config.js"></script>
+    <script src="js/base.js"></script>
+
+    <script>
+        async function renderBlocksTransactions(amount) {
+            let currentPriceUSD = 0;
+            await getPoolInfo("https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&ids=kryptokrona&order=market_cap_desc&per_page=100&page=1&sparkline=false").then(async(data) => {
+                currentPriceUSD = data[0].current_price;
+            });
+
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const hash = urlParams.get('hash')
+
+            if (hash.length !== 64) {
+                window.location.href = "index.html";
+            } else {
+                async function getBlock() {
+                    await getByBlockHash(hash).then(async(data) => {
+                        let block = data.result.block;
+                        document.getElementById('blockHash').innerHTML = block.hash;
+                        document.getElementById('blockNoB').innerHTML = numberWithCommas(block.height);
+                        document.getElementById('blockSizeB').innerHTML = numberWithCommas(block.blockSize);
+                        document.getElementById('blockTxsB').innerHTML = numberWithCommas(block.transactions.length);
+                        document.getElementById('blockTimeB').innerHTML = moment(block.timestamp * 1000).fromNow();
+
+                        document.getElementById('blockHeight').innerHTML = numberWithCommas(block.height);
+                        await getLatestBlock().then(async(dataL) => {
+                            document.getElementById('blockConfirmations').innerHTML = numberWithCommas(dataL.result.block_header.height - block.height);
+                        });
+                        document.getElementById('blockTime').innerHTML = timeConvert(block.timestamp);
+                        document.getElementById('blockVersion').innerHTML = "v" + block.major_version;
+                        document.getElementById('blockDifficulty').innerHTML = numberWithCommas(block.difficulty);
+                        document.getElementById('blockNonce').innerHTML = numberWithCommas(block.nonce);
+                        document.getElementById('blockGenerated').innerHTML = numberWithCommas((block.alreadyGeneratedCoins / (10 ** decimals)).toFixed(2)) + " " + ticker;
+                        document.getElementById('blockSize').innerHTML = numberWithCommas(block.blockSize);
+                        document.getElementById('blockBaseReward').innerHTML = numberWithCommas((block.baseReward / (10 ** decimals)).toFixed(2)) + " " + ticker;
+                        document.getElementById('blockReward').innerHTML = numberWithCommas((block.reward / (10 ** decimals)).toFixed(2)) + " " + ticker;
+                        document.getElementById('blockTransSize').innerHTML = numberWithCommas(block.transactionsCumulativeSize);
+                        document.getElementById('blockTransFee').innerHTML = numberWithCommas(block.totalFeeAmount / 100000) + " " + ticker;
+                        document.getElementById('blockPrevBlock').innerHTML = block.prev_hash;
+
+                        document.getElementById('transactionCount').innerHTML = numberWithCommas(block.transactions.length);
+
+
+                        for (k = 0; k < block.transactions.length; k++) {
+                            var tbodyRef = document.getElementById('transactions').getElementsByTagName('tbody')[0];
+                            var newRow = tbodyRef.insertRow();
+
+                            var tr = document.createElement('tr');
+                            tr.innerHTML = `
+    <td><b><a href="transaction.html?hash=${block.transactions[k].hash}" class="link-white">${block.transactions[k].hash.substring(0,15)}...${block.transactions[k].hash.substring(block.transactions[k].hash.length-15,block.transactions[k].hash.length)}</a></b></td>
+    <td>${numberWithCommas((block.transactions[k].amount_out / (10 ** decimals)).toFixed(2))} ${ticker}</td>
+    <td style="color:#00ff89;">$${(currentPriceUSD * (block.transactions[k].amount_out / (10 ** decimals))).toFixed(2)}</td>
+    <td>${block.transactions[k].fee / (10 ** decimals)} ${ticker}</td>
+    <td>${numberWithCommas(block.transactions[k].size)}</td>`;
+                            tbodyRef.appendChild(tr);
+                        }
+                    });
+                }
+                getBlock();
+            }
+        }
+
+        renderBlocksTransactions();
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">kryptokrona</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item nav-item-space active">
+                            <a class="nav-link" aria-current="page" href="index.html"><i class="fas fa-tachometer-alt menu-item-fa"></i></a>
+                        </li>
+                        <li class="nav-item nav-item-space">
+                            <a class="nav-link" href="blocks.html"><i class="fas fa-cubes menu-item-fa"></i></a>
+                        </li>
+                        <li class="nav-item nav-item-space">
+                            <a class="nav-link" href="transactions.html"><i class="fas fa-money-bill-alt"></i></a>
+                        </li>
+                        <li class="nav-item nav-item-space">
+                            <a class="nav-link" href="pools.html"><i class="fas fa-swimming-pool"></i></a>
+                        </li>
+                        <li class="nav-item nav-item-space">
+                            <a class="nav-link" href="nodes.html"><i class="fas fa-server"></i></a>
+                        </li>
+                        <li class="nav-item nav-item-space">
+                            <a class="nav-link" href="tools.html"><i class="fas fa-tools"></i></a>
+                          </li>
+                        <li class="nav-item nav-item-space">
+                            <a class="nav-link" href="info.html"><i class="fas fa-info"></i></a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" style="margin-bottom:0px;">
+                        <input class="form-control me-2" type="search" id="searchBar" placeholder="TXID, block height, hash" aria-label="TXID, block height, hash">
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+
+        <div class="row" style="color:#ffffff; margin-top:30px; margin-bottom:40px; margin-right:0px;">
+            <center>
+                <div class="blocks-wrapper">
+                    <div class="block-border block-margin-left">
+                        <div class="block">
+                            <span id="blockNoB" style="font-size:23px; font-weight:bold;">0</span><br>
+                            <span id="blockSizeB">0</span> bytes<br>
+                            <span style="font-size:11px;"><span id="blockTxsB">0</span> transaction(s)</span><br>
+                            <span style="font-size:14px;" id="blockTimeB">-</span><br>
+                        </div>
+                    </div>
+                </div>
+            </center>
+        </div>
+
+        <div class="container">
+
+            <div class="row mb-4 mt-3">
+                <div class="col-12 mb-4">
+                    <div class="card card-dark">
+                        <div class="card-header card-header-dark">
+                            <span id="blockHash">-</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="row">
+                                        <div class="col-5" style="line-height:27px;">
+                                            <b>
+                        Height<br>
+                        Confirmations<br>
+                        Date & Time<br>
+                        Version<br>
+                        Difficulty<br>
+                        Nonce<br>
+                        Generated Coins<br>
+                      </b>
+                                        </div>
+                                        <div class="col-5" style="line-height:27px;">
+                                            <span id="blockHeight">-</span><br>
+                                            <span id="blockConfirmations">-</span><br>
+                                            <span id="blockTime">-</span><br>
+                                            <span id="blockVersion">-</span><br>
+                                            <span id="blockDifficulty">-</span><br>
+                                            <span id="blockNonce">-</span><br>
+                                            <span id="blockGenerated">-</span><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="row">
+                                        <div class="col-4" style="line-height:27px;">
+                                            <b>
+                        Size<br>
+                        Base Reward<br>
+                        Reward<br>
+                        Transaction Size<br>
+                        Transaction Fees<br>
+                        Prev. Block<br>
+                      </b>
+                                        </div>
+                                        <div class="col-6" style="line-height:27px;">
+                                            <span id="blockSize">-</span><br>
+                                            <span id="blockBaseReward">-</span><br>
+                                            <span id="blockReward">-</span><br>
+                                            <span id="blockTransSize">-</span><br>
+                                            <span id="blockTransFee">-</span><br>
+                                            <span id="blockPrevBlock">-</span><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="card card-dark">
+                        <div class="card-header card-header-dark">
+                            Transactions <span id="transactionCount" class="badge rounded-pill bg-secondary">0</span>
+                        </div>
+                        <div class="card-body">
+                            <table class="table" id="transactions">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Hash</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">USD</th>
+                                        <th scope="col">Fee</th>
+                                        <th scope="col">Size</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/apexcharts.min.js"></script>
+
+</body>
+
+</html>
