@@ -7,7 +7,7 @@ let pools = [ // Name, Site URL, API URL
   ["Swepool", "https://swepool.org", "https://swepool.org/api/stats"],
   ["Kryptokrona Pool2", "https://pool2.kryptokrona.se", "https://blocksum.org/pool2/stats"],
   ["Floki Kryptokrona Pool", "https://floki.kryptokrona.se", "https://floki.kryptokrona.se/api/stats"],
-  ["GamersNest", "https://pool.gamersnest.org", "https://blocksum.org/gamersnest/stats"],
+  ["GamersNest", "http://pool.gamersnest.org", "https://blocksum.org/gamersnest/stats"],
   ["PoolPay", "https://xkr.pool-pay.com", "https://xkr.pool-pay.com:5383/stats"]
 
   //Removed some pools that were causing perfomance issues by not responding..
