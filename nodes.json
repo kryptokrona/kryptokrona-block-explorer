@@ -56,7 +56,6 @@
     },
 
     {
-     {
       "name": "Ayapoolli",
       "url": "kryptokrona.supergott.com",
       "port": 11898,
@@ -66,9 +65,5 @@
       "version": "0.1.0.2",
       "fee": "0.1"
     }
-
-     }
-
-
   ]
 }
