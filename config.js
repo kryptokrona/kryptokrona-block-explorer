@@ -10,7 +10,8 @@ let pools = [ // Name, Site URL, API URL
   ["GamersNest", "https://pool.gamersnest.org", "https://pool.gamersnest.org/api/stats"],
   ["PoolPay", "https://xkr.pool-pay.com", "https://xkr.pool-pay.com:5383/stats"],
   ["Infinium space", "https://xkr.pools.infinium.space", "https://apikz5ssx.infinium.space/xkr/xkr/v1/live_stats"],
-  ["Ayapooli", "https://kryptokrona.supergott.com", "https://kryptokrona.supergott.com/api/stats"]
+  ["Ayapooli", "https://kryptokrona.supergott.com", "https://kryptokrona.supergott.com/api/stats"],
+  ["Norpool", "https://norpool.org", "https://norpool.org/api/stats"]
 
   //Removed some pools that were causing perfomance issues by not responding..
 
