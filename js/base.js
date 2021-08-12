@@ -2,17 +2,10 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function timeConvert(timestamp) {
-  var date = new Date(timestamp * 1000);
-  var year = date.getFullYear();
-  var day = "0" + date.getDate();
-  var month = "0" + date.getMonth();
-  var hours = "0" + date.getHours();
-  var minutes = "0" + date.getMinutes();
-  var seconds = "0" + date.getSeconds();
 
-  var formattedTime = day.substr(-2) + '-' + (month + 1).substr(-2) + '-' + year + " " + hours.substr(-2) + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-  return formattedTime;
+function timeConvert(timestamp) {
+
+  return moment(timestamp * 1000).format('lll');
 }
 
 const fetchWithTimeout = (uri, options = {}, time = 1000) => {
