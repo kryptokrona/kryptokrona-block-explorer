@@ -11,7 +11,7 @@ let pools = [ // Name, Site URL, API URL
   ["Infinium space", "https://xkr.pools.infinium.space", "https://apikz5ssx.infinium.space/xkr/xkr/v1/live_stats"],
   ["Ayapooli", "https://kryptokrona.supergott.com", "https://kryptokrona.supergott.com/api/stats"],
   ["Norpool", "https://norpool.org", "https://norpool.org/api/stats"],
-  ["Privacymine", "https://privacymine.net", "https://privacynet.net:8117/stats"]
+  ["Privacymine", "https://privacymine.net", "https://privacymine.net:8117/stats"]
   //Removed some pools that were causing perfomance issues by not responding..
 
   // ["GabberPool", "https://gabberpool.nl/XKR", "https://gabberpool.nl:1122/stats"],
