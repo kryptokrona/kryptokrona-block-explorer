@@ -1,5 +1,5 @@
 <?php
-	$api_url = "http://127.0.0.1:11898";
+	$api_url = "https://blocksum.org:11898";
 	$coinUnits = "100000";
 	$blockTargetInterval = "90";
 ?>
