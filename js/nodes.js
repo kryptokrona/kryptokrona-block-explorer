@@ -4,9 +4,9 @@ async function getNodesData() {
       var tbodyRef = document.getElementById('nodeList').getElementsByTagName('tbody')[0];
       for (let i = 0; i < dataB.nodes.length; i++) {
         fetchWithTimeout(
-          'https://' + dataB.nodes[i].url + ':' + dataB.nodes[i].port + '/getinfo',
+          'https://blocksum.org/' + dataB.nodes[i].proxy_url + '/getinfo',
           { headers: { Accept: 'application/json' } },
-          500
+          1000
         ).then((response) => response.json())
           .then((dataA) => {
             var tr = document.createElement('tr');
