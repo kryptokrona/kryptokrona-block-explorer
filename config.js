@@ -9,6 +9,8 @@ let pools = [ // Name, Site URL, API URL
   ["PoolPay", "https://xkr.pool-pay.com", "https://xkr.pool-pay.com:5383/stats"],
   ["Norpool", "https://norpool.org", "https://norpool.org/api/stats"],
   ["Privacymine", "https://privacymine.net", "https://privacymine.net:8117/stats"]
+
+  
   //Removed some pools that were causing perfomance issues by not responding..
 
   // ["GabberPool", "https://gabberpool.nl/XKR", "https://gabberpool.nl:1122/stats"],
