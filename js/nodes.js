@@ -1,6 +1,6 @@
 async function getNodesData() {
   try {
-    await getPoolInfo('https://ghcdn.rawgit.org/kryptokrona/kryptokrona-nodes-list/master/nodes.json').then(async (dataB) => {
+    await getPoolInfo('https://raw.githubusercontent.com/kryptokrona/kryptokrona-nodes-list/master/nodes.json').then(async (dataB) => {
       var tbodyRef = document.getElementById('nodeList').getElementsByTagName('tbody')[0];
       for (let i = 0; i < dataB.nodes.length; i++) {
         fetchWithTimeout(
