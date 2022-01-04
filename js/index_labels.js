@@ -28,9 +28,28 @@ function getReadableDifficultyString(difficulty, precision) {
   return localizeNumber((difficulty / Math.pow(1000, Math.floor(number))).toFixed(precision)) + ' ' + units[number];
 }
 
+
+async function getHuginAmount(hash) {
+  let full_block = await getByBlockHash(hash);
+
+  let txs = full_block.result.block.transactions;
+  let huginTxNbr = 0;
+  for (tx in txs) {
+
+    let this_tx = await getTransaction(txs[tx].hash);
+
+    if (this_tx.result.tx.extra.length > 66) {
+      huginTxNbr += 1;
+
+    }
+    document.getElementById('huginDataAmount').innerHTML = huginTxNbr;
+}
+}
+
 async function renderLabelsCharts() {
   await getLatestBlock().then(async (latestBlock) => {
-    for (let i = 1; i < 100; i++) {
+
+
       xhrGetBlock = $.ajax({
         url: api + '/json_rpc',
         method: "POST",
@@ -39,21 +58,22 @@ async function renderLabelsCharts() {
           id: "test",
           method: "getblockheaderbyheight",
           params: {
-            height: (latestBlock.result.block_header.height - i)
+            height: (latestBlock.result.block_header.height - 1)
           }
         }),
         dataType: 'json',
         cache: 'false',
         success: function (latestBlock) {
           block2 = latestBlock.result.block_header;
-
           document.getElementById('hashrateDataAmount').innerHTML = `${getReadableHashRateString(block2.difficulty / difficulty_target)}`
           document.getElementById('difficultyDataAmount').innerHTML = `${getReadableDifficultyString(block2.difficulty)}`
           document.getElementById('blockSizeDataAmount').innerHTML = `${block2.block_size}`
           document.getElementById('transactionsDataAmount').innerHTML = `${block2.num_txes}`
+
+          getHuginAmount(block2.hash);
         }
       });
-    }
+
   });
 }
 renderLabelsCharts();
@@ -61,6 +81,3 @@ renderLabelsCharts();
 setInterval(async function() {
   renderLabelsCharts();
 }, 30000);
-
-
-
