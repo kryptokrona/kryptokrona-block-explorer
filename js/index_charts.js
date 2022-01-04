@@ -307,7 +307,7 @@ async function renderHuginChart() {
 
 huginData.reverse();
 
-
+  document.getElementById('hugin-chart').innerHTML = '';
   window.ApexCharts && (new ApexCharts(document.getElementById('hugin-chart'), {
     chart: {
       type: "area",
