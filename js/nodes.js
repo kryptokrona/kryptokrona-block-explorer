@@ -1,41 +1,29 @@
 async function getNodesData() {
-  try {
-    await getPoolInfo('https://raw.githubusercontent.com/kryptokrona/kryptokrona-nodes-list/master/nodes.json').then(async (dataB) => {
-      var tbodyRef = document.getElementById('nodeList').getElementsByTagName('tbody')[0];
-      for (let i = 0; i < dataB.nodes.length; i++) {
-        fetchWithTimeout(
-          'https://blocksum.org/' + dataB.nodes[i].proxy_url + '/getinfo',
-          { headers: { Accept: 'application/json' } },
-          1000
-        ).then((response) => response.json())
-          .then((dataA) => {
-            var tr = document.createElement('tr');
-            tr.innerHTML = `
-            <td>${dataB.nodes[i].name}</td>
-            <td>${dataB.nodes[i].url}:${dataB.nodes[i].port}</td>
-            <td>${dataB.nodes[i].fee}%</td>
-            <td>${dataB.nodes[i].version}</td>
-            <td>${numberWithCommas(dataA.height)}</td>
-            <td>${numberWithCommas(dataA.incoming_connections_count)}/${numberWithCommas(dataA.outgoing_connections_count)} (${dataA.tx_pool_size})</td>
+
+  //Get html element
+  var tbodyRef = document.getElementById('nodeList').getElementsByTagName('tbody')[0];
+
+  //Fetch list of nodes
+  await fetch("https://blocksum.org/nodes.json", {
+  })
+      .then(res => res.json())
+      .then(data => {
+        for(const node of data.nodes) {
+          let tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${node.nodeName}</td>
+            <td>${node.nodeUrl}:${node.nodePort}</td>
+            <td>${node.nodeFee}%</td>
+            <td>${node.nodeVersion}</td>
+            <td>${node.nodeHeight}</td>
+            <td>${node.connectionsIn}/${node.connectionsOut}</td>
             <td><span class="badge bg-success">Online</span></td>`;
-            tbodyRef.appendChild(tr);
-          }).catch((error) => {
-            var tr = document.createElement('tr');
-            tr.innerHTML = `
-            <td>${dataB.nodes[i].name}</td>
-            <td>${dataB.nodes[i].url}:${dataB.nodes[i].port}</td>
-            <td>${dataB.nodes[i].fee}%</td>
-            <td>${dataB.nodes[i].version}</td>
-            <td>-</td>
-            <td>-</td>
-            <td><span class="badge bg-danger">Offline</span></td>`;
-            tbodyRef.appendChild(tr);
-          })
-      }
-    });
-  } catch (e) {
-    console.log(e)
-  }
+          
+          //Add raws to tbody
+          tbodyRef.appendChild(tr);
+        }
+      })
 }
 
+//Run
 getNodesData();
