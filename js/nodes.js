@@ -18,7 +18,7 @@ async function getNodesData() {
             <td>${node.nodeHeight}</td>
             <td>${node.connectionsIn}/${node.connectionsOut}</td>
             <td><span class="badge bg-success">Online</span></td>`;
-          
+
           //Add raws to tbody
           tbodyRef.appendChild(tr);
         }
