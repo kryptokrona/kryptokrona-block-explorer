@@ -56,7 +56,7 @@ setInterval(async function() {
 }, 60000)
 
 async function createFile(array) {
-  fs.writeFile('/var/www/html/nodes.json', array, (err) => {
+  fs.writeFile('../nodes.json', array, (err) => {
     if (err) {
       throw err;
     }
