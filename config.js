@@ -9,13 +9,13 @@ let pools = [ // Name, Site URL, API URL
   ["PoolPay", "https://xkr.pool-pay.com", "https://xkr.pool-pay.com:5383/stats"],
   ["Norpool", "https://norpool.org", "https://norpool.org/api/stats"],
   ["Privacymine", "https://privacymine.net", "https://privacymine.net:8117/stats"],
-  ["Semipool", "https://webxkr.semipool.com", "https://webxkr.semipool.com/api/stats"],
   ["GamersNest USA", "https://usapool.gamersnest.org", "https://usapool.gamersnest.org/api/stats"]
 
 
   
   //Removed some pools that were causing perfomance issues by not responding..
 
+  // ["Semipool", "https://webxkr.semipool.com", "https://webxkr.semipool.com/api/stats"],
   // ["GabberPool", "https://gabberpool.nl/XKR", "https://gabberpool.nl:1122/stats"],
   // ["Lets Hash It", "https://letshash.it", "https://letshash.online:15040/stats"],
   // ["SpookyPlanet", "https://spookyplanet.nl/pool/xkr", "https://spookyplanet.nl:1172/stats"],
