@@ -1,7 +1,8 @@
 async function renderBlocksTransactions(amount) {
   let currentPriceUSD = 0;
-  await getPoolInfo("https://api.coinpaprika.com/v1/tickers/xkr-kryptokrona").then(async(dataB) => {
-    currentPriceUSD = dataB[0].USD.price;
+    await getPoolInfo("https://api.coinpaprika.com/v1/tickers/xkr-kryptokrona")
+      .then(dataB => {
+    currentPriceUSD = dataB.quotes.USD.price;
   });
 
   await getLatestBlock().then(async(dataB) => {
