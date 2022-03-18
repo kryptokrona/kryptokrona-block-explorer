@@ -1,7 +1,8 @@
 async function renderBlocksTransactions(amount) {
   let currentPriceUSD = 0;
-  await getPoolInfo("https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&ids=kryptokrona&order=market_cap_desc&per_page=100&page=1&sparkline=false").then(async(dataB) => {
-    currentPriceUSD = dataB[0].current_price;
+    await getPoolInfo("https://api.coinpaprika.com/v1/tickers/xkr-kryptokrona")
+      .then(dataB => {
+    currentPriceUSD = dataB.quotes.USD.price;
   });
 
   await getLatestBlock().then(async(dataB) => {
