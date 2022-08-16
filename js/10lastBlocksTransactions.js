@@ -22,6 +22,7 @@ async function renderBlocksTransactions() {
   await getPoolInfo("https://api.coinpaprika.com/v1/tickers/xkr-kryptokrona")
       .then(dataB => {
     currentPriceUSD = dataB.quotes.USD.price;
+    document.getElementById('priceData').innerHTML = '$' + parseFloat(currentPriceUSD).toFixed(8);
   });
 
   let block5hash = "";
@@ -169,4 +170,3 @@ renderBlocksTransactions();
 setInterval(async function() {
   renderBlocksTransactions();
 }, 30000);
-
