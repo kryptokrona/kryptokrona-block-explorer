@@ -278,34 +278,10 @@ async function renderCharts() {
 
 async function renderHuginChart() {
 
-  let huginData = [];
+  huginstats.reverse()
+  huginstatslabels.reverse()
 
-  for (block in knownBlocks) {
-
-    if (parseInt(knownBlocks[block].num_txes) > 1) {
-
-    let full_block = await getByBlockHash(knownBlocks[block].hash);
-
-    let txs = full_block.result.block.transactions;
-    let huginTxNbr = 0;
-    for (tx in txs) {
-
-      let this_tx = await getTransaction(txs[tx].hash);
-
-      if (this_tx.result.tx.extra.length > 66) {
-        huginTxNbr += 1;
-      }
-
-    }
-    // await getTransaction(hash)
-    huginData.push(huginTxNbr);
-
-  } else {
-    huginData.push(0);
-  }
-}
-
-huginData.reverse();
+  console.log(huginstats);
 
   document.getElementById('hugin-chart').innerHTML = '';
   window.ApexCharts && (new ApexCharts(document.getElementById('hugin-chart'), {
@@ -334,7 +310,7 @@ huginData.reverse();
     },
     series: [{
       name: "Hugin Activity",
-      data: huginData
+      data: huginstats
     }],
     grid: {
       strokeDashArray: 4,
@@ -343,7 +319,7 @@ huginData.reverse();
       labels: {
         padding: 0,
         formatter: function (value) {
-          return timeConvert(value);
+          return value;
         }
       },
       tooltip: {
@@ -361,7 +337,7 @@ huginData.reverse();
         }
       },
     },
-    labels: blockTime,
+    labels: huginstatslabels,
     colors: ["#6f6f6f"],
     legend: {
       show: false,

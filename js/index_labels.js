@@ -30,20 +30,9 @@ function getReadableDifficultyString(difficulty, precision) {
 
 
 async function getHuginAmount(hash) {
-  let full_block = await getByBlockHash(hash);
 
-  let txs = full_block.result.block.transactions;
-  let huginTxNbr = 0;
-  for (tx in txs) {
+  document.getElementById('huginDataAmount').innerHTML = huginstats[0];
 
-    let this_tx = await getTransaction(txs[tx].hash);
-
-    if (this_tx.result.tx.extra.length > 66) {
-      huginTxNbr += 1;
-
-    }
-    document.getElementById('huginDataAmount').innerHTML = huginTxNbr;
-}
 }
 
 async function renderLabelsCharts() {
