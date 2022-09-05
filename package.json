@@ -1,0 +1,23 @@
+{
+  "name": "kryptokrona-block-explorer",
+  "version": "1.0.0",
+  "description": "![Github pic](https://github.com/kryptokrona/kryptokrona-block-explorer/blob/blocksum-fork/img/blocksum-screenshot.png?raw=true)",
+  "main": "huginStats.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kryptokrona/kryptokrona-block-explorer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kryptokrona/kryptokrona-block-explorer/issues"
+  },
+  "homepage": "https://github.com/kryptokrona/kryptokrona-block-explorer#readme",
+  "dependencies": {
+    "node-fetch": "^3.2.10"
+  }
+}
