@@ -19,113 +19,7 @@
 
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
   <script src="https://momentjs.com/downloads/moment.js"></script>
-  <script src="config.js"></script>
-  <script src="js/base.js"></script>
 
-  <script>
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const hash = urlParams.get('hash')
-    if(hash.length !== 64) {
-      window.location.href = "index.html";
-    } else {
-      async function getTrans() {
-        await getTransaction(hash).then(async(data) => {
-          let transaction = data.result;
-
-          console.log(transaction);
-
-          if( transaction == undefined ) {
-
-            const pool = await getUnconfirmedTransactions();
-
-            try {
-              console.log(pool);
-              const pool_txs = pool.addedTxs;
-              console.log(pool_txs);
-
-              const pool_tx = pool_txs.filter(tx => {
-                return tx['transactionPrefixInfo.txHash'] == hash;
-              });
-
-
-              if (pool_tx.length) {
-                  console.log(pool_tx[0]);
-
-                  let tx = pool_tx[0]["transactionPrefixInfo.txPrefix"];
-
-                  transaction = {
-                    'block': {
-                      'hash': 'Unconfirmed',
-                      'timestamp': 'Unconfirmed',
-                      'height': 'Unconfirmed'
-                    },
-                    'txDetails': {
-                      'hash': hash,
-                      'mixin': 3,
-                      'size': 0,
-                      'fee': 0,
-                      'amount_out': 0,
-
-                    },
-                      tx
-                  }
-                  console.log(transaction);
-                  console.log();
-              }
-
-            } catch (err) {
-
-            }
-
-          }
-
-          console.log(transaction);
-
-          document.getElementById('transHash').innerHTML = transaction.txDetails.hash;
-          document.getElementById('transTime').innerHTML = timeConvert(transaction.block.timestamp);
-          document.getElementById('transMixin').innerHTML = transaction.txDetails.mixin;
-          document.getElementById('transHeight').innerHTML = numberWithCommas(transaction.block.height);
-          document.getElementById('transPaymentId').innerHTML = (transaction.txDetails.paymentId == "" ? '-' : transaction.txDetails.paymentId);
-          document.getElementById('transSize').innerHTML = numberWithCommas(transaction.txDetails.size);
-          document.getElementById('transFee').innerHTML = numberWithCommas((transaction.txDetails.fee / (10 ** decimals)).toFixed(2)) + " " + ticker;;
-          document.getElementById('transAmountOut').innerHTML = numberWithCommas((transaction.txDetails.amount_out / (10 ** decimals)).toFixed(2)) + " " + ticker;;
-          document.getElementById('transBlockHash').innerHTML = transaction.block.hash;
-          document.getElementById('inputCount').innerHTML = numberWithCommas(transaction.tx.vin.length);
-          document.getElementById('outputCount').innerHTML = numberWithCommas(transaction.tx.vout.length);
-          await getLatestBlock().then(async(dataL) => {
-            document.getElementById('transConfirmation').innerHTML = numberWithCommas(dataL.result.block_header.height - transaction.block.height);
-          });
-
-          for(k = 0; k < transaction.tx.vin.length; k++) {
-            var tbodyRef = document.getElementById('inputs').getElementsByTagName('tbody')[0];
-            var newRow = tbodyRef.insertRow();
-
-            var tr=document.createElement('tr');
-            tr.innerHTML = `
-            <td value="${transaction.tx.vin[k].value.amount}">${transaction.tx.vin[k].value.amount}</td>
-            <td value="${transaction.tx.vin[k].value.k_image}">${transaction.tx.vin[k].value.k_image}</td>
-            <td value="${transaction.tx.vin[k].type}">${transaction.tx.vin[k].type}</td>`;
-            tbodyRef.appendChild(tr);
-          }
-
-          for(k = 0; k < transaction.tx.vout.length; k++) {
-            var tbodyRef = document.getElementById('outputs').getElementsByTagName('tbody')[0];
-            var newRow = tbodyRef.insertRow();
-
-            var tr=document.createElement('tr');
-            tr.innerHTML = `
-            <td value="${transaction.tx.vout[k].amount}">${transaction.tx.vout[k].amount}</td>
-            <td value="${transaction.tx.vout[k].target.data.key}">${transaction.tx.vout[k].target.data.key}</td>
-            <td value="${transaction.tx.vout[k].type}">${transaction.tx.vout[k].type}</td>`;
-            tbodyRef.appendChild(tr);
-          }
-        });
-      }
-
-      getTrans();
-    }
-  </script>
 </head>
 
 <body>
@@ -161,9 +55,9 @@
               <a class="nav-link" href="tools.html"><i class="fas fa-tools"></i></a>
             </li>
           </ul>
-          <form class="d-flex" style="margin-bottom:0px;">
+          <div class="d-flex" style="margin-bottom:0px;">
             <input class="form-control me-2" type="search" id="searchBar" placeholder="TXID, block height, hash" aria-label="TXID, block height, hash">
-          </form>
+          </div>
         </div>
       </div>
     </nav>
@@ -276,6 +170,122 @@
 
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/apexcharts.min.js"></script>
+  <script src="config.js"></script>
+  <script src="js/base.js"></script>
+
+  <script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const hash = urlParams.get('hash')
+    if(hash.length !== 64) {
+      window.location.href = "index.html";
+    } else {
+      async function getTrans() {
+        await getTransaction(hash).then(async(data) => {
+          let transaction = data.result;
+
+          console.log(transaction);
+
+          if( transaction == undefined ) {
+
+            const pool = await getUnconfirmedTransactions();
+
+            try {
+              console.log(pool);
+              const pool_txs = pool.addedTxs;
+              console.log(pool_txs);
+
+              const pool_tx = pool_txs.filter(tx => {
+                return tx['transactionPrefixInfo.txHash'] == hash;
+              });
+
+
+              if (pool_tx.length) {
+                  console.log(pool_tx[0]);
+
+                  let tx = pool_tx[0]["transactionPrefixInfo.txPrefix"];
+
+                  transaction = {
+                    'block': {
+                      'hash': 'Unconfirmed',
+                      'timestamp': 'Unconfirmed',
+                      'height': 'Unconfirmed'
+                    },
+                    'txDetails': {
+                      'hash': hash,
+                      'mixin': 3,
+                      'size': 0,
+                      'fee': 0,
+                      'amount_out': 0,
+
+                    },
+                      tx
+                  }
+                  console.log(transaction);
+                  console.log();
+              }
+
+            } catch (err) {
+
+            }
+
+          }
+
+          if( transaction == undefined ) {
+
+            $('.container').empty().append('<div class="card-header card-header-dark"><span id="transHash">Not found!</span></div>');
+
+
+          }
+
+
+
+          console.log(transaction);
+
+          document.getElementById('transHash').innerHTML = transaction.txDetails.hash;
+          document.getElementById('transTime').innerHTML = timeConvert(transaction.block.timestamp);
+          document.getElementById('transMixin').innerHTML = transaction.txDetails.mixin;
+          document.getElementById('transHeight').innerHTML = numberWithCommas(transaction.block.height);
+          document.getElementById('transPaymentId').innerHTML = (transaction.txDetails.paymentId == "" ? '-' : transaction.txDetails.paymentId);
+          document.getElementById('transSize').innerHTML = numberWithCommas(transaction.txDetails.size);
+          document.getElementById('transFee').innerHTML = numberWithCommas((transaction.txDetails.fee / (10 ** decimals)).toFixed(2)) + " " + ticker;;
+          document.getElementById('transAmountOut').innerHTML = numberWithCommas((transaction.txDetails.amount_out / (10 ** decimals)).toFixed(2)) + " " + ticker;;
+          document.getElementById('transBlockHash').innerHTML = transaction.block.hash;
+          document.getElementById('inputCount').innerHTML = numberWithCommas(transaction.tx.vin.length);
+          document.getElementById('outputCount').innerHTML = numberWithCommas(transaction.tx.vout.length);
+          await getLatestBlock().then(async(dataL) => {
+            document.getElementById('transConfirmation').innerHTML = numberWithCommas(dataL.result.block_header.height - transaction.block.height);
+          });
+
+          for(k = 0; k < transaction.tx.vin.length; k++) {
+            var tbodyRef = document.getElementById('inputs').getElementsByTagName('tbody')[0];
+            var newRow = tbodyRef.insertRow();
+
+            var tr=document.createElement('tr');
+            tr.innerHTML = `
+            <td value="${transaction.tx.vin[k].value.amount}">${transaction.tx.vin[k].value.amount}</td>
+            <td value="${transaction.tx.vin[k].value.k_image}">${transaction.tx.vin[k].value.k_image}</td>
+            <td value="${transaction.tx.vin[k].type}">${transaction.tx.vin[k].type}</td>`;
+            tbodyRef.appendChild(tr);
+          }
+
+          for(k = 0; k < transaction.tx.vout.length; k++) {
+            var tbodyRef = document.getElementById('outputs').getElementsByTagName('tbody')[0];
+            var newRow = tbodyRef.insertRow();
+
+            var tr=document.createElement('tr');
+            tr.innerHTML = `
+            <td value="${transaction.tx.vout[k].amount}">${transaction.tx.vout[k].amount}</td>
+            <td value="${transaction.tx.vout[k].target.data.key}">${transaction.tx.vout[k].target.data.key}</td>
+            <td value="${transaction.tx.vout[k].type}">${transaction.tx.vout[k].type}</td>`;
+            tbodyRef.appendChild(tr);
+          }
+        });
+      }
+
+      getTrans();
+    }
+  </script>
 
 </body>
 
