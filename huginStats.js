@@ -64,6 +64,8 @@ async function cacheSync(silent=true, latest_board_message_timestamp=0, first=tr
 
     let result = [];
 
+    let result_pm = [];
+
     let result_label = [];
 
     let today_iso = now.toISOString();
@@ -76,7 +78,7 @@ async function cacheSync(silent=true, latest_board_message_timestamp=0, first=tr
     let i = 0;
 
 
-      let cacheURL = 'https://cache.hugin.chat';
+      let cacheURL = 'https://api.hugin.chat';
 
       while (i < 31) {
 
@@ -96,7 +98,9 @@ async function cacheSync(silent=true, latest_board_message_timestamp=0, first=tr
 
         let count_pvt = json_pvt.totalPages
 
-        result[i] = count + count_pvt;
+        result[i] = count;
+
+        result_pm[i] = count_pvt;
 
         result_label[i] = today_iso.split('T')[0];
 
@@ -110,6 +114,8 @@ async function cacheSync(silent=true, latest_board_message_timestamp=0, first=tr
       }
       console.log('huginstats = ');
       console.log(result);
+      console.log('huginstats2 = ');
+      console.log(result_pm);
       console.log('huginstatslabels = ');
       console.log(result_label);
 

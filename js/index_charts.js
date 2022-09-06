@@ -50,7 +50,18 @@ async function renderCharts() {
     },
     fill: {
       opacity: .16,
-      type: 'solid'
+      type: 'gradient',
+      gradient: {
+      shade: 'dark',
+      type: "vertical",
+      shadeIntensity: 0.5,
+      gradientToColors: undefined, // optional, if not defined - uses the shades of same color in series
+      inverseColors: true,
+      opacityFrom: 1,
+      opacityTo: 0,
+      stops: [0, 100],
+      colorStops: []
+    }
     },
     stroke: {
       width: 2,
@@ -88,7 +99,7 @@ async function renderCharts() {
       },
     },
     labels: blockTime,
-    colors: ["#6f6f6f"],
+    colors: ["#f25fd0"],
     legend: {
       show: false,
     },
@@ -111,7 +122,18 @@ async function renderCharts() {
     },
     fill: {
       opacity: .16,
-      type: 'solid'
+      type: 'gradient',
+      gradient: {
+      shade: 'dark',
+      type: "vertical",
+      shadeIntensity: 0.5,
+      gradientToColors: undefined, // optional, if not defined - uses the shades of same color in series
+      inverseColors: true,
+      opacityFrom: 1,
+      opacityTo: 0,
+      stops: [0, 100],
+      colorStops: []
+    }
     },
     stroke: {
       width: 2,
@@ -148,7 +170,7 @@ async function renderCharts() {
       },
     },
     labels: blockTime,
-    colors: ["#6f6f6f"],
+    colors: ["#f25f61"],
     legend: {
       show: false,
     },
@@ -171,7 +193,18 @@ async function renderCharts() {
     },
     fill: {
       opacity: .16,
-      type: 'solid'
+      type: 'gradient',
+      gradient: {
+      shade: 'dark',
+      type: "vertical",
+      shadeIntensity: 0.5,
+      gradientToColors: undefined, // optional, if not defined - uses the shades of same color in series
+      inverseColors: true,
+      opacityFrom: 1,
+      opacityTo: 0,
+      stops: [0, 100],
+      colorStops: []
+    }
     },
     stroke: {
       width: 2,
@@ -208,7 +241,7 @@ async function renderCharts() {
       },
     },
     labels: blockTime,
-    colors: ["#6f6f6f"],
+    colors: ["#f2cb5f"],
     legend: {
       show: false,
     },
@@ -231,7 +264,18 @@ async function renderCharts() {
     },
     fill: {
       opacity: .16,
-      type: 'solid'
+      type: 'gradient',
+      gradient: {
+      shade: 'dark',
+      type: "vertical",
+      shadeIntensity: 0.5,
+      gradientToColors: undefined, // optional, if not defined - uses the shades of same color in series
+      inverseColors: true,
+      opacityFrom: 1,
+      opacityTo: 0,
+      stops: [0, 100],
+      colorStops: []
+    }
     },
     stroke: {
       width: 2,
@@ -268,7 +312,7 @@ async function renderCharts() {
       },
     },
     labels: blockTime,
-    colors: ["#6f6f6f"],
+    colors: ["#abf25f"],
     legend: {
       show: false,
     },
@@ -278,7 +322,10 @@ async function renderCharts() {
 
 async function renderHuginChart() {
 
+  huginstats2.reverse()
+
   huginstats.reverse()
+
   huginstatslabels.reverse()
 
   document.getElementById('hugin-chart').innerHTML = '';
@@ -299,7 +346,18 @@ async function renderHuginChart() {
     },
     fill: {
       opacity: .16,
-      type: 'solid'
+      type: 'gradient',
+      gradient: {
+      shade: 'dark',
+      type: "vertical",
+      shadeIntensity: 0.5,
+      gradientToColors: undefined, // optional, if not defined - uses the shades of same color in series
+      inverseColors: true,
+      opacityFrom: 1,
+      opacityTo: 0,
+      stops: [0, 100],
+      colorStops: []
+    }
     },
     stroke: {
       width: 2,
@@ -307,8 +365,11 @@ async function renderHuginChart() {
       curve: "smooth",
     },
     series: [{
-      name: "Hugin Activity",
+      name: "Boards messages",
       data: huginstats
+    }, {
+      name: "Private messages",
+      data: huginstats2
     }],
     grid: {
       strokeDashArray: 4,
@@ -336,7 +397,7 @@ async function renderHuginChart() {
       },
     },
     labels: huginstatslabels,
-    colors: ["#6f6f6f"],
+    colors: ["#5f86f2", "#a65ff2"],
     legend: {
       show: false,
     },
