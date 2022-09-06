@@ -281,8 +281,6 @@ async function renderHuginChart() {
   huginstats.reverse()
   huginstatslabels.reverse()
 
-  console.log(huginstats);
-
   document.getElementById('hugin-chart').innerHTML = '';
   window.ApexCharts && (new ApexCharts(document.getElementById('hugin-chart'), {
     chart: {
