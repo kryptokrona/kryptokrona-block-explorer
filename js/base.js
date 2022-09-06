@@ -141,6 +141,17 @@ async function getTransaction(hash) {
   return response.json();
 }
 
+
+async function getUnconfirmedTransactions() {
+  const response = await fetch(api + '/get_pool_changes_lite', {
+    method: 'GET',
+    cache: 'no-cache',
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer'
+  });
+  return response.json();
+}
+
 async function getTransactionPool() {
   const response = await fetch(api + '/json_rpc', {
     method: 'POST',

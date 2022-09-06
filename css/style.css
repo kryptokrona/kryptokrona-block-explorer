@@ -483,7 +483,7 @@ tr {
   z-index: 100;
   width: 100vw;
   height: 100vh;
-  background-image: url("http://209.250.241.193/img/64x64.png");
+  background-image: url("/favicon.png");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;

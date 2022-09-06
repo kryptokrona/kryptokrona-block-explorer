@@ -13,10 +13,10 @@
   <link href="css/fontawesome.min.css" rel="stylesheet">
   <link href="css/all.min.css" rel="stylesheet">
 
-  <link rel="icon" type="image/png" href="img/64x64.png" />
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <link href="css/style.css" rel="stylesheet">
-  
+
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
   <script src="https://momentjs.com/downloads/moment.js"></script>
   <script src="config.js"></script>
@@ -33,6 +33,55 @@
         await getTransaction(hash).then(async(data) => {
           let transaction = data.result;
 
+          console.log(transaction);
+
+          if( transaction == undefined ) {
+
+            const pool = await getUnconfirmedTransactions();
+
+            try {
+              console.log(pool);
+              const pool_txs = pool.addedTxs;
+              console.log(pool_txs);
+
+              const pool_tx = pool_txs.filter(tx => {
+                return tx['transactionPrefixInfo.txHash'] == hash;
+              });
+
+
+              if (pool_tx.length) {
+                  console.log(pool_tx[0]);
+
+                  let tx = pool_tx[0]["transactionPrefixInfo.txPrefix"];
+
+                  transaction = {
+                    'block': {
+                      'hash': 'Unconfirmed',
+                      'timestamp': 'Unconfirmed',
+                      'height': 'Unconfirmed'
+                    },
+                    'txDetails': {
+                      'hash': hash,
+                      'mixin': 3,
+                      'size': 0,
+                      'fee': 0,
+                      'amount_out': 0,
+
+                    },
+                      tx
+                  }
+                  console.log(transaction);
+                  console.log();
+              }
+
+            } catch (err) {
+
+            }
+
+          }
+
+          console.log(transaction);
+
           document.getElementById('transHash').innerHTML = transaction.txDetails.hash;
           document.getElementById('transTime').innerHTML = timeConvert(transaction.block.timestamp);
           document.getElementById('transMixin').innerHTML = transaction.txDetails.mixin;
@@ -47,7 +96,7 @@
           await getLatestBlock().then(async(dataL) => {
             document.getElementById('transConfirmation').innerHTML = numberWithCommas(dataL.result.block_header.height - transaction.block.height);
           });
-          
+
           for(k = 0; k < transaction.tx.vin.length; k++) {
             var tbodyRef = document.getElementById('inputs').getElementsByTagName('tbody')[0];
             var newRow = tbodyRef.insertRow();
@@ -196,7 +245,7 @@
           </div>
         </div>
 
-        <div class="col-12 mb-4"> 
+        <div class="col-12 mb-4">
           <div class="card card-dark">
             <div class="card-header card-header-dark">
               Outputs <span id="outputCount" class="badge rounded-pill bg-secondary">0</span>
