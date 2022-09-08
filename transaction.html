@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-  <title>Blocksum</title>
+  <title>kryptokrona block explorer</title>
 
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/fontawesome.min.css" rel="stylesheet">
@@ -70,9 +70,10 @@
       <div class="row mb-4 mt-3">
         <div class="col-12 mb-4">
           <div class="card card-dark">
-            <div class="card-header card-header-dark">
+              <div class="card-header card-header-dark h6" id="labels-div">
               <span id="transHash">-</span>
-            </div>
+              <span id="transConfirmations" class="badge rounded-pill bg-danger">Unconfirmed!</span>
+          </div>
             <div class="card-body">
               <div class="row">
                 <div class="col-4">
@@ -120,7 +121,7 @@
 
         <div class="col-12 mb-4">
           <div class="card card-dark">
-            <div class="card-header card-header-dark">
+              <div class="card-header card-header-dark h6" id="labels-div">
               Inputs <span id="inputCount" class="badge rounded-pill bg-secondary">0</span>
             </div>
             <div class="card-body">
@@ -141,7 +142,7 @@
 
         <div class="col-12 mb-4">
           <div class="card card-dark">
-            <div class="card-header card-header-dark">
+              <div class="card-header card-header-dark h6" id="labels-div">
               Outputs <span id="outputCount" class="badge rounded-pill bg-secondary">0</span>
             </div>
             <div class="card-body">
@@ -254,7 +255,16 @@
           document.getElementById('inputCount').innerHTML = numberWithCommas(transaction.tx.vin.length);
           document.getElementById('outputCount').innerHTML = numberWithCommas(transaction.tx.vout.length);
           await getLatestBlock().then(async(dataL) => {
-            document.getElementById('transConfirmation').innerHTML = numberWithCommas(dataL.result.block_header.height - transaction.block.height);
+            let confirmations = numberWithCommas(dataL.result.block_header.height - transaction.block.height + 1);
+            if (confirmations == "NaN") {
+              confirmations = 0;
+            }
+            document.getElementById('transConfirmation').innerHTML = confirmations;
+            console.log(confirmations);
+            if (confirmations != 0) {
+              document.getElementById('transConfirmations').innerHTML = confirmations + (confirmations == 1 ? " confirmation" : " confirmations");
+              $('#transConfirmations').removeClass('bg-danger').addClass('bg-success');
+            }
           });
 
           for(k = 0; k < transaction.tx.vin.length; k++) {
