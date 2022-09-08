@@ -76,7 +76,7 @@
           </div>
             <div class="card-body">
               <div class="row">
-                <div class="col-4">
+                <div class="col-6">
                   <div class="row">
                     <div class="col-5" style="line-height:27px;">
                       <b>
@@ -96,7 +96,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-8">
+                <div class="col-6">
                   <div class="row">
                     <div class="col-4" style="line-height:27px;">
                       <b>
@@ -244,7 +244,7 @@
           console.log(transaction);
 
           document.getElementById('transHash').innerHTML = transaction.txDetails.hash;
-          document.getElementById('transTime').innerHTML = timeConvert(transaction.block.timestamp);
+          (transaction.block.timestamp == 'Unconfirmed' ? document.getElementById('transTime').innerHTML = 'Unconfirmed' : document.getElementById('transTime').innerHTML = timeConvert(transaction.block.timestamp));
           document.getElementById('transMixin').innerHTML = transaction.txDetails.mixin;
           document.getElementById('transHeight').innerHTML = numberWithCommas(transaction.block.height);
           document.getElementById('transPaymentId').innerHTML = (transaction.txDetails.paymentId == "" ? '-' : transaction.txDetails.paymentId);
