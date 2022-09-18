@@ -62,6 +62,10 @@ async function cacheSync(silent=true, latest_board_message_timestamp=0, first=tr
 
     const now = new Date();
 
+    let today_timestamp = parseInt(Date.now() / 1000);
+
+    let yesterday_timestamp = today_timestamp - 86400;
+
     let result = [];
 
     let result_pm = [];
@@ -86,6 +90,8 @@ async function cacheSync(silent=true, latest_board_message_timestamp=0, first=tr
 
         let thisURLPrivate = `${cacheURL}/api/v1/posts-encrypted?startDate=${escape(yesterday_iso)}&endDate=${escape(today_iso)}&size=1&page=1`;
 
+        let thisURLGroups = `${cacheURL}/api/v2/posts-encrypted-group?startDate=${yesterday_timestamp}&endDate=${today_timestamp}&size=1&page=1`;
+
         let re = await fetch(thisURLBoards);
 
         let json = await re.json();
@@ -98,9 +104,15 @@ async function cacheSync(silent=true, latest_board_message_timestamp=0, first=tr
 
         let count_pvt = json_pvt.totalPages
 
+        let re_grps = await fetch(thisURLGroups);
+
+        let json_grps = await re_grps.json();
+
+        let count_grps = json_grps.totalPages;
+
         result[i] = count;
 
-        result_pm[i] = count_pvt;
+        result_pm[i] = count_pvt + count_grps;
 
         result_label[i] = today_iso.split('T')[0];
 
@@ -108,6 +120,10 @@ async function cacheSync(silent=true, latest_board_message_timestamp=0, first=tr
           today_iso = now.toISOString();
           now.setDate(now.getDate() - 1)
           yesterday_iso = now.toISOString();
+
+          today_timestamp = yesterday_timestamp - 1;
+          yesterday_timestamp = today_timestamp - 86400;
+
 
           i += 1;
 
