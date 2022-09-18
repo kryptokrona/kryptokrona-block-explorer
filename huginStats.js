@@ -70,6 +70,8 @@ async function cacheSync(silent=true, latest_board_message_timestamp=0, first=tr
 
     let result_pm = [];
 
+    let result_grps = [];
+
     let result_label = [];
 
     let today_iso = now.toISOString();
@@ -112,7 +114,9 @@ async function cacheSync(silent=true, latest_board_message_timestamp=0, first=tr
 
         result[i] = count;
 
-        result_pm[i] = count_pvt + count_grps;
+        result_pm[i] = count_pvt;
+
+        result_grps[i] = count_grps;
 
         result_label[i] = today_iso.split('T')[0];
 
@@ -132,6 +136,8 @@ async function cacheSync(silent=true, latest_board_message_timestamp=0, first=tr
       console.log(result);
       console.log('huginstats2 = ');
       console.log(result_pm);
+      console.log('huginstats3 = ');
+      console.log(result_grps);
       console.log('huginstatslabels = ');
       console.log(result_label);
 

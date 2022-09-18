@@ -322,6 +322,8 @@ async function renderCharts() {
 
 async function renderHuginChart() {
 
+  huginstats3.reverse()
+
   huginstats2.reverse()
 
   huginstats.reverse()
@@ -370,6 +372,10 @@ async function renderHuginChart() {
     }, {
       name: "Private messages",
       data: huginstats2
+    },
+    {
+      name: "Group messages",
+      data: huginstats3
     }],
     grid: {
       strokeDashArray: 4,
@@ -397,7 +403,7 @@ async function renderHuginChart() {
       },
     },
     labels: huginstatslabels,
-    colors: ["#5f86f2", "#a65ff2"],
+    colors: ["#5f86f2", "#a65ff2", "#5ff281"],
     legend: {
       show: false,
     },
