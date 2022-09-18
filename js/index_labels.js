@@ -31,7 +31,7 @@ function getReadableDifficultyString(difficulty, precision) {
 
 async function getHuginAmount(hash) {
 
-  document.getElementById('huginDataAmount').innerHTML = huginstats[0];
+  document.getElementById('huginDataAmount').innerHTML = huginstats[0] + huginstats2[0] + huginstats3[0];
 
 }
 
