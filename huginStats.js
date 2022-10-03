@@ -6,7 +6,7 @@ async function updateCacheList() {
                json: true,
                method: 'GET',
                timeout: 100,
-               url: 'https://raw.githubusercontent.com/kryptokrona/hugin-cache-list/main/apis.json',
+               url: 'https://raw.githubusercontent.com/kryptokrona/hugin-api-list/main/apis.json',
            });
            console.log(data);
            if (data.apis) {
@@ -34,7 +34,7 @@ async function getBestCache() {
   for (cache in caches) {
     let this_cache = caches[cache];
 
-    let cacheURL = `${this_cache.url}/api/v1/posts/latest`;
+    let cacheURL = `${this_cache.url}/api/v1/posts`;
     try {
       const resp = await fetch(cacheURL, {
          method: 'GET'
@@ -88,11 +88,11 @@ async function cacheSync(silent=true, latest_board_message_timestamp=0, first=tr
 
       while (i < 31) {
 
-        let thisURLBoards = `${cacheURL}/api/v1/posts?startDate=${escape(yesterday_iso)}&endDate=${escape(today_iso)}&size=1&page=1`;
+        let thisURLBoards = `${cacheURL}/api/v1/posts?startUnixTime=${escape(yesterday_iso)}&endUnixTime=${escape(today_iso)}&size=1&page=1`;
 
-        let thisURLPrivate = `${cacheURL}/api/v1/posts-encrypted?startDate=${escape(yesterday_iso)}&endDate=${escape(today_iso)}&size=1&page=1`;
+        let thisURLPrivate = `${cacheURL}/api/v1/posts-encrypted?startUnixTime=${escape(yesterday_iso)}&endUnixTime=${escape(today_iso)}&size=1&page=1`;
 
-        let thisURLGroups = `${cacheURL}/api/v2/posts-encrypted-group?startDate=${yesterday_timestamp}&endDate=${today_timestamp}&size=1&page=1`;
+        let thisURLGroups = `${cacheURL}/api/v1/posts-encrypted-group?startUnixTime=${yesterday_timestamp}&endUnixTime=${today_timestamp}&size=1&page=1`;
 
         let re = await fetch(thisURLBoards);
 
