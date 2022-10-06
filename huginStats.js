@@ -34,7 +34,7 @@ async function getBestCache() {
   for (cache in caches) {
     let this_cache = caches[cache];
 
-    let cacheURL = `${this_cache.url}/api/v1/posts/latest`;
+    let cacheURL = `${this_cache.url}/api/v1/posts`;
     try {
       const resp = await fetch(cacheURL, {
          method: 'GET'
@@ -88,48 +88,47 @@ async function cacheSync(silent=true, latest_board_message_timestamp=0, first=tr
 
       while (i < 31) {
 
-        let thisURLBoards = `${cacheURL}/api/v1/posts?startDate=${escape(yesterday_iso)}&endDate=${escape(today_iso)}&size=1&page=1`;
+        let thisURLBoards = `${cacheURL}/api/v1/posts?from=${yesterday_timestamp}&to=${today_timestamp}&size=1&page=1`;
 
-        let thisURLPrivate = `${cacheURL}/api/v1/posts-encrypted?startDate=${escape(yesterday_iso)}&endDate=${escape(today_iso)}&size=1&page=1`;
+        let thisURLPrivate = `${cacheURL}/api/v1/posts-encrypted?from=${yesterday_timestamp}&to=${today_timestamp}&size=1&page=1`;
 
-        let thisURLGroups = `${cacheURL}/api/v2/posts-encrypted-group?startDate=${yesterday_timestamp}&endDate=${today_timestamp}&size=1&page=1`;
+        let thisURLGroups = `${cacheURL}/api/v1/posts-encrypted-group?from=${yesterday_timestamp}&to=${today_timestamp}&size=1&page=1`;
 
         let re = await fetch(thisURLBoards);
 
         let json = await re.json();
 
-        let count = json.totalPages;
+        let count = json.total_pages;
 
         let re_pvt = await fetch(thisURLPrivate);
 
         let json_pvt = await re_pvt.json();
 
-        let count_pvt = json_pvt.totalPages
+        let count_pvt = json_pvt.total_pages;
 
         let re_grps = await fetch(thisURLGroups);
 
         let json_grps = await re_grps.json();
 
-        let count_grps = json_grps.totalPages;
+        let count_grps = json_grps.total_pages;
 
         result[i] = count;
 
         result_pm[i] = count_pvt;
 
         result_grps[i] = count_grps;
-
         result_label[i] = today_iso.split('T')[0];
 
-          now.setDate(now.getDate() - 1);
-          today_iso = now.toISOString();
-          now.setDate(now.getDate() - 1)
-          yesterday_iso = now.toISOString();
+        today_iso = now.toISOString();
+        now.setDate(now.getDate() - 1);
 
-          today_timestamp = yesterday_timestamp - 1;
-          yesterday_timestamp = today_timestamp - 86400;
+        yesterday_iso = now.toISOString();
+
+        today_timestamp = yesterday_timestamp - 1;
+        yesterday_timestamp = today_timestamp - 86400;
 
 
-          i += 1;
+        i += 1;
 
       }
       console.log('huginstats = ');
