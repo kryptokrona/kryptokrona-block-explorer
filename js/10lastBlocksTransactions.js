@@ -146,6 +146,7 @@ async function renderBlocksTransactions() {
   // Transaction pool
   await getUnconfirmedTransactions().then(async(transactions) => {
     document.getElementById('transactionPoolList').innerHTML = "";
+    document.getElementById('huginTransactionPoolList').innerHTML = "";
     console.log(transactions);
     transactions = transactions.addedTxs;
     console.log(transactions);
