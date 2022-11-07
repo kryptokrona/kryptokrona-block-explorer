@@ -144,25 +144,59 @@ async function renderBlocksTransactions() {
   });
 
   // Transaction pool
-  await getTransactionPool().then(async(transactions) => {
+  await getUnconfirmedTransactions().then(async(transactions) => {
     document.getElementById('transactionPoolList').innerHTML = "";
-    transactions = transactions.result;
+    console.log(transactions);
+    transactions = transactions.addedTxs;
+    console.log(transactions);
+     hugin_transactions = transactions.filter(item => item['transactionPrefixInfo.txPrefix']['extra'].length >= 67);
+     transactions = transactions.filter(item => item['transactionPrefixInfo.txPrefix']['extra'].length < 67);
+    console.log(transactions.length);
+    //console.log(hugin_transactions.length);
     let transactionsAmount = 0;
-    for(k = 0; k < transactions.transactions.length; k++) {
+    console.log(transactions.length);
+    for(k = 0; k < transactions.length; k++) {
       var tbodyRef = document.getElementById('transactionPool').getElementsByTagName('tbody')[0];
       var newRow = tbodyRef.insertRow();
+      let amount = 0;
+      for (output in transactions[k]["transactionPrefixInfo.txPrefix"].vout) {
+        amount += transactions[k]["transactionPrefixInfo.txPrefix"].vout[output].amount;
+      }
+      console.log(amount);
 
       var tr=document.createElement('tr');
       tr.innerHTML = `
-      <td><b>${numberWithCommas((transactions.transactions[k].amount_out / (10 ** decimals)).toFixed(2))} ${ticker}</b></td>
-      <td style="color:#00ff89;">$${(currentPriceUSD * (transactions.transactions[k].amount_out / (10 ** decimals))).toFixed(2)}</td>
-      <td>${numberWithCommas((transactions.transactions[k].fee / (10 ** decimals)).toFixed(2))} ${ticker}</td>
-      <td><a href="transaction.html?hash=${transactions.transactions[k].hash}" class="link-white">${transactions.transactions[k].hash}</a></td>`;
+      <td><b>${numberWithCommas((amount / (10 ** decimals)).toFixed(2))} ${ticker}</b></td>
+      <td style="color:#00ff89;">$${(currentPriceUSD * (amount / (10 ** decimals))).toFixed(2)}</td>
+      <td><a href="transaction.html?hash=${transactions[k]["transactionPrefixInfo.txHash"]}" class="link-white">${transactions[k]["transactionPrefixInfo.txHash"]}</a></td>`;
       tbodyRef.appendChild(tr);
 
       transactionsAmount++;
       document.getElementById('transactionPoolAmount').innerHTML = transactionsAmount
     }
+
+    let hugin_transactionsAmount = 0;
+
+    for(k = 0; k < hugin_transactions.length; k++) {
+      var tbodyRef = document.getElementById('huginTransactionPool').getElementsByTagName('tbody')[0];
+      var newRow = tbodyRef.insertRow();
+      let amount = 0;
+      for (output in hugin_transactions[k]["transactionPrefixInfo.txPrefix"].vout) {
+        amount += hugin_transactions[k]["transactionPrefixInfo.txPrefix"].vout[output].amount;
+      }
+      console.log(amount);
+
+      var tr=document.createElement('tr');
+      tr.innerHTML = `
+      <td><b>${numberWithCommas((amount / (10 ** decimals)).toFixed(2))} ${ticker}</b></td>
+      <td style="color:#00ff89;">$${(currentPriceUSD * (amount / (10 ** decimals))).toFixed(2)}</td>
+      <td><a href="transaction.html?hash=${hugin_transactions[k]["transactionPrefixInfo.txHash"]}" class="link-white">${hugin_transactions[k]["transactionPrefixInfo.txHash"]}</a></td>`;
+      tbodyRef.appendChild(tr);
+
+      hugin_transactionsAmount++;
+      document.getElementById('huginTransactionPoolAmount').innerHTML = hugin_transactionsAmount
+    }
+
   });
 }
 
