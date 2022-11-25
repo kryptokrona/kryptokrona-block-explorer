@@ -203,14 +203,11 @@ async function renderBlocksTransactions() {
 
     let hugin_transactionsAmount = 0;
 
+    let hugin_messages = [];
+
     for(k = 0; k < hugin_transactions.length; k++) {
       var tbodyRef = document.getElementById('huginTransactionPool').getElementsByTagName('tbody')[0];
       var newRow = tbodyRef.insertRow();
-      let amount = 0;
-      for (output in hugin_transactions[k]["transactionPrefixInfo.txPrefix"].vout) {
-        amount += hugin_transactions[k]["transactionPrefixInfo.txPrefix"].vout[output].amount;
-      }
-      console.log(amount);
 
       const message = JSON.parse(trimExtra(hugin_transactions[k]["transactionPrefixInfo.txPrefix"].extra));
 
@@ -236,18 +233,28 @@ async function renderBlocksTransactions() {
         timestamp = timestamp * 1000;
       }
 
+      let message_hash = hugin_transactions[k]["transactionPrefixInfo.txHash"];
 
+      hugin_messages.push({message: message, type: message_type, typeColor: message_type_color, timestamp: timestamp, hash: message_hash});
+
+      hugin_transactionsAmount++;
+    }
+
+    hugin_messages.sort((item, item2) => item2.timestamp - item.timestamp);
+
+    for(k = 0; k < hugin_messages.length; k++) {
 
       var tr=document.createElement('tr');
       tr.innerHTML = `
-      <td style="color:${message_type_color};">${message_type}</td>
-      <td>${moment(timestamp).fromNow()}</td>
-      <td><a href="transaction.html?hash=${hugin_transactions[k]["transactionPrefixInfo.txHash"]}" class="link-white">${hugin_transactions[k]["transactionPrefixInfo.txHash"]}</a></td>`;
+      <td style="color:${hugin_messages[k].typeColor};">${hugin_messages[k].type}</td>
+      <td>${moment(hugin_messages[k].timestamp).fromNow()}</td>
+      <td><a href="transaction.html?hash=${hugin_messages[k].hash}" class="link-white">${hugin_messages[k].hash}</a></td>`;
       tbodyRef.appendChild(tr);
 
-      hugin_transactionsAmount++;
+   }
+
+
       document.getElementById('huginTransactionPoolAmount').innerHTML = hugin_transactionsAmount
-    }
 
   });
 }
