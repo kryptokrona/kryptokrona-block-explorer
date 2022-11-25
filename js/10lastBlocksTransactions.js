@@ -11,11 +11,36 @@ function setVisible(selector, visible) {
   document.querySelector(selector).style.display = visible ? 'block' : 'none';
 }
 
+function fromHex(hex,str){
+  try{
+    str = decodeURIComponent(hex.replace(/(..)/g,'%$1'))
+  }
+  catch(e){
+    str = hex
+  }
+  return str
+}
+
 onReady(function() {
   setVisible('body', true);
   setVisible('#loading', false);
 });
 
+function trimExtra (extra) {
+
+  try {
+
+    let payload = fromHex(extra.substring(66));
+    let payload_json = JSON.parse(payload);
+    return fromHex(extra.substring(66))
+
+  } catch (e) {
+
+    return fromHex(extra.substring(78));
+
+  }
+
+}
 
 async function renderBlocksTransactions() {
   let currentPriceUSD = 0;
@@ -187,10 +212,36 @@ async function renderBlocksTransactions() {
       }
       console.log(amount);
 
+      const message = JSON.parse(trimExtra(hugin_transactions[k]["transactionPrefixInfo.txPrefix"].extra));
+
+      let message_type = 'Unknown';
+      let message_type_color = 'gray';
+      let timestamp = message.t;
+
+      if ('sb' in message) {
+        message_type = 'Group message';
+        message_type_color = "#5ff281";
+
+      }
+
+      if ('box' in message) {
+        message_type = 'Private message';
+        message_type_color = "#a65ff2";
+
+      }
+
+      if ('m' in message) {
+        message_type = 'Boards message';
+        message_type_color = "#5f86f2";
+        timestamp = timestamp * 1000;
+      }
+
+
+
       var tr=document.createElement('tr');
       tr.innerHTML = `
-      <td><b>${numberWithCommas((amount / (10 ** decimals)).toFixed(2))} ${ticker}</b></td>
-      <td style="color:#00ff89;">$${(currentPriceUSD * (amount / (10 ** decimals))).toFixed(2)}</td>
+      <td style="color:${message_type_color};">${message_type}</td>
+      <td>${moment(timestamp).fromNow()}</td>
       <td><a href="transaction.html?hash=${hugin_transactions[k]["transactionPrefixInfo.txHash"]}" class="link-white">${hugin_transactions[k]["transactionPrefixInfo.txHash"]}</a></td>`;
       tbodyRef.appendChild(tr);
 
