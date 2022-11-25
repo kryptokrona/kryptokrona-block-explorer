@@ -206,38 +206,42 @@ async function renderBlocksTransactions() {
     let hugin_messages = [];
 
     for(k = 0; k < hugin_transactions.length; k++) {
-      var tbodyRef = document.getElementById('huginTransactionPool').getElementsByTagName('tbody')[0];
-      var newRow = tbodyRef.insertRow();
+      try {
+        var tbodyRef = document.getElementById('huginTransactionPool').getElementsByTagName('tbody')[0];
+        var newRow = tbodyRef.insertRow();
 
-      const message = JSON.parse(trimExtra(hugin_transactions[k]["transactionPrefixInfo.txPrefix"].extra));
+        const message = JSON.parse(trimExtra(hugin_transactions[k]["transactionPrefixInfo.txPrefix"].extra));
 
-      let message_type = 'Unknown';
-      let message_type_color = 'gray';
-      let timestamp = message.t;
+        let message_type = 'Unknown';
+        let message_type_color = 'gray';
+        let timestamp = message.t;
 
-      if ('sb' in message) {
-        message_type = 'Group message';
-        message_type_color = "#5ff281";
+        if ('sb' in message) {
+          message_type = 'Group message';
+          message_type_color = "#5ff281";
 
+        }
+
+        if ('box' in message) {
+          message_type = 'Private message';
+          message_type_color = "#a65ff2";
+
+        }
+
+        if ('m' in message) {
+          message_type = 'Boards message';
+          message_type_color = "#5f86f2";
+          timestamp = timestamp * 1000;
+        }
+
+        let message_hash = hugin_transactions[k]["transactionPrefixInfo.txHash"];
+
+        hugin_messages.push({message: message, type: message_type, typeColor: message_type_color, timestamp: timestamp, hash: message_hash});
+
+        hugin_transactionsAmount++;
+      } catch(err) {
+        console.log(err);
       }
-
-      if ('box' in message) {
-        message_type = 'Private message';
-        message_type_color = "#a65ff2";
-
-      }
-
-      if ('m' in message) {
-        message_type = 'Boards message';
-        message_type_color = "#5f86f2";
-        timestamp = timestamp * 1000;
-      }
-
-      let message_hash = hugin_transactions[k]["transactionPrefixInfo.txHash"];
-
-      hugin_messages.push({message: message, type: message_type, typeColor: message_type_color, timestamp: timestamp, hash: message_hash});
-
-      hugin_transactionsAmount++;
     }
 
     hugin_messages.sort((item, item2) => item2.timestamp - item.timestamp);
