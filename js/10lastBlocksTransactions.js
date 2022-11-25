@@ -62,7 +62,7 @@ async function renderBlocksTransactions() {
           <td>${numberWithCommas(block.num_txes)}</td>
           <td>${numberWithCommas(block.block_size)}</td>
           <td>${((block.reward / (10 ** decimals))).toFixed(3)} ${ticker}</td>
-          <td>${numberWithCommas(block.difficulty)}</td>`;
+          `;
           tbodyRef.appendChild(tr);
 
           // Setting the beautifull stuff
