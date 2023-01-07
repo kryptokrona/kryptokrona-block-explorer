@@ -84,7 +84,7 @@ async function cacheSync(silent=true, latest_board_message_timestamp=0, first=tr
     let i = 0;
 
 
-      let cacheURL = 'https://api.hugin.chat';
+      let cacheURL = 'https://n1.vxo.nu';
 
       while (i < 31) {
 
